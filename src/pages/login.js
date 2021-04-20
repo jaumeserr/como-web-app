@@ -10,24 +10,6 @@ const LoginStyled = styled.section`
   margin: 0 auto;
 `
 
-const BreadcrumStyled = styled.div`
-  text-align: center;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  span {
-    padding: 0 10px;
-  }
-  li a {
-    text-decoration: none;
-    color: black;
-    :hover {
-      text-decoration: underline;
-    }
-  }
-`
-
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;

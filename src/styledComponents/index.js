@@ -13,7 +13,7 @@ export const ButtonStyled = styled.button`
   color: var(--white);
   border: 1px solid var(--black);
   font-weight: 700;
-  transition: all 500ms cubic-bezier(0.77, 0, 0.175,1);
+  /* transition: all 500ms cubic-bezier(0.77, 0, 0.175,1); */
   cursor: pointer;
 
   a{
