@@ -1,35 +1,44 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const InputStyled = styled.input`
-  border: 2px solid var(--lightGray);
+  border: 1px solid var(--lightgray);
   padding: 13px 15px;
   margin-bottom: 15px;
-  outline-color: var(--black);
+  outline-color: var(--principal);
+  border-radius: 4px;
+  width: 100%;
 `
 
 export const ButtonStyled = styled.button`
-  padding: 15px 30px;
-  background-color: var(--black);
+  padding: 15px;
+  background-color: var(--principal);
   color: var(--white);
-  border: 1px solid var(--black);
+  border: none;
   font-weight: 700;
-  /* transition: all 500ms cubic-bezier(0.77, 0, 0.175,1); */
   cursor: pointer;
-
-  a{
-    color: inherit;
-    text-decoration: none;
-    display: block;
-  }
+  border-radius: 4px;
 
   :hover {
-  background-color: var(--white);
+  background-color: var(--secondary);
   color: var(--black);
   }
 
-  ${props => props.primary && css`
-  background-color: var(--white);
-  color: var(--black);
-  border: 1px solid #e8e8e8;
-  `}
+  a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    :hover {
+      color: var(--black);
+    }
+  }
+`
+
+export const FormLayoutStyled = styled.section`
+  width: 100%;
+  padding: 30px;
+
+  @media (min-width: 768px) {
+    width: 500px;
+    margin: 0 auto;
+  }
 `

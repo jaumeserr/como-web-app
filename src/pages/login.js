@@ -3,11 +3,19 @@ import { Link } from 'react-router-dom';
 
 import Heading from '../components/Heading';
 import Breadcrum from '../components/Breadcrum';
-import { InputStyled, ButtonStyled } from '../styledComponents';
+import {
+  InputStyled,
+  ButtonStyled, 
+  FormLayoutStyled
+} from '../styledComponents';
 
 const LoginStyled = styled.section`
   width: 500px;
   margin: 0 auto;
+
+  @media (min-width: 768px) {
+    background-color: red;
+  }
 `
 
 const FormStyled = styled.form`
@@ -24,7 +32,7 @@ const FormStyled = styled.form`
     margin: 20px 0;
     div:first-child, div:last-child {
       width: 100%;
-      border-bottom: 1px solid var(--lightGray);
+      border-bottom: 1px solid var(--lightgray);
       height: 13px;
     }
     span {
@@ -35,7 +43,7 @@ const FormStyled = styled.form`
 
 const Login = () => {
   return(
-    <LoginStyled>
+    <FormLayoutStyled>
       <Breadcrum
         opt1="Home"
         opt2="Account"
@@ -61,14 +69,14 @@ const Login = () => {
         </div>
         <ButtonStyled
           primary
-          type="submit"    
+          type="submit"
         >
           <Link to="/register">
             CREATE AN ACCOUNT
           </Link>
         </ButtonStyled>
       </FormStyled>
-    </LoginStyled>
+    </FormLayoutStyled>
   );
 }
 

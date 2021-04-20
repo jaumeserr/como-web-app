@@ -20,7 +20,9 @@ code {
 }
 
 :root {
-  --black: black;
+  --principal: #63c082;
+  --secondary: #dce763;
+  --lightgray: #d8d8d8;
   --white: white;
-  --lightGray: #d8d8d8;
+  --black: black;
 }

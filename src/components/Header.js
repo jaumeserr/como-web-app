@@ -20,7 +20,7 @@ const HeaderStyled = styled.header`
   }
   li {
     padding: 0 20px;
-    border-left: 1px solid var(--lightGray);
+    border-left: 1px solid var(--lightgray);
     a {
       text-decoration: none;
       color: var(--black);

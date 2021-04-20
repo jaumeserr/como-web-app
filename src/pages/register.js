@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Breadcrum from '../components/Breadcrum';
 import Heading from '../components/Heading';
-import { InputStyled, ButtonStyled } from '../styledComponents';
-
-const RegisterStyled = styled.section`
-  width: 500px;
-  margin: 0 auto;
-`
+import {
+  InputStyled,
+  ButtonStyled, 
+  FormLayoutStyled
+} from '../styledComponents';
 
 const FormStyled = styled.form`
   display: flex;
@@ -25,7 +24,7 @@ const FormStyled = styled.form`
     margin: 20px 0;
     div:first-child, div:last-child {
       width: 100%;
-      border-bottom: 1px solid var(--lightGray);
+      border-bottom: 1px solid var(--lightgray);
       height: 13px;
     }
     span {
@@ -36,7 +35,7 @@ const FormStyled = styled.form`
 
 const Register = () => {
   return(
-    <RegisterStyled>
+    <FormLayoutStyled>
       <Breadcrum
         opt1="Home"
         opt2="Create Account"
@@ -73,7 +72,7 @@ const Register = () => {
           </Link>
         </ButtonStyled>
       </FormStyled>
-    </RegisterStyled>
+    </FormLayoutStyled>
   );
 }
 

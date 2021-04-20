@@ -1,70 +1,70 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { ButtonStyled } from '../styledComponents/index';
-
-const ContainerButtonStyled = styled.div`
-  position: relative;
-  cursor: pointer;
-  border-radius: 8px;
-  margin: 20px 20px;
-  :hover ${ButtonStyled} {
-    background-color: var(--white);
-    color: var(--black);
-  }
-  :hover {
-    border: 1px solid red;
-  }
-`
+import CardHover from './CardHover';
 
 const CardStyled = styled.article`
-  width: 200px;
-  border: 1px solid var(--lightGray);
-  border-radius: 8px;
+  width: 250px;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  padding: 20px;
-  text-align: center;
-  img {
-    margin-bottom: 10px;
+  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
+  position: relative;
+  margin: 10px;
+  
+  .card__info {
+    padding: 10px;
   }
-  .short-description {
-    color: var(--lightGray);
-    margin-bottom: 10px;
+
+  .card__image {
+    border-bottom: 1px solid var(--principal);
   }
-  .price {
-    margin-bottom: 20px;
+  
+  .card__name {
+    font-size: 18px;
+    color: var(--principal);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .card__price {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 5px 0;
   }
 `
 
-const ButtonCardStyled = styled(ButtonStyled)`
-  position: absolute;
-  left: 43px;
-  bottom: -20px;
-  padding: 10px 20px;
-  border-radius: 5px;
+const AddCardButtonStyled = styled(ButtonStyled)`
+  width: 100%;
+  border-radius: 3px;
 `
 
-const Card = ({ 
-  id,
-  price,
-  name,
-  img,
-  shortDesc
-}) => {
+const Card = ({ id, price, name, img, shortDesc }) => {
+  const [isHovered, setIsHovered] = useState(false)
   return(
-    <ContainerButtonStyled
-      onClick={() => console.log('Me has clicado')}
+    <CardStyled
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <CardStyled>
-        <img src={img} alt={name}/>
-        <p>{name}</p>
-        <p className="short-description">{shortDesc}</p>
-        <p className="price">{price}€</p>
-      </CardStyled>
-      <ButtonCardStyled>
-        Add to Cart
-      </ButtonCardStyled>
-    </ContainerButtonStyled>
+      <img className="card__image" 
+        src="https://media.fabfab.net/images/products/popup/boton-de-material-sintetico-bunde-80--24_13001_80.jpg"
+        alt={name}
+      />
+      <div className="card__info">
+        <p className="card__name">
+          Cremallera
+        </p>
+        <p className="card__shortdesc">Tipo malla 3</p>
+        <p className="card__price">1€</p>
+        <AddCardButtonStyled>
+          ADD TO CART
+        </AddCardButtonStyled>
+      </div>
+      {isHovered ? <CardHover /> : ''}
+    </CardStyled>
   );
 }
 
