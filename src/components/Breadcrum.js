@@ -12,21 +12,27 @@ const BreadcrumStyled = styled.section`
   }
   li a {
     text-decoration: none;
-    color: black;
+    color: var(--black);
     :hover {
       text-decoration: underline;
     }
   }
 `
 
-const Breadcrum = props => {
-  const { opt1, opt2, link1, link2} = props
-  console.log(props)
-  return(
+const Breadcrum = ({ opt1, opt2, link1, link2 }) => {
+  return (
     <BreadcrumStyled>
-      <li><Link to={link1}>{opt1}</Link></li>
+      <li>
+        <Link to={link1}>
+          {opt1}
+        </Link>
+      </li>
       <span>/</span>
-      <li><Link to={link2}>{opt2}</Link></li>
+      <li>
+        <Link to={link2}>
+          {opt2}
+        </Link>
+      </li>
     </BreadcrumStyled>
   );
 }

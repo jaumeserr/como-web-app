@@ -6,8 +6,7 @@ const HeadingStyled = styled.h1`
   margin-bottom: 40px;
 `
 
-const Heading = props => {
-  const { title } = props;
+const Heading = ({ title }) => {
   return(
     <HeadingStyled>
       {title}

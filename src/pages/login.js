@@ -40,10 +40,9 @@ const FormStyled = styled.form`
   .form__separator {
     display: flex;
     margin: 20px 0;
-    
     div:first-child, div:last-child {
       width: 100%;
-      border-bottom: 1px solid #e8e8e8;
+      border-bottom: 1px solid var(--lightGray);
       height: 13px;
     }
     span {

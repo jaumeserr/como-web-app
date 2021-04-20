@@ -18,3 +18,9 @@ code {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
 }
+
+:root {
+  --black: black;
+  --white: white;
+  --lightGray: #e8e8e8;
+}

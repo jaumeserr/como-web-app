@@ -20,10 +20,10 @@ const HeaderStyled = styled.header`
   }
   li {
     padding: 0 20px;
-    border-left: 1px solid #e8e8e8;
+    border-left: 1px solid var(--lightGray);
     a {
       text-decoration: none;
-      color: black;
+      color: var(--black);
     }
   }
   li img {
@@ -35,8 +35,8 @@ const HeaderStyled = styled.header`
     border: none;
   }
   .counter-cart {
-    background-color: black;
-    color: white;
+    background-color: var(--black);
+    color: var(--white);
     border-radius: 50%;
     padding: 2px 8px;
     margin-left: 4px;
