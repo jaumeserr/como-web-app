@@ -2,7 +2,14 @@ import styled from 'styled-components';
 
 const CardDetail = () => {
   return(
-    <>CardDetail</>
+    <section>
+      <div>
+        <img src="" />
+      </div>
+      <div>
+        
+      </div>
+    </section>
   );
 }
 
