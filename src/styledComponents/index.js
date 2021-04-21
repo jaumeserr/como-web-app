@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InputStyled = styled.input`
-  border: 1px solid var(--lightgray);
+  border: 1px solid var(--principal);
   padding: 13px 15px;
   margin-bottom: 15px;
   outline-color: var(--principal);
@@ -11,16 +11,17 @@ export const InputStyled = styled.input`
 
 export const ButtonStyled = styled.button`
   padding: 15px;
-  background-color: var(--principal);
-  color: var(--white);
-  border: none;
+  background-color: var(--secondary);
+  color: var(--black);
+  border: 1px solid var(--principal);
   font-weight: 700;
   cursor: pointer;
   border-radius: 4px;
 
   :hover {
-  background-color: var(--secondary);
-  color: var(--black);
+    background-color: var(--white);
+    color: var(--principal);
+    border: 1px solid var(--principal);
   }
 
   a {

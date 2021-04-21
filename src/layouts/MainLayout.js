@@ -19,17 +19,18 @@ const MainLayout = ({children}) => {
       <Header />
       <ContentStyled>
     
-        {/* {
-          INFO_CARD.map(({ id, price, name, shortDesc, img }) => (
+        {
+          INFO_CARD.map(({ id, price, name, shortDesc, img, unities }) => (
             <Card
               key={id}
               price={price}
               name={name}
               shortDesc={shortDesc}
               img={img}
+              unities={unities}
             />
           ))
-        } */}
+        }
         {children}
       </ContentStyled>
       <Footer />

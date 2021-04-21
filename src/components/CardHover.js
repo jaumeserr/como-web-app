@@ -2,16 +2,31 @@ import styled from 'styled-components';
 
 import SearchIcon from '../assets/search.svg';
 import FavIcon from '../assets/favs.svg';
+import { Link } from 'react-router-dom';
+import CardDetail from './CardDetail';
 
 
 const CardHoverStyled = styled.ul`
   position: absolute;
-  border: 1px solid #e8e8e8;
-  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.08);
+  border: 1px solid var(--principal);
+  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
+  background-color: var(--white);
   right: 10px;
   top: 10px;
   list-style: none;
   border-radius: 4px;
+  animation: fadeout-fadein-right-to-left 400ms;
+  
+  @keyframes fadeout-fadein-right-to-left {
+    0% {
+      right: -10px;
+      opacity: 0;
+    }
+    100% {
+      right: 10px;
+      opacity: 1;
+    }
+  }
 
   li {
     padding: 12px;
@@ -22,7 +37,7 @@ const CardHoverStyled = styled.ul`
     }
 
     :last-child {
-      border-top: 1px solid #e8e8e8;
+      border-top: 1px solid var(--principal);
     }
   }
 `
@@ -38,11 +53,13 @@ const CardHover = () => {
         />
       </li>
       <li>
-        <img
-          src={SearchIcon}
-          alt="Search"
-          style={{color: "red"}}
-        />
+        <Link to="/detail">
+          <img
+            src={SearchIcon}
+            alt="Search"
+            style={{color: "red"}}
+          />
+        </Link>
         </li>
     </CardHoverStyled>
   );

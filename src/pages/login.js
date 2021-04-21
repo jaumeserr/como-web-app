@@ -32,7 +32,7 @@ const FormStyled = styled.form`
     margin: 20px 0;
     div:first-child, div:last-child {
       width: 100%;
-      border-bottom: 1px solid var(--lightgray);
+      border-bottom: 1px solid var(--principal);
       height: 13px;
     }
     span {
