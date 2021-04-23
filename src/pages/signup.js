@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Breadcrum from '../components/Breadcrum';
 import Heading from '../components/Heading';
-import {
-  InputStyled,
-  ButtonStyled, 
-  FormLayoutStyled
-} from '../styledComponents';
+import { InputStyled, ButtonStyled, FormLayoutStyled } from '../styledComponents';
 
 const FormStyled = styled.form`
   display: flex;
@@ -33,7 +29,7 @@ const FormStyled = styled.form`
   }
 `
 
-const Register = () => {
+const SignupPage = () => {
   return(
     <FormLayoutStyled>
       <Breadcrum
@@ -76,4 +72,4 @@ const Register = () => {
   );
 }
 
-export default Register;
+export default SignupPage;

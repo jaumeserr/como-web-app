@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Heading from '../components/Heading';
 import Breadcrum from '../components/Breadcrum';
-import {
-  InputStyled,
-  ButtonStyled, 
-  FormLayoutStyled
-} from '../styledComponents';
+import { InputStyled, ButtonStyled, FormLayoutStyled } from '../styledComponents';
 
 const LoginStyled = styled.section`
   width: 500px;
@@ -41,7 +37,7 @@ const FormStyled = styled.form`
   }
 `
 
-const Login = () => {
+const LoginPage = () => {
   return(
     <FormLayoutStyled>
       <Breadcrum
@@ -80,4 +76,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default LoginPage;
