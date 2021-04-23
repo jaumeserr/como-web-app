@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import CardDetail from '../components/CardDetail';
 import CategoryList from '../components/CategoryList';
 import CardList from '../components/CardList';
+import Home from '../pages';
 
 const CategoryLayoutStyled = styled.main`
   height: calc(100vh - 124px);
@@ -32,7 +33,7 @@ const CategoryLayout = () => {
           <CategoryList />
         </aside>
         <section>
-          <CardList />
+          <Home />
           {/* <CardDetail /> */}
         </section>
       </CategoryLayoutStyled>

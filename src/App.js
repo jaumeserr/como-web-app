@@ -8,6 +8,7 @@ import CategoryLayout from "./layouts/CategoryLayout";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Home from './pages/index';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       </Router> */}
       <Router>
         <CategoryLayout>
-          <Route path="/login" component={Login} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/detail" component={CardDetail} />
         </CategoryLayout>
