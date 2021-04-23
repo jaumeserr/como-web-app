@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { Link } from 'react-router-dom';
 import Breadcrum from '../components/Breadcrum';
 import Heading from '../components/Heading';
-import { InputStyled, ButtonStyled, FormLayoutStyled } from '../styledComponents';
+import { InputStyled, ButtonStyled, FormLayoutStyled } from '../UI';
 
 const FormStyled = styled.form`
   display: flex;

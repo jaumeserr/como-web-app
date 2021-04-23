@@ -1,10 +1,10 @@
 import Routes from './routes';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Routes userData={userData} />
-    </>
+    <div>
+      <Routes userName={'Jaume'} />
+    </div>
   );
 }
 

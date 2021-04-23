@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InputStyled = styled.input`
+const InputStyled = styled.input`
   border: 1px solid var(--principal);
   padding: 13px 15px;
   margin-bottom: 15px;
@@ -9,7 +9,7 @@ export const InputStyled = styled.input`
   width: 100%;
 `
 
-export const ButtonStyled = styled.button`
+const ButtonStyled = styled.button`
   padding: 15px;
   background-color: var(--tertiary);
   color: var(--white);
@@ -34,7 +34,7 @@ export const ButtonStyled = styled.button`
   }
 `
 
-export const FormLayoutStyled = styled.section`
+const FormLayoutStyled = styled.section`
   width: 100%;
   padding: 30px;
 
@@ -43,3 +43,5 @@ export const FormLayoutStyled = styled.section`
     margin: 0 auto;
   }
 `
+
+export { InputStyled, ButtonStyled, FormLayoutStyled }

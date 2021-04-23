@@ -3,16 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Heading from '../components/Heading';
 import Breadcrum from '../components/Breadcrum';
-import { InputStyled, ButtonStyled, FormLayoutStyled } from '../styledComponents';
-
-const LoginStyled = styled.section`
-  width: 500px;
-  margin: 0 auto;
-
-  @media (min-width: 768px) {
-    background-color: red;
-  }
-`
+import { InputStyled, ButtonStyled, FormLayoutStyled } from '../UI';
 
 const FormStyled = styled.form`
   display: flex;
