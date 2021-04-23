@@ -1,20 +1,16 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 import SearchIcon from '../assets/search.svg';
-import FavIcon from '../assets/favs.svg';
 import { Link } from 'react-router-dom';
-import CardDetail from './CardDetail';
-
+import FavIco from '../components/FavIco';
+import SearchIco from '../components/SearchIco';
 
 const CardHoverStyled = styled.ul`
   position: absolute;
-  border: 1px solid var(--principal);
-  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
-  background-color: var(--white);
   right: 10px;
   top: 10px;
   list-style: none;
-  border-radius: 4px;
   animation: fadeout-fadein-right-to-left 400ms;
   
   @keyframes fadeout-fadein-right-to-left {
@@ -30,11 +26,13 @@ const CardHoverStyled = styled.ul`
 
   li {
     padding: 12px;
-
-    img {
-      display: block;
-      width: 20px;
-    }
+    margin-bottom: 10px;
+    border: 1px solid var(--primary);
+    box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
 
     :last-child {
       border-top: 1px solid var(--principal);
@@ -44,20 +42,27 @@ const CardHoverStyled = styled.ul`
 
 
 const CardHover = () => {
+  const [hoveredFav, setHoveredFav] = useState(false);
+  const [hoveredSearch, setHoveredSearch] = useState(false);
+
+
   return(
     <CardHoverStyled>
-      <li>
-        <img
-          src={FavIcon}
-          alt="Favs"
+      <li
+        onMouseEnter={() => setHoveredFav(true)}
+        onMouseLeave={() => setHoveredFav(false)}
+      >
+        <FavIco
+          color={hoveredFav ? 'var(--tertiary)' : 'var(--black)'}
         />
       </li>
-      <li>
+      <li
+        onMouseEnter={() => setHoveredSearch(true)}
+        onMouseLeave={() => setHoveredSearch(false)}
+      >
         <Link to="/detail">
-          <img
-            src={SearchIcon}
-            alt="Search"
-            style={{color: "red"}}
+          <SearchIco
+            color={hoveredSearch ? 'var(--tertiary)' : 'var(--black)'}  
           />
         </Link>
         </li>

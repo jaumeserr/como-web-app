@@ -16,13 +16,20 @@ code {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Dosis', sans-serif;
+}
+
+svg {
+  display: block;
+  width: 20px;
 }
 
 :root {
-  --principal: #63c082;
-  --secondary: #dce763;
-  --lightgray: #d8d8d8;
+  --primary:#D7D8C9;
+  --secondary: #A4A68A;
+  --tertiary: #F2BE24;
+  --fourth: #57523E;
+  --fifth: #D94C1A;
   --white: white;
   --black: black;
 }

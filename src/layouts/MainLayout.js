@@ -11,6 +11,8 @@ const ContentStyled = styled.main`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 `
 
 const MainLayout = ({children}) => {
@@ -19,7 +21,7 @@ const MainLayout = ({children}) => {
       <Header />
       <ContentStyled>
     
-        {
+        {/* {
           INFO_CARD.map(({ id, price, name, shortDesc, img, unities }) => (
             <Card
               key={id}
@@ -30,7 +32,7 @@ const MainLayout = ({children}) => {
               unities={unities}
             />
           ))
-        }
+        } */}
         {children}
       </ContentStyled>
       <Footer />

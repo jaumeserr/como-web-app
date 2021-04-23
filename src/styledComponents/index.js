@@ -11,9 +11,9 @@ export const InputStyled = styled.input`
 
 export const ButtonStyled = styled.button`
   padding: 15px;
-  background-color: var(--secondary);
-  color: var(--black);
-  border: 1px solid var(--principal);
+  background-color: var(--tertiary);
+  color: var(--white);
+  border: 1px solid var(--secondary);
   font-weight: 700;
   cursor: pointer;
   border-radius: 4px;
@@ -21,7 +21,7 @@ export const ButtonStyled = styled.button`
   :hover {
     background-color: var(--white);
     color: var(--principal);
-    border: 1px solid var(--principal);
+    border: 1px solid var(--primary);
   }
 
   a {
