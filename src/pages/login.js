@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import { login } from '../services/auth';
 import { Link } from 'react-router-dom';
 
 import Heading from '../components/Heading';
@@ -29,41 +31,64 @@ const FormStyled = styled.form`
 `
 
 const LoginPage = () => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const result = await login(formData.email, formData.password)
+    console.log(result);
+  }
+
+
+
+
   return(
-    <FormLayoutStyled>
-      <Breadcrum
-        opt1="Home"
-        opt2="Account"
-        link1="/"
-        link2="/login"
-      />
-      <Heading title="Log In"/>
-      <FormStyled>
-        <label htmlFor="">Email address *</label>
-        <InputStyled />
-        <label>Password *</label>
-        <InputStyled />
-        <p>Forgot your password?</p>
-        <ButtonStyled
-          type="submit"    
-        >
-          LOG IN
-        </ButtonStyled>
-        <div className="form__separator">
-          <div></div>
-          <span>or</span>
-          <div></div>
-        </div>
-        <ButtonStyled
-          primary
-          type="submit"
-        >
-          <Link to="/register">
-            CREATE AN ACCOUNT
-          </Link>
-        </ButtonStyled>
-      </FormStyled>
-    </FormLayoutStyled>
+    // <FormLayoutStyled>
+    //   <Breadcrum opt1="Home" opt2="Account" link1="/" link2="/login" />
+    //   <Heading title="Log In"/>
+    //   <FormStyled>
+    //     <label htmlFor="">Email address *</label>
+    //     <InputStyled />
+    //     <label>Password *</label>
+    //     <InputStyled />
+    //     <p>Forgot your password?</p>
+    //     <ButtonStyled type="submit">
+    //       LOG IN
+    //     </ButtonStyled>
+    //     <div className="form__separator">
+    //       <div></div>
+    //       <span>or</span>
+    //       <div></div>
+    //     </div>
+    //     <ButtonStyled
+    //       primary
+    //       type="submit"
+    //     >
+    //       <Link to="/register">
+    //         CREATE AN ACCOUNT
+    //       </Link>
+    //     </ButtonStyled>
+    //   </FormStyled>
+    // </FormLayoutStyled>
+    <>
+      <form onSubmit={handleFormSubmit}>
+        <input 
+          label='email'
+          name='email'
+          placeholder='Email address'
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <input 
+          label='password'
+          name='password'
+          placeholder='Password'
+          value={formData.password}
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        />
+        <button>Enviar</button>
+      </form>
+    </>
   );
 }
 
