@@ -14,9 +14,8 @@ const App = () => {
       if (user) {
         console.log("🚀 ~ file: App.js ~ line 13 ~ registerAuthObserver ~ user", user)
         console.log("El usuario ha hecho login")
-        console.log("El usuario: ", user.uid)
-        // const userProfile = await getUserProfile(user.uid);
-        dispatch(setUser(user.uid));
+        const userProfile = await getUserProfile(user.uid);
+        dispatch(setUser(userProfile));
       } else {
         console.log("🚀 ~ file: App.js ~ line 15 ~ registerAuthObserver ~ user", user)
         console.log("El usuario ha hecho logout")

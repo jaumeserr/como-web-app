@@ -41,8 +41,9 @@ export async function getObjectById(collection, id) {
     }
   } catch (error) {
     console.log("🚀 ~ file: db.js ~ line 20 ~ getObjectById ~ error", error);
-    return { success: false };
+    // return { success: false };
   }
+  return { success: false };
 }
 
 export async function listCollection(collection) {
