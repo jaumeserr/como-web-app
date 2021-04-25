@@ -1,5 +1,5 @@
-import Footer from "../components/Footer"
-import Header from "../components/Header"
+import Footer from "../Footer"
+import Header from "../Header"
 
 // const ContentStyled = styled.main`
 //   height: calc(100vh - 129px);
@@ -11,10 +11,10 @@ import Header from "../components/Header"
 //   margin: 0 auto;
 // `
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, userData }) => {
   return(
     <div>
-      <Header />
+      <Header userData={userData} />
       <main>
         {children}
       </main>

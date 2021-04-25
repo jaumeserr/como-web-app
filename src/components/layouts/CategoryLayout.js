@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import CardDetail from '../components/CardDetail';
-import CategoryList from '../components/CategoryList';
-import CardList from '../components/CardList';
+import Header from '../Header';
+import Footer from '../Footer';
+import CardDetail from '../CardDetail';
+import CategoryList from '../CategoryList';
+import CardList from '../CardList';
 import Home from '../pages';
 
 const CategoryLayoutStyled = styled.main`

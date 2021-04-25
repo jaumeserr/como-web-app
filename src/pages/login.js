@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { login } from '../services/auth';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
+import { login } from '../services/auth';
 import Heading from '../components/Heading';
 import Breadcrum from '../components/Breadcrum';
 import { InputStyled, ButtonStyled, FormLayoutStyled } from '../UI';
@@ -32,16 +32,17 @@ const FormStyled = styled.form`
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const history = useHistory();
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await login(formData.email, formData.password)
-    console.log(result);
+    console.log("🚀 ~ file: login.js ~ line 39 ~ handleFormSubmit ~ result", result)
+    if(result) {
+      history.push('/')
+    }
   }
-
-
-
-
+  
   return(
     // <FormLayoutStyled>
     //   <Breadcrum opt1="Home" opt2="Account" link1="/" link2="/login" />
@@ -73,16 +74,16 @@ const LoginPage = () => {
     <>
       <form onSubmit={handleFormSubmit}>
         <input 
-          label='email'
-          name='email'
-          placeholder='Email address'
+          label="email"
+          name="email"
+          placeholder="Email address"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
         <input 
-          label='password'
-          name='password'
-          placeholder='Password'
+          label="password"
+          name="password"
+          placeholder="Password"
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         />

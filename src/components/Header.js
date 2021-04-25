@@ -1,9 +1,7 @@
-import React from 'react';
-import {
-  Link
-} from "react-router-dom";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
+import { logout } from '../services/auth';
 import FavIcon from '../assets/favs.svg';
 import SearchIcon from '../assets/search.svg';
 // import CartIcon from '../assets/cart.svg';
@@ -43,7 +41,7 @@ const HeaderStyled = styled.header`
   }
 `
 
-const Header = () => {
+const Header = ({ userData }) => {
   return(
     <HeaderStyled>
       <ul>
@@ -76,6 +74,11 @@ const Header = () => {
               5
             </span>
           </Link>
+          {
+            userData
+            ? <span>hola {userData} <button onClick={logout}>Logout</button></span>
+            : <Link to="/login"><button>Login</button></Link>
+          }
         </li>
       </ul>
     </HeaderStyled>
