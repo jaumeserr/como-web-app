@@ -8,6 +8,7 @@ import { getUserProfile } from './controllers/user';
 
 const App = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     registerAuthObserver(async (user) => {
@@ -19,8 +20,11 @@ const App = () => {
         console.log('El usuario ha hecho logout: ');
         dispatch(clearUser());
       }
+      setIsLoading(false)
     })
   }, []);
+
+  if (isLoading) return <>Cargando...</>;
 
   return (
     <div>
