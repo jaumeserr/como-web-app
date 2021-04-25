@@ -4,19 +4,19 @@ import firebase from "firebase/app";
 
 import './index.css';
 import App from './App';
-import ReduxProvider from './redux'
+import ReduxProvider from './redux';
 import reportWebVitals from './reportWebVitals';
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBCtZcwzH26wRIj2fljDtXP69l2b52wkeo",
-  authDomain: "como-mataro-app.firebaseapp.com",
-  projectId: "como-mataro-app",
-  storageBucket: "como-mataro-app.appspot.com",
-  messagingSenderId: "694759194937",
-  appId: "1:694759194937:web:ebfebaeca50e47940ba8e8",
-  measurementId: "G-9BPB5DGB3D"
+  apiKey: "AIzaSyARfwGBXY6pMHzce9mw9T3aTDAbCScLLtw",
+  authDomain: "como-web-app.firebaseapp.com",
+  projectId: "como-web-app",
+  storageBucket: "como-web-app.appspot.com",
+  messagingSenderId: "259441495067",
+  appId: "1:259441495067:web:b9a365a3ec6cab41873cbe",
+  measurementId: "G-MSDM3R17T3"
 };
 
 // Initialize Firebase

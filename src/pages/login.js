@@ -37,7 +37,7 @@ const LoginPage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await login(formData.email, formData.password)
-    console.log("🚀 ~ file: login.js ~ line 39 ~ handleFormSubmit ~ result", result)
+    // console.log("🚀 ~ file: login.js ~ line 39 ~ handleFormSubmit ~ result", result)
     if(result) {
       history.push('/')
     }

@@ -44,7 +44,6 @@ const HeaderStyled = styled.header`
 
 const Header = () => {
   const user = useSelector(state => state.user)
-  console.log(user)
   return(
     <HeaderStyled>
       <ul>

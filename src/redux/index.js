@@ -12,8 +12,8 @@ const store = createStore(
 );
 
 const ReduxProvider = ({ children }) => {
-  return(
-    <Provider store={store} >
+  return (
+    <Provider store={store}>
       {children}
     </Provider>
   )

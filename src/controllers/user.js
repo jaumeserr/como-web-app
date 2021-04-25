@@ -1,11 +1,11 @@
-import { signup } from '../services/auth';
+import { singup } from '../services/auth';
 import { createObjectWithId, getObjectById } from '../services/db';
 
 const USER_COLLECTION = 'profiles';
 
 export async function userSignup(userData) {
   const { name, lastname, email, password } = userData;
-  const { success: signupSuccess, data } = await signup(email, password);
+  const { success: signupSuccess, data } = await singup(email, password);
   
   if (signupSuccess) {
     const profileSuccess = await createObjectWithId(USER_COLLECTION, { name, lastname, email }, data);

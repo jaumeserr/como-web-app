@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { signup } from '../services/auth';
+import { userSignup } from '../controllers/user';
 
 import Breadcrum from '../components/Breadcrum';
 import Heading from '../components/Heading';
@@ -33,15 +33,15 @@ const FormStyled = styled.form`
 `
 
 const SignupPage = () => {
-  const [formData, setFormData] = useState({ name: '', lastname: '', email: '', password: '' })
   const history = useHistory();
-
+  const [formData, setFormData] = useState({ name: '', lastname: '', email: '', password: '' });
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const result = await signup(formData.email, formData.password)
-    // debugger;
-    if(result) {
-      history.push('/')
+    const result = await userSignup(formData);
+    // console.log("🚀 ~ file: signup.js ~ line 42 ~ handleFormSubmit ~ result", result)
+    if (result) {
+      history.push('/');
     }
   }
   return(

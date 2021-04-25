@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setUser, clearUser } from './redux/user/userActions';
+import Routes from './routes';
 import { registerAuthObserver } from './services/auth';
 import { getUserProfile } from './controllers/user';
-import Routes from './routes';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,17 +12,15 @@ const App = () => {
   useEffect(() => {
     registerAuthObserver(async (user) => {
       if (user) {
-        console.log("🚀 ~ file: App.js ~ line 13 ~ registerAuthObserver ~ user", user)
-        console.log("El usuario ha hecho login")
+        console.log('El usuario ha hecho login: ', user);
         const userProfile = await getUserProfile(user.uid);
         dispatch(setUser(userProfile));
       } else {
-        console.log("🚀 ~ file: App.js ~ line 15 ~ registerAuthObserver ~ user", user)
-        console.log("El usuario ha hecho logout")
+        console.log('El usuario ha hecho logout: ');
         dispatch(clearUser());
       }
     })
-  }, [])
+  }, []);
 
   return (
     <div>
