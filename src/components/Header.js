@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import { logout } from '../services/auth';
 import FavIcon from '../assets/favs.svg';
@@ -41,7 +42,8 @@ const HeaderStyled = styled.header`
   }
 `
 
-const Header = ({ userData }) => {
+const Header = () => {
+  const user = useSelector(state => state.user)
   return(
     <HeaderStyled>
       <ul>
@@ -75,8 +77,8 @@ const Header = ({ userData }) => {
             </span>
           </Link>
           {
-            userData
-            ? <span>hola {userData} <button onClick={logout}>Logout</button></span>
+            user
+            ? <span>hola {user.name} <button onClick={logout}>Logout</button></span>
             : <Link to="/login"><button>Login</button></Link>
           }
         </li>

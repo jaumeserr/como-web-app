@@ -14,7 +14,7 @@ import Header from "../Header"
 const MainLayout = ({ children, userData }) => {
   return(
     <div>
-      <Header userData={userData} />
+      <Header />
       <main>
         {children}
       </main>

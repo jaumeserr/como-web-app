@@ -35,12 +35,12 @@ export async function getObjectById(collection, id) {
   try {
     const db = getDb();
     const doc = await db.collection(collection).doc(id).get();
-    if(doc.exists) {
+    if (doc.exists) {
       const data = doc.data();
       return { success: true, data: { ...data, id: doc.id } };
     }
   } catch (error) {
-    console.log("🚀 ~ file: db.js ~ line 42 ~ getObjectById ~ error", error)
+    console.log("🚀 ~ file: db.js ~ line 20 ~ getObjectById ~ error", error);
     return { success: false };
   }
 }

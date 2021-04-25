@@ -39,7 +39,7 @@ const SignupPage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await signup(formData.email, formData.password)
-    console.log(result)
+    // debugger;
     if(result) {
       history.push('/')
     }

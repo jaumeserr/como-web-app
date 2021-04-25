@@ -1,14 +1,16 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
-export function signup(email, password) {
+export async function signup(email, password) {
   try {
-    const result = firebase.auth().createUserWithEmailAndPassword(email, password);
+    const result = await firebase.auth().createUserWithEmailAndPassword(email, password);
     console.log("🚀 ~ file: auth.js ~ line 7 ~ signup ~ result", result)
-    return { success: true, data: result.user.id };
+    // debugger;
+    return { success: true, data: result.user.uid };
   } catch (error) {
+    // debugger;
     console.log("🚀 ~ file: auth.js ~ line 10 ~ signup ~ error", error)
-    return { success: false };
+    return { success: false, message: error.message };
   }
 } 
 
