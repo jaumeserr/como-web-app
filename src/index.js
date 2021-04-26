@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'styled-components';
 import firebase from "firebase/app";
 
 import './index.css';
 import App from './App';
 import ReduxProvider from './redux';
 import reportWebVitals from './reportWebVitals';
-
+import theme from './theme';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -25,7 +26,9 @@ firebase.initializeApp(firebaseConfig);
 ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </ReduxProvider>
   </React.StrictMode>,
   document.getElementById('root')
