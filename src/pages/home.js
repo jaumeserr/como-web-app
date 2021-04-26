@@ -18,7 +18,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <MainLayout>
+      <MainLayout products={products}>
         <h1>Esto es la HomePage</h1>
         {products.length}
       </MainLayout>

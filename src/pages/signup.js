@@ -5,27 +5,30 @@ import { userSignup } from '../controllers/user';
 
 import Breadcrum from '../components/Breadcrum';
 import Heading from '../components/Heading';
-import { InputStyled, ButtonStyled, FormLayoutStyled } from '../UI';
+import { FormLayoutStyled } from '../UI';
+import Input from '../components/form/Input';
+import { Spacer, Button, StyledLink } from '../components/UI';
+import MainLayout from '../components/layouts/MainLayout';
 
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  label {
-    margin-bottom: 5px;
-  }
-  p{
-    margin-bottom: 20px;
+
+  p {
     font-weight: 300;
     line-height: 1.8;
   }
+
   .form__separator {
     display: flex;
     margin: 20px 0;
+    
     div:first-child, div:last-child {
       width: 100%;
-      border-bottom: 1px solid var(--lightgray);
+      border-bottom: 1px solid ${props => props.theme.color.primary};
       height: 13px;
     }
+
     span {
       padding: 0 15px
     }
@@ -39,81 +42,64 @@ const SignupPage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await userSignup(formData);
-    // console.log("🚀 ~ file: signup.js ~ line 42 ~ handleFormSubmit ~ result", result)
+    console.log("🚀 ~ file: signup.js ~ line 42 ~ handleFormSubmit ~ result", result)
     if (result) {
       history.push('/');
     }
   }
   return(
-    // <FormLayoutStyled>
-    //   <Breadcrum
-    //     opt1="Home"
-    //     opt2="Create Account"
-    //     link1="/"
-    //     link2="/register"
-    //   />
-    //   <Heading title="Register" />
-    //   <FormStyled>
-    //     <label htmlFor="">First Name</label>
-    //     <InputStyled />
-    //     <label htmlFor="">Last Name</label>
-    //     <InputStyled />
-    //     <label htmlFor="">Email address *</label>
-    //     <InputStyled />
-    //     <label>Password *</label>
-    //     <InputStyled />
-    //     <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <strong>privacy policy</strong>.</p>
-    //     <ButtonStyled
-    //       type="submit"    
-    //     >
-    //       REGISTER
-    //     </ButtonStyled>
-    //     <div className="form__separator">
-    //       <div></div>
-    //       <span>or</span>
-    //       <div></div>
-    //     </div>
-    //     <ButtonStyled
-    //       primary
-    //       type="submit"    
-    //     >
-    //       <Link to="/login">
-    //         LOG IN
-    //       </Link>
-    //     </ButtonStyled>
-    //   </FormStyled>
-    // </FormLayoutStyled>
-    <form onSubmit={handleFormSubmit}>
-      <input
-        label="name"
-        name="name"
-        placeholder="Name"
-        value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value})}
-      />
-      <input
-        label="lastname"
-        name="lastname"
-        placeholder="Lastname"
-        value={formData.lastname}
-        onChange={(e) => setFormData({ ...formData, lastname: e.target.value})}
-      />
-      <input
-        label="email"
-        name="email"
-        placeholder="Email Address"
-        value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value})}
-      />
-      <input
-        label="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={(e) => setFormData({ ...formData, password: e.target.value})}
-      />
-      <button>Enviar</button>
-    </form>
+    <MainLayout>
+      <FormLayoutStyled>
+        <Breadcrum opt1="Home" opt2="Create Account" link1="/" link2="/register" />
+        <Heading title="Register" />
+        <FormStyled onSubmit={handleFormSubmit} >
+          <Input
+            label="First name"
+            name="name"
+            placeholder="Enter name"
+            value={formData.name}
+            onChange={(value) => setFormData({ ...formData, name: value })} 
+          />
+          <Spacer />
+          <Input
+            label="Last name"
+            name="lastname"
+            placeholder="Enter last name"
+            value={formData.lastname}
+            onChange={(value) => setFormData({ ...formData, lastname: value })} 
+          />
+          <Spacer />
+          <Input
+            label="Email Address"
+            name="email"
+            placeholder="Enter email address"
+            value={formData.email}
+            onChange={(value) => setFormData({ ...formData, email: value })} 
+          />
+          <Spacer />
+          <Input
+            type="password"
+            label="Password"
+            name="password"
+            placeholder="Enter password"
+            value={formData.password}
+            onChange={(value) => setFormData({ ...formData, password: value })} 
+          />
+          <Spacer height="10px"/>
+          <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <strong>privacy policy</strong>.</p>
+          <Spacer />
+          <Button>
+            REGISTER
+          </Button>
+          <div className="form__separator">
+            <div></div>
+            <span>or</span>
+            <div></div>
+          </div>
+          <StyledLink to="/login">LOG IN</StyledLink>
+        </FormStyled>
+      </FormLayoutStyled>    
+    </MainLayout>
   );
 }
 

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { login } from '../services/auth';
 import Heading from '../components/Heading';
 import Breadcrum from '../components/Breadcrum';
 import Input from '../components/form/Input';
-import { InputStyled, ButtonStyled, FormLayoutStyled } from '../UI';
-import { Spacer, Button } from '../components/UI';
+import { FormLayoutStyled } from '../UI';
+import { Spacer, Button, StyledLink } from '../components/UI';
+import MainLayout from '../components/layouts/MainLayout';
 
 const FormStyled = styled.form`
   display: flex;
@@ -42,42 +43,40 @@ const LoginPage = () => {
   }
   
   return(
-    <FormLayoutStyled>
-      {/* <Breadcrum opt1="Home" opt2="Account" link1="/" link2="/login" /> */}
-      <Heading title="Log In"/>
-      <FormStyled onSubmit={handleFormSubmit}>
-        <Input
-          label="Email address *"
-          name="email"
-          placeholder="Enter email address"
-          value={formData.email}
-          onChange={(value) => setFormData({ ...formData, email: value })} 
-        />
-        <Spacer />
-        <Input
-          type="password"
-          label="Password *"
-          name="password"
-          placeholder="Enter password"
-          value={formData.password}
-          onChange={(value) => setFormData({ ...formData, password: value })} 
-        />
-        <Spacer height="10px" />
-        <p>Forgot your password?</p>
-        <Spacer />
-        <Button>
-          LOG IN
-        </Button>
-        <div className="form__separator">
-          <div></div>
-          <span>or</span>
-          <div></div>
-        </div>
-        <Button>
-          CREATE AN ACCOUNT
-        </Button>
-      </FormStyled>
-    </FormLayoutStyled>
+    <MainLayout>
+      <FormLayoutStyled>
+        {/* <Breadcrum opt1="Home" opt2="Account" link1="/" link2="/login" /> */}
+        <Heading title="Log In"/>
+        <FormStyled onSubmit={handleFormSubmit}>
+          <Input
+            label="Email address *"
+            name="email"
+            placeholder="Enter email address"
+            value={formData.email}
+            onChange={(value) => setFormData({ ...formData, email: value })} 
+          />
+          <Spacer />
+          <Input
+            type="password"
+            label="Password *"
+            name="password"
+            placeholder="Enter password"
+            value={formData.password}
+            onChange={(value) => setFormData({ ...formData, password: value })} 
+          />
+          <Spacer height="10px" />
+          <p>Forgot your password?</p>
+          <Spacer />
+          <Button>LOG IN</Button>
+          <div className="form__separator">
+            <div></div>
+            <span>or</span>
+            <div></div>
+          </div>
+          <StyledLink to="/signup">CREATE AN ACCOUNT</StyledLink>
+        </FormStyled>
+      </FormLayoutStyled>
+    </MainLayout>
   );
 }
 
