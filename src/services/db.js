@@ -76,5 +76,3 @@ export async function filterProductsByQueryAndOrder(collection, field, order) {
     console.log("🚀 ~ file: db.js ~ line 68 ~ filterByPriceAscendent ~ error", error)
   }
 }
-
-
