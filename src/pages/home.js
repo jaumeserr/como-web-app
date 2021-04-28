@@ -19,8 +19,12 @@ const HomePage = () => {
   return (
     <div>
       <MainLayout products={products}>
-        <h1>Esto es la HomePage</h1>
-        {products.length}
+        <div>
+          <aside></aside>
+          <section></section>
+          <h1>Esto es la HomePage</h1>
+          {products.length}
+        </div>
       </MainLayout>
     </div>
   )
