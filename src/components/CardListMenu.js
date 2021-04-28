@@ -33,7 +33,10 @@ const SelectStyled = styled.select`
   outline: none;
 `
 
-const CardListMenu = () => {
+
+
+const CardListMenu = ({handleChange}) => {
+  
   return (
     <CardListMenuStyled>
       <div>
@@ -46,9 +49,9 @@ const CardListMenu = () => {
       </div>
       <div>
         Sort by:
-        <SelectStyled>
-          <option value="alp_asc">A to Z</option>
-          <option value="alp_desc">Z to A</option>
+        <SelectStyled onChange={(e) => handleChange(e.target.value)}>
+          <option value="name_asc">A to Z</option>
+          <option value="name_desc">Z to A</option>
           <option value="price_asc">Price ascendent</option>
           <option value="price_desc">Price descendent</option>
         </SelectStyled>

@@ -48,10 +48,10 @@ export async function getObjectById(collection, id) {
 export async function listCollection(collection) {
   try {
     const db = getDb();
-    const querySnapshot = await db.collection(collection).get();
+    const querySnapshot = await db.collection(collection)
+    .get();
     const data = [];
     querySnapshot.forEach((doc) => {
-  
       data.push({ id: doc.id, ...doc.data() })  
     });
     return { success: true, data };
@@ -60,3 +60,21 @@ export async function listCollection(collection) {
     return { success: false };
   }
 }
+
+export async function filterProductsByQueryAndOrder(collection, field, order) {
+  try {
+    const db = getDb();
+    const querySnapshot = await db.collection(collection)
+    .orderBy(field, order)
+    .get();
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() })  
+    });
+    return { success: true, data };
+  } catch (error) {
+    console.log("🚀 ~ file: db.js ~ line 68 ~ filterByPriceAscendent ~ error", error)
+  }
+}
+
+
