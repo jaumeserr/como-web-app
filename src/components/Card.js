@@ -43,7 +43,6 @@ const AddCardButtonStyled = styled(Button)`
   border: 1px solid #f8f8f8;
 `
 
-
 const Card = ({ image, name, price, shortDescription, units }) => {
   const [isHovered, setIsHovered] = useState(false)
   return(

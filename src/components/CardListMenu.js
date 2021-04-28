@@ -43,7 +43,6 @@ const CardListMenu = () => {
         <ButtonList>
           <ListIco />
         </ButtonList>
-        <button>click</button>
       </div>
       <div>
         Sort by:
