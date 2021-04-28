@@ -1,25 +1,25 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import { ButtonStyled } from '../styledComponents/index';
+
+import { useState } from 'react';
 import CardHover from './CardHover';
+import { Button } from './UI';
 
 const CardStyled = styled.article`
-  width: 180px;
+  width: 200px;
   border: 1px solid var(--primary);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
   position: relative;
-  margin: 0 0 40px 20px;
+  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
+  margin: 10px;
 
   .card__info {
     padding: 10px;
-    margin-bottom: 13px;
   }
 
   .card__image {
-    border-bottom: 1px solid var(--primary);  
+    border-bottom: 1px solid #f8f8f8;  
   }
   
   .card__name {
@@ -32,35 +32,35 @@ const CardStyled = styled.article`
   .card__price {
     font-size: 25px;
     color: var(--black);
-    margin: 0 0 10px 0;
+    margin-bottom: 10px;
   }
 `
 
-const AddCardButtonStyled = styled(ButtonStyled)`
-  border-radius: 50px;
-  padding: 10px 20px;
-  position: absolute;
-  left: 0; right: 0; bottom: -18px;
-  margin: auto;
-  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
+const AddCardButtonStyled = styled(Button)`
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #f8f8f8;
 `
 
-const Card = ({ id, price, name, img, shortDesc, unities }) => {
+
+const Card = ({ image, name, price, shortDescription, units }) => {
   const [isHovered, setIsHovered] = useState(false)
   return(
     <CardStyled onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
-      <img className="card__image" src={img} alt={name} />
+      <img className="card__image" src={image} alt={name} />
       <div className="card__info">
         <p className="card__name">{name}</p>
-        <p className="card__shortdesc">{shortDesc}</p>
-        <p className="card__price">{price}<span style={{fontSize: 16}}>€ / {unities}</span></p>
+        <p className="card__shortdesc">{shortDescription}</p>
+        <p className="card__price">{price}<span style={{fontSize: 16}}>€ / {units}</span></p>
+        <AddCardButtonStyled>
+          ADD TO CART
+        </AddCardButtonStyled>
       </div>
-      <AddCardButtonStyled>
-        ADD TO CART
-      </AddCardButtonStyled>
+      
       {isHovered && <CardHover />}
     </CardStyled>
   );
 }
 
-export default Card
+export default Card;

@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
+import { Flex } from './UI';
+
 const CategoryMenuStyled = styled.div`
-  border: 1px solid var(--principal);
-  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  overflow: hidden;
   
-  div {
+  h2 {
     border-bottom: 1px solid var(--principal);
-    padding: 10px 20px;
     background-color: var(--principal);
     color: var(--white);
     font-weight: 700;
@@ -20,7 +23,7 @@ const CategoryMenuStyled = styled.div`
       cursor: pointer;
 
       :hover {
-        background-color: var(--secondary);
+        background-color: red;
       }
     }
   }
@@ -29,7 +32,10 @@ const CategoryMenuStyled = styled.div`
 const CategoryList = () => {
   return (
     <CategoryMenuStyled>
-      <div>ALL CATEGORIES</div>
+      <Flex direction="row" align="center">
+        <p>1</p>
+        <h2>CATEGORIES</h2>
+      </Flex>
       <ul>
         <li>Botones</li>
         <li>Hombreras</li>

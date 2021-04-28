@@ -1,36 +1,39 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import BlockIco from './BlockIco.js';
 import ListIco from './ListIco.js';
 
 const CardListMenuStyled = styled.div`
-  border-bottom: 1px solid var(--primary);
-  padding: 0 15px 10px 15px;
+  padding: 10px;
   display: flex;
+  border-radius: 3px;
   justify-content: space-between;
+  background-color: #f8f8f8;
+  width: 100%;
+  border: 1px solid #e8e8e8;
 `
 
 const ButtonList = styled.button`
   padding: 7px;
-  border: 1px solid var(--primary);
+  border: 1px solid #e8e8e8;
   margin-right: 10px;
   border-radius: 3px;
-  background-color: #efefef;
+  background-color: white;
 `
 
 const SelectStyled = styled.select`
-  background-color: red;
   height: 36px;
   border-radius: 3px;
-  border: 1px solid var(--primary);
+  border: 1px solid #e8e8e8;
   padding: 0 10px;
-  background-color: #efefef;
-  font-size: 16px;
+  background-color: white;
   margin-left: 10px;
   width: 100px;
+  outline: none;
 `
 
-function CardListMenu() {
+const CardListMenu = () => {
   return (
     <CardListMenuStyled>
       <div>
@@ -40,18 +43,19 @@ function CardListMenu() {
         <ButtonList>
           <ListIco />
         </ButtonList>
+        <button>click</button>
       </div>
       <div>
         Sort by:
         <SelectStyled>
-          <option>A to Z</option>
-          <option>Z to A</option>
-          <option>Price ascendent</option>
-          <option>Price descendent</option>
+          <option value="alp_asc">A to Z</option>
+          <option value="alp_desc">Z to A</option>
+          <option value="price_asc">Price ascendent</option>
+          <option value="price_desc">Price descendent</option>
         </SelectStyled>
       </div>
     </CardListMenuStyled>
-  )
+  );
 }
 
-export default CardListMenu
+export default CardListMenu;

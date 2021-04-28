@@ -1,42 +1,32 @@
 import styled from 'styled-components';
-import INFO_CARD from '../db.js';
 
 import Card from '../components/Card';
-import CardListMenu from './CardListMenu.js';
 
 const CardListStyled = styled.section`
   display: flex;
-  flex-direction: column;
-`
-
-const ListList = styled.div`
-  display: flex;
-  padding-top: 20px;
-  border-left: 1px solid var(--primary);
   flex-wrap: wrap;
+  padding-top: 20px;
 `
 
-const CardList = () => {
+
+const CardList = ({ products }) => {
   return (
     <CardListStyled>
-      <CardListMenu />
-      <ListList>
       {
-        INFO_CARD.map(({ id, price, name, shortDesc, img, unities }) => 
+        products.map(({ id, image, name, price, shortDescription, units }) => 
           <Card
             key={id}
             price={price}
             name={name}
-            shortDesc={shortDesc}
-            img={img}
-            unities={unities}
+            shortDescription={shortDescription}
+            image={image}
+            units={units}
           />
         )
       }
-      </ListList>
       
     </CardListStyled>
   )
 }
 
-export default CardList
+export default CardList;
