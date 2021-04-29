@@ -43,7 +43,7 @@ const AddCardButtonStyled = styled(Button)`
   border: 1px solid #f8f8f8;
 `
 
-const Card = ({ image, name, price, shortDescription, units }) => {
+const Card = ({ id, image, name, price, shortDescription, description, units }) => {
   const [isHovered, setIsHovered] = useState(false)
   return(
     <CardStyled onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
@@ -57,7 +57,14 @@ const Card = ({ image, name, price, shortDescription, units }) => {
         </AddCardButtonStyled>
       </div>
       
-      {isHovered && <CardHover />}
+      {isHovered && <CardHover
+        id={id}
+        image={image}
+        name={name}
+        price={price}
+        description={description}
+        units={units} />
+      }
     </CardStyled>
   );
 }

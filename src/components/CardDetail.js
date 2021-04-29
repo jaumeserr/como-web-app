@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 // import { ButtonStyled } from '../styledComponents'
 import { useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 
 
 const CardDetailStyled = styled.section`
@@ -81,11 +82,17 @@ const CardDetailStyled = styled.section`
 //   }
 // `
 
-const CardDetail = (props) => {
+const CardDetail = () => {
   // const [counter, setCounter] = useState(0)
-  const { id } = props.match.params
-  console.log(id)
+  let params = useParams();
+  const { id } = params;
+
+  let history = useHistory();
+  const handleGoBack = () => {
+    history.goBack();
+  }
   
+
   return(
     <>
       {/* <CardDetailStyled>
@@ -110,6 +117,8 @@ const CardDetail = (props) => {
           <p>{description}</p>
         </div>
       </CardDetailStyled> */}
+      <button onClick={handleGoBack}>Go back</button>
+      Esta es la página detail del id: {id}
     </>
   );
 }

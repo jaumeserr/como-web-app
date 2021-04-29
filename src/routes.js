@@ -13,9 +13,8 @@ const Routes = () => {
       <Route exact path='/login' component={LoginPage} />
       <Route exact path='/signup' component={SignupPage} />
       <Route exact path='/error' component={ErrorPage} />
-      <Route exact path="/details/:id" render={(props) => <CardDetail {...props}/>} />
+      <Route exact path="/detail/:id" component={CardDetail} />
       <Route path='/' component={HomePage} />
-      
     </Switch>
   </Router>
   );

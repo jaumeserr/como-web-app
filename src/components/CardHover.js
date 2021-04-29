@@ -41,11 +41,11 @@ const CardHoverStyled = styled.ul`
 `
 
 
-const CardHover = () => {
+const CardHover = ({ id }) => {
   const [hoveredFav, setHoveredFav] = useState(false);
   const [hoveredSearch, setHoveredSearch] = useState(false);
 
-
+  console.log('id: ', id);
   return(
     <CardHoverStyled>
       <li
@@ -60,7 +60,7 @@ const CardHover = () => {
         onMouseEnter={() => setHoveredSearch(true)}
         onMouseLeave={() => setHoveredSearch(false)}
       >
-        <Link to="/detail">
+        <Link to={`/detail/${id}`}>
           <SearchIco
             color={hoveredSearch ? 'var(--tertiary)' : 'var(--black)'}  
           />
