@@ -81,8 +81,9 @@ const CardDetail = (props) => {
       setProduct(data)
     }
   }
-  
+
   useEffect(() => {
+    console.log(`retrieving product from DB: ${productId}`)
     fetchProduct(productId);
   }, [])
   
