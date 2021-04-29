@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-// import { ButtonStyled } from '../styledComponents'
-import { useState } from 'react';
-import { useLocation, useHistory, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
 import MainLayout from '../components/layouts/MainLayout';
+import { getObjectById } from '../services/db';
 
 
 const CardDetailStyled = styled.section`
@@ -71,34 +70,29 @@ const CardDetailStyled = styled.section`
   }
 `
 
-const ButtonCarDetailStyled = styled.button`
-  border: 1px solid var(--lightgray);
-  border-radius: 5px;
-  background-color: var(--white);
-  cursor: pointer;
-  font-weight: 700;
-
-  :hover {
-    background-color: var(--white)
-  }
-`
-
-const CardDetail = () => {
+const CardDetail = (props) => {
   const [counter, setCounter] = useState(0)
+  const [product, setProduct] = useState('')
+  const productId = props.match.params.id
   
-  const location = useLocation();
-  const { image, name, price, shortDescription, description, units } = location.product;
-
-  const history = useHistory();
+  const fetchProduct = async (productId) => {
+    const { success, data } = await getObjectById('products', productId)
+    if(success) {
+      setProduct(data)
+    }
+  }
+  
+  useEffect(() => {
+    fetchProduct(productId);
+  }, [])
+  
   const handleGoBack = () => {
-    history.goBack();
+    props.history.goBack();
   }
 
-  const params = useParams();
-  const { id } = params
-  console.log(id)
+  const { price, image, name, units, description } = product
 
-  return(
+  return (
     <MainLayout>
       <button onClick={handleGoBack}>Go back</button>
       <CardDetailStyled>
@@ -110,14 +104,14 @@ const CardDetail = () => {
           <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / {units}</span></p>
           <p>Quantity:</p>
           <div className="card-detail__counter">
-            <ButtonCarDetailStyled onClick={() => setCounter(counter-1)}>-</ButtonCarDetailStyled>
+            <button onClick={() => setCounter(counter-1)}>-</button>
             <span>{counter}</span>
-            <ButtonCarDetailStyled onClick={() => setCounter(counter+1)}>+</ButtonCarDetailStyled>
+            <button onClick={() => setCounter(counter+1)}>+</button>
           </div>
           <div className="card-detail__buttons">
-            <ButtonCarDetailStyled>ADD TO CART</ButtonCarDetailStyled>
-            <ButtonCarDetailStyled>BUY NOW</ButtonCarDetailStyled>
-            <ButtonCarDetailStyled>FAV</ButtonCarDetailStyled>
+            <button>ADD TO CART</button>
+            <button>BUY NOW</button>
+            <button>FAV</button>
           </div>
           <p className="card-detail__title">Description</p>
           <p>{description}</p>

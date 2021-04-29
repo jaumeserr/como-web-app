@@ -63,18 +63,7 @@ const CardHover = ({ id, image, name, price, shortDescription, description, unit
         onMouseLeave={() => setHoveredSearch(false)}
       >
         
-        {/* <Link to={`/detail/${id}`}> */}
-        <Link to={{
-          pathname: `/detail/${id}`,
-          product: {
-            image,
-            name,
-            price,
-            shortDescription,
-            description,
-            units
-          }
-        }}>
+        <Link to={`/detail/${id}`}>
           <SearchIco
             color={hoveredSearch ? 'red' : 'black'}  
           />
