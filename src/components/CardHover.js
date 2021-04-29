@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import SearchIcon from '../assets/search.svg';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import FavIco from '../components/FavIco';
 import SearchIco from '../components/SearchIco';
+import CardDetail from '../components/CardDetail';
+import CardList from './CardList';
 
 const CardHoverStyled = styled.ul`
   position: absolute;
@@ -41,32 +43,45 @@ const CardHoverStyled = styled.ul`
 `
 
 
-const CardHover = ({ id }) => {
+const CardHover = ({ id, image, name, price, shortDescription, description, units }) => {
   const [hoveredFav, setHoveredFav] = useState(false);
   const [hoveredSearch, setHoveredSearch] = useState(false);
 
-  console.log('id: ', id);
   return(
+    <>
     <CardHoverStyled>
       <li
         onMouseEnter={() => setHoveredFav(true)}
         onMouseLeave={() => setHoveredFav(false)}
       >
         <FavIco
-          color={hoveredFav ? 'var(--tertiary)' : 'var(--black)'}
+          color={hoveredFav ? 'red' : 'black'}
         />
       </li>
       <li
         onMouseEnter={() => setHoveredSearch(true)}
         onMouseLeave={() => setHoveredSearch(false)}
       >
-        <Link to={`/detail/${id}`}>
+        
+        {/* <Link to={`/detail/${id}`}> */}
+        <Link to={{
+          pathname: `/detail/${id}`,
+          product: {
+            image,
+            name,
+            price,
+            shortDescription,
+            description,
+            units
+          }
+        }}>
           <SearchIco
-            color={hoveredSearch ? 'var(--tertiary)' : 'var(--black)'}  
+            color={hoveredSearch ? 'red' : 'black'}  
           />
         </Link>
         </li>
     </CardHoverStyled>
+    </>
   );
 }
 

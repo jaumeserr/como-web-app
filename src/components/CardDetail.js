@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-// import { ButtonStyled } from '../styledComponents'
 import { useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 
 
 const CardDetailStyled = styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -70,20 +70,20 @@ const CardDetailStyled = styled.section`
   }
 `
 
-// const ButtonCarDetailStyled = styled(ButtonStyled)`
-//   border: 1px solid var(--lightgray);
-//   border-radius: 5px;
-//   background-color: var(--white);
-//   cursor: pointer;
-//   font-weight: 700;
+const ButtonCarDetailStyled = styled.button`
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+  background-color: var(--white);
+  cursor: pointer;
+  font-weight: 700;
 
-//   :hover {
-//     background-color: var(--white)
-//   }
-// `
+  :hover {
+    background-color: var(--white)
+  }
+`
 
 const CardDetail = () => {
-  // const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(0)
   let params = useParams();
   const { id } = params;
 
@@ -91,17 +91,21 @@ const CardDetail = () => {
   const handleGoBack = () => {
     history.goBack();
   }
-  
+
+  let location = useLocation();
+  const { image, name, price, shortDescription, description, units } = location.product;
 
   return(
-    <>
-      {/* <CardDetailStyled>
+      <MainLayout>
+        <button onClick={handleGoBack}>Go back</button>
+        Esta es la página detail del id: {id}
+        <CardDetailStyled>
         <div>
-          <img src={img} />
+          <img src={image} />
         </div>
         <div className="card-detail__info">
           <p className="card-detail__name">{name}</p>
-          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / uni</span></p>
+          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / {units}</span></p>
           <p>Quantity:</p>
           <div className="card-detail__counter">
             <ButtonCarDetailStyled onClick={() => setCounter(counter-1)}>-</ButtonCarDetailStyled>
@@ -116,10 +120,8 @@ const CardDetail = () => {
           <p className="card-detail__title">Description</p>
           <p>{description}</p>
         </div>
-      </CardDetailStyled> */}
-      <button onClick={handleGoBack}>Go back</button>
-      Esta es la página detail del id: {id}
-    </>
+      </CardDetailStyled>
+      </MainLayout>
   );
 }
 
