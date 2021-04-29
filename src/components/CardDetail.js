@@ -1,12 +1,13 @@
+import INFO_CARD from '../db';
+
 import styled from 'styled-components';
+import { ButtonStyled } from '../styledComponents'
 import { useState } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
 
 
 const CardDetailStyled = styled.section`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -70,7 +71,7 @@ const CardDetailStyled = styled.section`
   }
 `
 
-const ButtonCarDetailStyled = styled.button`
+const ButtonCarDetailStyled = styled(ButtonStyled)`
   border: 1px solid var(--lightgray);
   border-radius: 5px;
   background-color: var(--white);
@@ -84,28 +85,16 @@ const ButtonCarDetailStyled = styled.button`
 
 const CardDetail = () => {
   const [counter, setCounter] = useState(0)
-  let params = useParams();
-  const { id } = params;
-
-  let history = useHistory();
-  const handleGoBack = () => {
-    history.goBack();
-  }
-
-  let location = useLocation();
-  const { image, name, price, shortDescription, description, units } = location.product;
-
+  const { price, name, description, shortDesc, img } = INFO_CARD[0]
   return(
-      <MainLayout>
-        <button onClick={handleGoBack}>Go back</button>
-        Esta es la página detail del id: {id}
-        <CardDetailStyled>
+    <>
+      <CardDetailStyled>
         <div>
-          <img src={image} />
+          <img src={img} />
         </div>
         <div className="card-detail__info">
           <p className="card-detail__name">{name}</p>
-          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / {units}</span></p>
+          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / uni</span></p>
           <p>Quantity:</p>
           <div className="card-detail__counter">
             <ButtonCarDetailStyled onClick={() => setCounter(counter-1)}>-</ButtonCarDetailStyled>
@@ -121,7 +110,7 @@ const CardDetail = () => {
           <p>{description}</p>
         </div>
       </CardDetailStyled>
-      </MainLayout>
+    </>
   );
 }
 
