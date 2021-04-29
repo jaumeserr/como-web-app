@@ -1,7 +1,5 @@
-import INFO_CARD from '../db';
-
 import styled from 'styled-components';
-import { ButtonStyled } from '../styledComponents'
+// import { ButtonStyled } from '../styledComponents'
 import { useState } from 'react';
 
 
@@ -71,24 +69,26 @@ const CardDetailStyled = styled.section`
   }
 `
 
-const ButtonCarDetailStyled = styled(ButtonStyled)`
-  border: 1px solid var(--lightgray);
-  border-radius: 5px;
-  background-color: var(--white);
-  cursor: pointer;
-  font-weight: 700;
+// const ButtonCarDetailStyled = styled(ButtonStyled)`
+//   border: 1px solid var(--lightgray);
+//   border-radius: 5px;
+//   background-color: var(--white);
+//   cursor: pointer;
+//   font-weight: 700;
 
-  :hover {
-    background-color: var(--white)
-  }
-`
+//   :hover {
+//     background-color: var(--white)
+//   }
+// `
 
-const CardDetail = () => {
-  const [counter, setCounter] = useState(0)
-  const { price, name, description, shortDesc, img } = INFO_CARD[0]
+const CardDetail = (props) => {
+  // const [counter, setCounter] = useState(0)
+  const { id } = props.match.params
+  console.log(id)
+  
   return(
     <>
-      <CardDetailStyled>
+      {/* <CardDetailStyled>
         <div>
           <img src={img} />
         </div>
@@ -109,7 +109,7 @@ const CardDetail = () => {
           <p className="card-detail__title">Description</p>
           <p>{description}</p>
         </div>
-      </CardDetailStyled>
+      </CardDetailStyled> */}
     </>
   );
 }

@@ -4,6 +4,7 @@ import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
 import ErrorPage from './pages/error';
+import CardDetail from './components/CardDetail';
 
 const Routes = () => {
   return(
@@ -12,6 +13,7 @@ const Routes = () => {
       <Route exact path='/login' component={LoginPage} />
       <Route exact path='/signup' component={SignupPage} />
       <Route exact path='/error' component={ErrorPage} />
+      <Route exact path="/details/:id" render={(props) => <CardDetail {...props}/>} />
       <Route path='/' component={HomePage} />
       
     </Switch>
