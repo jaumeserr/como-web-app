@@ -1,13 +1,13 @@
-import INFO_CARD from '../db';
-
 import styled from 'styled-components';
-import { ButtonStyled } from '../styledComponents'
+// import { ButtonStyled } from '../styledComponents'
 import { useState } from 'react';
+import { useLocation, useHistory, useParams } from 'react-router';
+import MainLayout from '../components/layouts/MainLayout';
 
 
 const CardDetailStyled = styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -71,7 +71,7 @@ const CardDetailStyled = styled.section`
   }
 `
 
-const ButtonCarDetailStyled = styled(ButtonStyled)`
+const ButtonCarDetailStyled = styled.button`
   border: 1px solid var(--lightgray);
   border-radius: 5px;
   background-color: var(--white);
@@ -85,16 +85,29 @@ const ButtonCarDetailStyled = styled(ButtonStyled)`
 
 const CardDetail = () => {
   const [counter, setCounter] = useState(0)
-  const { price, name, description, shortDesc, img } = INFO_CARD[0]
+  
+  const location = useLocation();
+  const { image, name, price, shortDescription, description, units } = location.product;
+
+  const history = useHistory();
+  const handleGoBack = () => {
+    history.goBack();
+  }
+
+  const params = useParams();
+  const { id } = params
+  console.log(id)
+
   return(
-    <>
+    <MainLayout>
+      <button onClick={handleGoBack}>Go back</button>
       <CardDetailStyled>
         <div>
-          <img src={img} />
+          <img src={image} />
         </div>
         <div className="card-detail__info">
           <p className="card-detail__name">{name}</p>
-          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / uni</span></p>
+          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / {units}</span></p>
           <p>Quantity:</p>
           <div className="card-detail__counter">
             <ButtonCarDetailStyled onClick={() => setCounter(counter-1)}>-</ButtonCarDetailStyled>
@@ -110,7 +123,7 @@ const CardDetail = () => {
           <p>{description}</p>
         </div>
       </CardDetailStyled>
-    </>
+    </MainLayout>
   );
 }
 
