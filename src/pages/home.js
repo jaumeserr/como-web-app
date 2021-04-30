@@ -44,19 +44,6 @@ const HomePage = (props) => {
     }
   }
 
-  // const filterProducts = async (product, field, order) => {
-  //   const result = await filterProductsByQueryAndOrder(product, field, order);
-  //   const { success, data } = result;
-  //   if(success) {
-  //     return setProducts(data)
-  //   }   
-  // }
-
-  // const selectFilter = value => {
-  //   const split = value.split('_');
-  //   filterProducts('products', split[0], split[1]);
-  // }
-
   useEffect(() => {
     fetchProducts(category);
   }, [category])

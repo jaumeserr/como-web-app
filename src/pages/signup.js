@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { userSignup } from '../controllers/user';
 
 import Breadcrum from '../components/Breadcrum';
-import Heading from '../components/Heading';
+import PageHeading from '../components/PageHeading';
 import { FormLayoutStyled } from '../UI';
 import Input from '../components/form/Input';
 import { Spacer, Button, StyledLink } from '../components/UI';
@@ -51,7 +51,7 @@ const SignupPage = () => {
     <MainLayout>
       <FormLayoutStyled>
         <Breadcrum opt1="Home" opt2="Create Account" link1="/" link2="/register" />
-        <Heading title="Register" />
+        <PageHeading title="Register" />
         <FormStyled onSubmit={handleFormSubmit} >
           <Input
             label="First name"

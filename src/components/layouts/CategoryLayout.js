@@ -34,7 +34,6 @@ const CategoryLayout = () => {
         </aside>
         <section>
           <Home />
-          {/* <CardDetail /> */}
         </section>
       </CategoryLayoutStyled>
       <Footer />

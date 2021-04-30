@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { login } from '../services/auth';
-import Heading from '../components/Heading';
+import PageHeading from '../components/PageHeading';
 import Breadcrum from '../components/Breadcrum';
 import Input from '../components/form/Input';
 import { FormLayoutStyled } from '../UI';
@@ -46,7 +46,7 @@ const LoginPage = () => {
     <MainLayout>
       <FormLayoutStyled>
         {/* <Breadcrum opt1="Home" opt2="Account" link1="/" link2="/login" /> */}
-        <Heading title="Log In"/>
+        <PageHeading title="Log In"/>
         <FormStyled onSubmit={handleFormSubmit}>
           <Input
             label="Email address *"
