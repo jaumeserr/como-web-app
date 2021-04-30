@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { listCollection, getObjectsByCategory } from '../services/db';
+import { listCollection } from '../services/db';
 import { Link } from 'react-router-dom';
-
-import firebase from "firebase/app";
-import "firebase/firestore";
 
 import { Flex } from './UI';
 
