@@ -7,6 +7,9 @@ import MainLayout from '../components/layouts/MainLayout';
 import CategoryList from '../components/CategoryList';
 import CardListMenu from '../components/CardListMenu';
 import CardList from '../components/CardList';
+import ProductsListView from '../components/ProductsListView';
+import ProductsGridView from '../components/ProductsGridView';
+import { render } from '@testing-library/react';
 
 const CategoriesLayoutStyled  = styled.section`
   max-width: 1200px;
@@ -27,6 +30,7 @@ const CategoriesLayoutStyled  = styled.section`
 const HomePage = (props) => {
   const [products, setProducts] = useState([])
   const category = props.match.params.category;
+  const [showProducts, setshowProducts] = useState('grid');
   
   const fetchProducts = async (category) => {
     if (category) {
@@ -48,12 +52,28 @@ const HomePage = (props) => {
     fetchProducts(category);
   }, [category])
 
+  const toggleShowGrid = () => {
+    setshowProducts('grid');
+  }
+
+  const toggleShowList = () => {
+    setshowProducts('list');
+  }
+
   return (
     <MainLayout>
       <CategoriesLayoutStyled>
-        <aside><CategoryList /></aside>
+        <aside>
+          <CategoryList />
+          </aside>
         <section>
-          <CardListMenu />
+          <CardListMenu
+            toggleShowGrid={toggleShowGrid}
+            toggleShowList={toggleShowList}
+          />
+          {
+            showProducts == 'grid' ? <ProductsGridView /> : <ProductsListView />
+          }
           <CardList products={products} />
         </section>
       </CategoriesLayoutStyled>

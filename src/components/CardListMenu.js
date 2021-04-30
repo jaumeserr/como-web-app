@@ -35,15 +35,16 @@ const SelectStyled = styled.select`
 
 
 
-const CardListMenu = ({ handleChange, onClick }) => {
-  
+const CardListMenu = ({ handleChange, toggleShowGrid, toggleShowList }) => {
   
   return (
     <CardListMenuStyled>
       <div>
-        <ButtonList>
-          <BlockIco onClick={onClick}/>
-        </ButtonList>
+        {/* <ButtonList onClick={blockView}>
+          <BlockIco />
+        </ButtonList> */}
+        <button onClick={toggleShowGrid}>Grid</button>
+        <button onClick={toggleShowList}>List</button>
         <ButtonList>
           <ListIco />
         </ButtonList>
