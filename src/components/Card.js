@@ -52,10 +52,8 @@ const Card = ({ id, image, name, price, shortDescription, description, units }) 
         <p className="card__name">{name}</p>
         <p className="card__shortdesc">{shortDescription}</p>
         <p className="card__price">{price}<span style={{fontSize: 16}}>€ / {units}</span></p>
-        <AddCardButtonStyled>
-          ADD TO CART
-        </AddCardButtonStyled>
       </div>
+      <AddCardButtonStyled>ADD TO CART</AddCardButtonStyled>
       
       {isHovered && <CardHover
         id={id}

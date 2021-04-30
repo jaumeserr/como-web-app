@@ -48,8 +48,12 @@ const HomePage = (props) => {
     }
   }
 
+  // useEffect(() => {
+  //   fetchProducts(category);
+  // }, [category])
+
   useEffect(() => {
-    fetchProducts(category);
+    fetchProducts('cremalleras');
   }, [category])
 
   const toggleShowGrid = () => {
@@ -72,7 +76,9 @@ const HomePage = (props) => {
             toggleShowList={toggleShowList}
           />
           {
-            showProducts == 'grid' ? <ProductsGridView /> : <ProductsListView />
+            showProducts == 'grid'
+            ? <ProductsGridView products={products} />
+            : <ProductsListView products={products} />
           }
           <CardList products={products} />
         </section>

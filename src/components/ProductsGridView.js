@@ -1,6 +1,8 @@
 const ProductsGridView = () => {
   return(
-    <div>Products Grid View</div>
+    <div>
+      <h1>Grid View</h1>
+    </div>
   );
 }
 

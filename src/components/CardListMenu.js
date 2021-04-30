@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import BlockIco from './BlockIco.js';
-import ListIco from './ListIco.js';
+import ListView from '../assets/list.svg';
+import GridView from '../assets/block.svg';
+import { Flex } from './UI';
 
 const CardListMenuStyled = styled.div`
   padding: 10px;
@@ -14,12 +14,15 @@ const CardListMenuStyled = styled.div`
   border: 1px solid #e8e8e8;
 `
 
-const ButtonList = styled.button`
-  padding: 7px;
+const ButtonView = styled.button`
+  padding: 6px;
   border: 1px solid #e8e8e8;
   margin-right: 10px;
   border-radius: 3px;
   background-color: white;
+  img {
+    display: block;
+  }
 `
 
 const SelectStyled = styled.select`
@@ -39,16 +42,14 @@ const CardListMenu = ({ handleChange, toggleShowGrid, toggleShowList }) => {
   
   return (
     <CardListMenuStyled>
-      <div>
-        {/* <ButtonList onClick={blockView}>
-          <BlockIco />
-        </ButtonList> */}
-        <button onClick={toggleShowGrid}>Grid</button>
-        <button onClick={toggleShowList}>List</button>
-        <ButtonList>
-          <ListIco />
-        </ButtonList>
-      </div>
+      <Flex align="center">
+        <ButtonView onClick={toggleShowGrid}>
+          <img src={GridView} alt="GridView" />
+        </ButtonView>
+        <ButtonView onClick={toggleShowList}>
+          <img src={ListView} alt="ListView" />
+        </ButtonView>
+      </Flex>
       <div>
         Sort by:
         <SelectStyled onChange={(e) => handleChange(e.target.value)}>
