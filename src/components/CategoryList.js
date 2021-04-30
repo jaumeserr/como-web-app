@@ -1,4 +1,11 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { listCollection, getObjectsByCategory } from '../services/db';
+import { Link } from 'react-router-dom';
+
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 import { Flex } from './UI';
 
@@ -30,6 +37,20 @@ const CategoryMenuStyled = styled.div`
 `
 
 const CategoryList = () => {
+  const [categories, setCategories] = useState([]);
+
+  const fetchListCategories = async () => {
+    const result = await listCollection('categories');
+    const { success, data } = result;
+    if(success) {
+      return setCategories(data)
+    }
+  }
+
+  useEffect(() => {
+    fetchListCategories();
+  }, [])
+
   return (
     <CategoryMenuStyled>
       <Flex direction="row" align="center">
@@ -37,11 +58,13 @@ const CategoryList = () => {
         <h2>CATEGORIES</h2>
       </Flex>
       <ul>
-        <li>Botones</li>
-        <li>Hombreras</li>
-        <li>Cremalleras</li>
-        <li>Pasamanerias</li>
-        <li>Gomas</li>
+        {
+          categories.map(({ name, path }, i) => (
+            <Link to={path}>
+              <li key={`${name}-${i}`}>{name}</li>
+            </Link>
+          ))
+        }
       </ul>  
     </CategoryMenuStyled>
   )

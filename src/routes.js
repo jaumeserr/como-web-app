@@ -15,7 +15,7 @@ const Routes = () => {
       <Route exact path='/error' component={ErrorPage} />
       <Route exact path="/detail/:id" component={CardDetail} />
       {/* <Route exact path="/detail/:id" render={(props) => (<CardDetail {...props} />)} /> */}
-      <Route path='/' component={HomePage} />
+      <Route path='/:category' component={HomePage} />
     </Switch>
   </Router>
   );

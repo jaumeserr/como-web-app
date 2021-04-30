@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
-import { listCollection, filterProductsByQueryAndOrder } from '../services/db';
+import { listCollection, getObjectsByCategory } from '../services/db';
 
 import MainLayout from '../components/layouts/MainLayout';
 import CategoryList from '../components/CategoryList';
@@ -24,40 +24,49 @@ const CategoriesLayoutStyled  = styled.section`
   }
 `
 
-const HomePage = () => {
+const HomePage = (props) => {
   const [products, setProducts] = useState([])
-
-  const getProducts = async () => {
-    const result = await listCollection('products');
-    const { success, data } = result;
-    if(success) {
-      return setProducts(data)
+  const category = props.match.params.category;
+  
+  const fetchProducts = async (category) => {
+    if (category) {
+      const result = await getObjectsByCategory('products', category);
+      const { success, data } = result;
+      if(success) {
+        return setProducts(data)
+      }
+    } else {
+      const result = await listCollection('products');
+      const { success, data } = result;
+      if(success) {
+        return setProducts(data)
+      }
     }
   }
 
-  const filterProducts = async (product, field, order) => {
-    const result = await filterProductsByQueryAndOrder(product, field, order);
-    const { success, data } = result;
-    if(success) {
-      return setProducts(data)
-    }   
-  }
+  // const filterProducts = async (product, field, order) => {
+  //   const result = await filterProductsByQueryAndOrder(product, field, order);
+  //   const { success, data } = result;
+  //   if(success) {
+  //     return setProducts(data)
+  //   }   
+  // }
 
-  const selectFilter = value => {
-    const split = value.split('_');
-    filterProducts('products', split[0], split[1]);
-  }
+  // const selectFilter = value => {
+  //   const split = value.split('_');
+  //   filterProducts('products', split[0], split[1]);
+  // }
 
   useEffect(() => {
-    getProducts();
-  }, [])
+    fetchProducts(category);
+  }, [category])
 
   return (
     <MainLayout>
       <CategoriesLayoutStyled>
         <aside><CategoryList /></aside>
         <section>
-          <CardListMenu handleChange={selectFilter}/>
+          <CardListMenu />
           <CardList products={products} />
         </section>
       </CategoriesLayoutStyled>

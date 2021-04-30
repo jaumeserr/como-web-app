@@ -91,6 +91,8 @@ const CardDetail = (props) => {
     props.history.goBack();
   }
 
+  console.log(props)
+
   const { price, image, name, units, description } = product
 
   return (
