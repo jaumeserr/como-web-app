@@ -8,10 +8,11 @@ import { Flex } from './UI';
 import { listCollection } from '../services/db';
 
 const CategoryMenuStyled = styled.div`
-  border: 1px solid #e8e8e8;
+  border: 1px solid ${props => props.theme.color.border};
   border-radius: 3px;
   background-color: #f8f8f8;
   overflow: hidden;
+  width: 180px;
   
   h2 {
     margin-left: 5px;
@@ -48,7 +49,7 @@ const CategoryMenu = () => {
 
   return (
     <CategoryMenuStyled>
-      <Flex direction="row" align="center" style={{ padding: '10px' }}>
+      <Flex direction="row" align="center" justify="center" style={{ padding: '10px 0px' }}>
         <BsLayers size={20} />
         <h2>CATEGORIES</h2>
       </Flex>

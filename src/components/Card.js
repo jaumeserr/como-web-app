@@ -5,22 +5,17 @@ import CardHover from './CardHover';
 import { Button } from './UI';
 
 const CardStyled = styled.article`
-  width: 200px;
   border: 1px solid ${props => props.theme.color.primary};
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  box-shadow: 1px 1px 6px 1px rgba(0,0,0,0.1);
-  margin: 10px;
+  width: calc(33.33% - 10px);
   overflow: hidden;
   position: relative;
+  margin-top: 10px;
 
   .card__info {
     padding: 10px;
-  }
-
-  .card__image {
-    border-bottom: 1px solid #f8f8f8;  
   }
   
   .card__name {
@@ -51,7 +46,12 @@ const Card = ({ id, image, name, price, shortDescription, description, units }) 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img className="card__image" src={image} alt={name} />
+      <div style={{
+        backgroundImage: `url(${image})`,
+        height: '250px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }} />
       <div className="card__info">
         <p className="card__name">{name}</p>
         <p className="card__shortdesc">{shortDescription}</p>

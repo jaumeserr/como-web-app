@@ -58,6 +58,7 @@ const Flex = styled.div`
   flex-direction: ${props => props.direction};
   justify-content: ${props => props.justify};
   align-items: ${props => props.align};
+  flex-wrap: wrap;
 `
 
 export { Spacer, Button, StyledLink, Flex }

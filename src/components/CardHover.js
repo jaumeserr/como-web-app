@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BsHeartFill, BsSearch } from 'react-icons/bs';
 
 const CardHoverStyled = styled.ul`
@@ -33,13 +33,16 @@ const CardHoverStyled = styled.ul`
 `
 
 const CardHover = ({ id }) => {
+  const params = useParams();
+  const { category } = params;
+
   return(
     <CardHoverStyled>
       <li>
         <BsHeartFill size={20} />
       </li>
       <li>
-        <Link to={`/detail/${id}`}>
+        <Link to={`/${category}/${id}`}>
           <BsSearch size={20} />
         </Link>
         </li>

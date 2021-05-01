@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { listCollection, getObjectsByCategory } from '../services/db';
 
 import MainLayout from '../components/layouts/MainLayout';
-import CardListMenu from '../components/CardListMenu';
+import ProductFilterBar from '../components/ProductFilterBar';
 import CardList from '../components/CardList';
 import ProductsListView from '../components/ProductsListView';
 import ProductsGridView from '../components/ProductsGridView';
@@ -47,12 +47,8 @@ const HomePage = (props) => {
     }
   }
 
-  // useEffect(() => {
-  //   fetchProducts(category);
-  // }, [category])
-
   useEffect(() => {
-    fetchProducts('cremalleras');
+    fetchProducts(category);
   }, [category])
 
   const toggleShowGrid = () => {
@@ -70,7 +66,7 @@ const HomePage = (props) => {
           <CategoryMenu />
           </aside>
         <section>
-          <CardListMenu
+          <ProductFilterBar
             toggleShowGrid={toggleShowGrid}
             toggleShowList={toggleShowList}
           />
@@ -79,7 +75,7 @@ const HomePage = (props) => {
             ? <ProductsGridView products={products} />
             : <ProductsListView products={products} />
           }
-          <CardList products={products} />
+          {/* <CardList products={products} /> */}
         </section>
       </CategoriesLayoutStyled>
     </MainLayout>

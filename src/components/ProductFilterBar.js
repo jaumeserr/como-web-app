@@ -1,45 +1,40 @@
 import styled from 'styled-components';
-
-import ListView from '../assets/list.svg';
-import { Flex } from './UI';
-
 import { BsGrid, BsList } from 'react-icons/bs';
 
-const CardListMenuStyled = styled.div`
+import { Flex } from './UI';
+
+const ProductFilterBarStyled = styled.div`
   padding: 10px;
   display: flex;
   border-radius: 3px;
   justify-content: space-between;
-  background-color: #f8f8f8;
+  background-color: ${props => props.theme.color.box_bg};
   width: 100%;
-  border: 1px solid #e8e8e8;
+  border: 1px solid ${props => props.theme.color.border};
 `
 
 const ButtonView = styled.button`
   padding: 6px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid ${props => props.theme.color.border};
   margin-right: 10px;
   border-radius: 3px;
-  background-color: white;
+  background-color: ${props => props.theme.color.input_bg};
 `
 
 const SelectStyled = styled.select`
   height: 36px;
   border-radius: 3px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid ${props => props.theme.color.border};
   padding: 0 10px;
-  background-color: white;
+  background-color: ${props => props.theme.color.input_bg};
   margin-left: 10px;
-  width: 100px;
   outline: none;
 `
 
-
-
-const CardListMenu = ({ handleChange, toggleShowGrid, toggleShowList }) => {
+const ProductFilterBar = ({ handleChange, toggleShowGrid, toggleShowList }) => {
   
   return (
-    <CardListMenuStyled>
+    <ProductFilterBarStyled>
       <Flex align="center">
         <ButtonView onClick={toggleShowGrid}>
           <BsGrid size={20} />
@@ -57,8 +52,8 @@ const CardListMenu = ({ handleChange, toggleShowGrid, toggleShowList }) => {
           <option value="price_desc">Price descendent</option>
         </SelectStyled>
       </div>
-    </CardListMenuStyled>
+    </ProductFilterBarStyled>
   );
 }
 
-export default CardListMenu;
+export default ProductFilterBar;

@@ -1,9 +1,11 @@
-import Card from "./Card"
+import styled from 'styled-components';
+
+import Card from "./Card";
+import { Flex } from './UI';
 
 const ProductsListView = ({ products }) => {
   return(
-    <div>
-      <h1>List View</h1>
+    <Flex direction="column">
       {
         products.map(({ id, image, name, price, shortDescription, description, units }) => 
         <Card
@@ -19,7 +21,7 @@ const ProductsListView = ({ products }) => {
         )
       }
 
-    </div>
+    </Flex>
   );
 }
 

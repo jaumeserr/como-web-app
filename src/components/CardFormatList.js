@@ -23,7 +23,7 @@ const CardStyled = styled.article`
   }
 
   .card__image {
-    border-bottom: 1px solid #f8f8f8;
+    border-bottom: 1px solid ${props => props.theme.color.border};
     width: 100px;
     height: auto;
   }

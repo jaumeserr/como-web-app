@@ -13,7 +13,7 @@ const Routes = () => {
       <Route exact path='/login' component={LoginPage} />
       <Route exact path='/signup' component={SignupPage} />
       <Route exact path='/error' component={ErrorPage} />
-      <Route exact path="/detail/:id" component={CardDetail} />
+      <Route exact path="/:category/:id" component={CardDetail} />
       {/* <Route exact path="/detail/:id" render={(props) => (<CardDetail {...props} />)} /> */}
       <Route path='/:category' component={HomePage} />
     </Switch>
