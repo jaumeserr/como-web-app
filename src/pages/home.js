@@ -4,12 +4,11 @@ import { useState, useEffect } from 'react';
 import { listCollection, getObjectsByCategory } from '../services/db';
 
 import MainLayout from '../components/layouts/MainLayout';
-import CategoryList from '../components/CategoryList';
 import CardListMenu from '../components/CardListMenu';
 import CardList from '../components/CardList';
 import ProductsListView from '../components/ProductsListView';
 import ProductsGridView from '../components/ProductsGridView';
-import { render } from '@testing-library/react';
+import CategoryMenu from '../components/CategoryMenu';
 
 const CategoriesLayoutStyled  = styled.section`
   max-width: 1200px;
@@ -68,7 +67,7 @@ const HomePage = (props) => {
     <MainLayout>
       <CategoriesLayoutStyled>
         <aside>
-          <CategoryList />
+          <CategoryMenu />
           </aside>
         <section>
           <CardListMenu

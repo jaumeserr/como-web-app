@@ -5,6 +5,7 @@ import { listCollection } from '../services/db';
 import { Link } from 'react-router-dom';
 
 import { Flex } from './UI';
+import { BsLayers } from 'react-icons/bs';
 
 const CategoryMenuStyled = styled.div`
   border: 1px solid #e8e8e8;
@@ -16,24 +17,24 @@ const CategoryMenuStyled = styled.div`
     border-bottom: 1px solid var(--principal);
     background-color: var(--principal);
     color: var(--white);
-    font-weight: 700;
-  }
+    margin-left: 5px;
+    font-size: 20px;
+  } 
+`
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.color.tertiary};
   
-  ul {
-    list-style: none;
-
-    li {
-      padding: 10px;
-      cursor: pointer;
-
-      :hover {
-        background-color: red;
-      }
-    }
+  li {
+    padding: 10px 10px 10px 20px
+  }
+  li:hover {
+    background-color: ${props => props.theme.color.secondary}
   }
 `
 
-const CategoryList = () => {
+const CategoryMenu = () => {
   const [categories, setCategories] = useState([]);
 
   const fetchListCategories = async () => {
@@ -50,16 +51,16 @@ const CategoryList = () => {
 
   return (
     <CategoryMenuStyled>
-      <Flex direction="row" align="center">
-        <p>1</p>
+      <Flex direction="row" align="center" style={{ padding: '10px' }}>
+        <BsLayers size={20} />
         <h2>CATEGORIES</h2>
       </Flex>
       <ul>
         {
           categories.map(({ name, path }, i) => (
-            <Link to={path}>
+            <LinkStyled to={path}>
               <li key={`${name}-${i}`}>{name}</li>
-            </Link>
+            </LinkStyled>
           ))
         }
       </ul>  
@@ -67,4 +68,4 @@ const CategoryList = () => {
   )
 }
 
-export default CategoryList
+export default CategoryMenu

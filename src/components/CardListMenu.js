@@ -42,10 +42,10 @@ const CardListMenu = ({ handleChange, toggleShowGrid, toggleShowList }) => {
     <CardListMenuStyled>
       <Flex align="center">
         <ButtonView onClick={toggleShowGrid}>
-          <BsGrid size={25} />
+          <BsGrid size={20} />
         </ButtonView>
         <ButtonView onClick={toggleShowList}>
-          <BsList size={25} />
+          <BsList size={20} />
         </ButtonView>
       </Flex>
       <div>
