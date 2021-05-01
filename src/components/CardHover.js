@@ -1,17 +1,7 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 
-import SearchIcon from '../assets/search.svg';
 import { Link } from 'react-router-dom';
-import FavIco from '../components/FavIco';
-import SearchIco from '../components/SearchIco';
-
-
 import { BsHeartFill, BsSearch } from 'react-icons/bs';
-
-
-import CardDetail from '../components/CardDetail';
-import CardList from './CardList';
 
 const CardHoverStyled = styled.ul`
   position: absolute;
@@ -42,8 +32,7 @@ const CardHoverStyled = styled.ul`
   }
 `
 
-
-const CardHover = ({ id, image, name, price, shortDescription, description, units }) => {
+const CardHover = ({ id }) => {
   return(
     <CardHoverStyled>
       <li>

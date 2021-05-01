@@ -1,3 +1,7 @@
+import styled from 'styled-components';
+
+
+
 const ProductsGridView = () => {
   return(
     <div>
