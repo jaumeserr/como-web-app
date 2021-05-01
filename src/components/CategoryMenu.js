@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
 import styled from 'styled-components';
-import { listCollection } from '../services/db';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Flex } from './UI';
 import { BsLayers } from 'react-icons/bs';
+
+import { Flex } from './UI';
+import { listCollection } from '../services/db';
 
 const CategoryMenuStyled = styled.div`
   border: 1px solid #e8e8e8;
@@ -14,9 +14,6 @@ const CategoryMenuStyled = styled.div`
   overflow: hidden;
   
   h2 {
-    border-bottom: 1px solid var(--principal);
-    background-color: var(--principal);
-    color: var(--white);
     margin-left: 5px;
     font-size: 20px;
   } 
