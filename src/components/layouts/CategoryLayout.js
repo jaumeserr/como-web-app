@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from '../Header';
 import Footer from '../Footer';
 import CardDetail from '../CardDetail';
-import CategoryList from '../CategoryList';
+import CategoryList from '../CategoryMenu';
 import CardList from '../CardList';
 import Home from '../pages';
 
