@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 import ListView from '../assets/list.svg';
-import GridView from '../assets/block.svg';
 import { Flex } from './UI';
+
+import { BsGrid, BsList } from 'react-icons/bs';
 
 const CardListMenuStyled = styled.div`
   padding: 10px;
@@ -20,9 +21,6 @@ const ButtonView = styled.button`
   margin-right: 10px;
   border-radius: 3px;
   background-color: white;
-  img {
-    display: block;
-  }
 `
 
 const SelectStyled = styled.select`
@@ -44,10 +42,10 @@ const CardListMenu = ({ handleChange, toggleShowGrid, toggleShowList }) => {
     <CardListMenuStyled>
       <Flex align="center">
         <ButtonView onClick={toggleShowGrid}>
-          <img src={GridView} alt="GridView" />
+          <BsGrid size={25} />
         </ButtonView>
         <ButtonView onClick={toggleShowList}>
-          <img src={ListView} alt="ListView" />
+          <BsList size={25} />
         </ButtonView>
       </Flex>
       <div>
