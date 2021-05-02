@@ -79,10 +79,6 @@ export async function getObjectsByCategory(collection, category) {
   }
 }
 
-
-
-
-
 export async function filterProductsByQueryAndOrder(collection, field, order) {
   try {
     const db = getDb();
