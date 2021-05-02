@@ -83,15 +83,12 @@ const CardDetail = (props) => {
   }
 
   useEffect(() => {
-    console.log(`retrieving product from DB: ${productId}`)
-    fetchProduct(productId);
+    fetchProduct(productId) //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
   const handleGoBack = () => {
     props.history.goBack();
   }
-
-  console.log(props)
 
   const { price, image, name, units, description } = product
 
@@ -100,7 +97,7 @@ const CardDetail = (props) => {
       <button onClick={handleGoBack}>Go back</button>
       <CardDetailStyled>
         <div>
-          <img src={image} />
+          <img src={image} alt={name} />
         </div>
         <div className="card-detail__info">
           <p className="card-detail__name">{name}</p>

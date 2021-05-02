@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { userSignup } from '../controllers/user';
 
 import Breadcrum from '../components/Breadcrum';

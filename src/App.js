@@ -15,13 +15,13 @@ const App = () => {
       if (user) {
         console.log('El usuario ha hecho login: ', user);
         const userProfile = await getUserProfile(user.uid);
-        dispatch(setUser(userProfile));
+        dispatch(setUser(userProfile))
       } else {
         console.log('El usuario ha hecho logout: ');
         dispatch(clearUser());
       }
       setIsLoading(false)
-    })
+    }) //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) return <>Cargando...</>;

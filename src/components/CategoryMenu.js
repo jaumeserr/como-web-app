@@ -55,11 +55,14 @@ const CategoryMenu = () => {
       </Flex>
       <ul>
         {
-          categories.map(({ name, path }, i) => (
+          categories.map(({ name, path }, index) => {
+            console.log(`${name}-${index}`)
+            return (
             <LinkStyled to={path}>
-              <li key={`${name}-${i}`}>{name}</li>
+              <li key={`${name}-${index}`}>{name}</li>
             </LinkStyled>
-          ))
+            )
+          })
         }
       </ul>  
     </CategoryMenuStyled>

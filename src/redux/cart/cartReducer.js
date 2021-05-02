@@ -1,5 +1,3 @@
-import { handleAddToCard } from './cardUtils'
-
 const INI_STATE = {
   cartItems: []
 };

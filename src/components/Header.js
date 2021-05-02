@@ -68,9 +68,6 @@ const HeaderStyled = styled.header`
 const Header = ({ product }) => {
   const user = useSelector(state => state.user)
   const cart = useSelector(state => state.cardData.cartItems)
-  const state = useSelector(state => state)
-  console.log("🚀 ~ file: Header.js ~ line 72 ~ Header ~ state", state)
-  console.log("🚀 ~ file: Header.js ~ line 71 ~ Header ~ cart", cart.length)
   
   return(
     <HeaderStyled>
@@ -94,7 +91,7 @@ const Header = ({ product }) => {
         <li>
           {
             user
-            ? <span className="user">Welcome back, {user.name} <img src={LogoutIcon} onClick={logout}/></span>
+            ? <span className="user">Welcome back, {user.name} <img src={LogoutIcon} alt="logout" onClick={logout}/></span>
             : <Link to="/login">My account</Link>
           }
         </li>

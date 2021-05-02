@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import Card from './Card';
-import { Flex } from './UI';
 
 const GridView = styled.section`
   display: flex;

@@ -13,6 +13,8 @@ export async function signup(email, password) {
 export async function login(email, password) {
   try {
     const result = await firebase.auth().signInWithEmailAndPassword(email, password);
+    console.log("🚀 ~ file: auth.js ~ line 16 ~ login ~ result", result)
+    
     return true;
   } catch (error) {
     return false;

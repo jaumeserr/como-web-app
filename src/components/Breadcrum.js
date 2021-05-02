@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const BreadcrumStyled = styled.section`
   text-align: center;
   margin-bottom: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   list-style: none;
   span {
     padding: 0 10px;
@@ -19,21 +20,29 @@ const BreadcrumStyled = styled.section`
   }
 `
 
-const Breadcrum = ({ opt1, opt2, link1, link2 }) => {
+const Breadcrum = (props) => {
+  const params = useParams();
+  const history = useHistory();
+  console.log("🚀 ~ file: Breadcrum.js ~ line 26 ~ Breadcrum ~ history", history)
+  console.log("🚀 ~ file: Breadcrum.js ~ line 25 ~ Breadcrum ~ params", params)
+  
+  
   return (
-    <BreadcrumStyled>
+    <>
+      <BreadcrumStyled>
       <li>
-        <Link to={link1}>
-          {opt1}
+        <Link to={'/home'}>
+          Home
         </Link>
       </li>
       <span>/</span>
       <li>
-        <Link to={link2}>
-          {opt2}
+        <Link to={history.location}>
+          {params.category}
         </Link>
       </li>
-    </BreadcrumStyled>
+      </BreadcrumStyled>
+    </>
   );
 }
 

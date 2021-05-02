@@ -4,15 +4,14 @@ import { useHistory } from 'react-router-dom';
 
 import { login } from '../services/auth';
 import PageHeading from '../components/PageHeading';
-import Breadcrum from '../components/Breadcrum';
 import Input from '../components/form/Input';
 import { FormLayoutStyled } from '../UI';
 import { Spacer, Button, StyledLink } from '../components/UI';
 import MainLayout from '../components/layouts/MainLayout';
 
 const FormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 
   .form__separator {
     display: flex;

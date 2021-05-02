@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import { listCollection, getObjectsByCategory } from '../services/db';
 
 import MainLayout from '../components/layouts/MainLayout';
 import ProductFilterBar from '../components/ProductFilterBar';
-import CardList from '../components/CardList';
 import ProductsListView from '../components/ProductsListView';
 import ProductsGridView from '../components/ProductsGridView';
 import CategoryMenu from '../components/CategoryMenu';
@@ -31,8 +29,6 @@ const HomePage = (props) => {
   const [products, setProducts] = useState([])
   const category = props.match.params.category;
   const [showProducts, setshowProducts] = useState('grid');
-  const cart = useSelector(state => state.cardData)
-  console.log("🚀 ~ file: home.js ~ line 35 ~ HomePage ~ state", cart)
 
   const fetchProducts = async (category) => {
     if (category) {
@@ -67,14 +63,15 @@ const HomePage = (props) => {
       <CategoriesLayoutStyled>
         <aside>
           <CategoryMenu />
-          </aside>
+        </aside>
         <section>
           <ProductFilterBar
             toggleShowGrid={toggleShowGrid}
             toggleShowList={toggleShowList}
           />
+          {/* <Breadcrum /> */}
           {
-            showProducts == 'grid'
+            showProducts === 'grid'
             ? <ProductsGridView products={products} />
             : <ProductsListView products={products} />
           }
