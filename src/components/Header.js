@@ -65,7 +65,7 @@ const HeaderStyled = styled.header`
   }
 `
 
-const Header = ({ products }) => {
+const Header = ({ product }) => {
   const user = useSelector(state => state.user)
   return(
     <HeaderStyled>
@@ -83,7 +83,7 @@ const Header = ({ products }) => {
             <img src={CartIcon} alt="Cart" />
             <span className="cart__counter">
               {
-                products ? products.length : null
+                // products ? products.length : null
               }
             </span>
           </Link>
