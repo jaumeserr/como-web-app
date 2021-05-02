@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { listCollection, getObjectsByCategory } from '../services/db';
 
@@ -30,7 +31,9 @@ const HomePage = (props) => {
   const [products, setProducts] = useState([])
   const category = props.match.params.category;
   const [showProducts, setshowProducts] = useState('grid');
-  
+  const cart = useSelector(state => state.cardData)
+  console.log("🚀 ~ file: home.js ~ line 35 ~ HomePage ~ state", cart)
+
   const fetchProducts = async (category) => {
     if (category) {
       const result = await getObjectsByCategory('products', category);

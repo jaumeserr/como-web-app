@@ -67,6 +67,11 @@ const HeaderStyled = styled.header`
 
 const Header = ({ product }) => {
   const user = useSelector(state => state.user)
+  const cart = useSelector(state => state.cardData.cartItems)
+  const state = useSelector(state => state)
+  console.log("🚀 ~ file: Header.js ~ line 72 ~ Header ~ state", state)
+  console.log("🚀 ~ file: Header.js ~ line 71 ~ Header ~ cart", cart.length)
+  
   return(
     <HeaderStyled>
       <ul>
@@ -82,9 +87,7 @@ const Header = ({ product }) => {
           <Link to="/cart" className="cart">
             <img src={CartIcon} alt="Cart" />
             <span className="cart__counter">
-              {
-                // products ? products.length : null
-              }
+              {cart.length}
             </span>
           </Link>
         </li>

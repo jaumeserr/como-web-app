@@ -1,9 +1,11 @@
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import userReducer from './user/userReducer';
+import cartReducer from './cart/cartReducer';
 
 const reducers = combineReducers({
-  user: userReducer
+  user: userReducer,
+  cardData: cartReducer
 })
 
 const store = createStore(

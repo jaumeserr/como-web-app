@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import CardHover from './CardHover';
+import { addProduct } from '../redux/cart/cartActions';
 import { Button } from './UI';
 
 const CardStyled = styled.article`
@@ -38,8 +40,14 @@ const AddCardButtonStyled = styled(Button)`
   width: 100%;
 `
 
-const Card = ({ id, image, name, price, shortDescription, description, units }) => {
+const Card = (product) => {
   const [isHovered, setIsHovered] = useState(false)
+  const dispatch = useDispatch();
+  const { id, image, name, price, shortDescription, description, units } = product;
+
+  const handleAddToCard = (product) => {
+    dispatch(addProduct(product))
+  }
   
   return(
     <CardStyled
@@ -57,7 +65,9 @@ const Card = ({ id, image, name, price, shortDescription, description, units }) 
         <p className="card__shortdesc">{shortDescription}</p>
         <p className="card__price">{price}<span style={{fontSize: 16}}>€ / {units}</span></p>
       </div>
-      <AddCardButtonStyled>ADD TO CART</AddCardButtonStyled>
+      <AddCardButtonStyled onClick={() => handleAddToCard(product)}>
+        ADD TO CART
+      </AddCardButtonStyled>
       
       {isHovered && <CardHover
         id={id}
