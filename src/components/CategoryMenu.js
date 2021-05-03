@@ -54,6 +54,9 @@ const CategoryMenu = () => {
         <h2>CATEGORIES</h2>
       </Flex>
       <ul>
+        <LinkStyled to='/'>
+          <li>All</li>
+        </LinkStyled>
         {
           categories.map(({ name, path }, index) => {
             console.log(`${name}-${index}`)

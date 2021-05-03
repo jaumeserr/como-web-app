@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 
 import CartProduct from "../components/CartProduct";
-import MainLayout from "../components/layouts/MainLayout";
+import FormLayout from '../components/layouts/FormLayout';
 
 const CartList = () => {
   const cart = useSelector(state => state.cardData.cartItems)
   console.log("🚀 ~ file: cart.js ~ line 9 ~ CartList ~ cart", cart)
 
   return(
-    <MainLayout>
+    <FormLayout>
       {
         cart.map(({ name, price, shortDescription, image }) => 
           <CartProduct
@@ -20,7 +20,7 @@ const CartList = () => {
         )
       }
       <p>Total: {}</p>
-    </MainLayout>
+    </FormLayout>
   );
 }
 

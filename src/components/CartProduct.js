@@ -43,7 +43,7 @@ const CartProduct = ({ image, name, shortDescription, price }) => {
       </div>
       <div className="right">
         <p>{price}</p>
-        <button>Remove Product</button>
+        <button onClick={() => console.log('remove from redux')}>Remove Product</button>
       </div>
     </CartProductStyled>
   )

@@ -17,8 +17,6 @@ const Button = styled.button`
   text-align: center;
   outline: none;
   cursor: pointer;
-  display: block;
-  width: 100%;
   padding: 10px;
   border-radius: 5px;
   text-decoration: none;

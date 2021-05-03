@@ -9,7 +9,6 @@ const GridView = styled.section`
 `
 
 const ProductsGridView = ({ products }) => {
-console.log("🚀 ~ file: ProductsGridView.js ~ line 12 ~ ProductsGridView ~ products", products)
   return(
     <GridView>
       {

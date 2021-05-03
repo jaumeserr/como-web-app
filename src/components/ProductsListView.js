@@ -1,4 +1,4 @@
-import Card from "./Card";
+import CardLarge from "./CardLarge";
 import { Flex } from './UI';
 
 const ProductsListView = ({ products }) => {
@@ -6,7 +6,7 @@ const ProductsListView = ({ products }) => {
     <Flex direction="column">
       {
         products.map(({ id, image, name, price, shortDescription, description, units }) => 
-        <Card
+        <CardLarge
           key={id}
           id={id}
           price={price}

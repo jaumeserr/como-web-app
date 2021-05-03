@@ -10,9 +10,6 @@ import { Spacer, Button, StyledLink } from '../components/UI';
 import FormLayout from '../components/layouts/FormLayout';
 
 const FormStyled = styled.form`
-  /* display: flex;
-  flex-direction: column; */
-
   .form__separator {
     display: flex;
     margin: 20px 0;
@@ -65,7 +62,7 @@ const LoginPage = () => {
           <Spacer height="10px" />
           <p>Forgot your password?</p>
           <Spacer />
-          <Button>LOG IN</Button>
+          <Button style={{ width: '100%'}}>LOG IN</Button>
           <div className="form__separator">
             <div></div>
             <span>or</span>

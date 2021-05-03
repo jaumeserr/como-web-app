@@ -1,6 +1,10 @@
+import MainLayout from "../components/layouts/MainLayout";
+
 const FavouritesPage = () => {
   return(
-    <div>Favourites page</div>
+    <MainLayout>
+      Favs
+    </MainLayout>
   );
 }
 

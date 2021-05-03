@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import { BsHeartFill, BsSearch } from 'react-icons/bs';
 
+
 const CardHoverStyled = styled.ul`
   position: absolute;
   right: 10px;
@@ -45,7 +46,7 @@ const CardHover = ({ id }) => {
         <Link to={`/${category}/${id}`}>
           <BsSearch size={20} />
         </Link>
-        </li>
+      </li>
     </CardHoverStyled>
   );
 }

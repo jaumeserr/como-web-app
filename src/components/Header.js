@@ -53,7 +53,7 @@ const Header = ({ product }) => {
     <HeaderStyled>
       <ul>
         <li className='logo'>
-          <Link  to="/">COMO MATARÓ</Link>
+          <Link to="/">COMO MATARÓ</Link>
         </li>
         <li className='favs'>
           <Link to="/favourites">

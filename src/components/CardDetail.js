@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import MainLayout from '../components/layouts/MainLayout';
+import { useDispatch } from 'react-redux';
+
+import FormLayout from '../components/layouts/FormLayout';
 import { getObjectById } from '../services/db';
+import { Button } from './UI';
+import { addProduct } from '../redux/cart/cartActions';
 
 const CardDetailStyled = styled.section`
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid ${props => props.theme.color.border};
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -15,29 +25,19 @@ const CardDetailStyled = styled.section`
   div:first-child {
     
     img {
-      width: 100%;
-      border:1px solid var(--principal);
-      border-radius: 8px;
-      display: block;
-
-      @media (min-width: 768px) {
-        min-width: 400px;
-      }
+      padding: 20px;
+      width: 300px;
     }
   }
 
   .card-detail__info {
-    padding: 15px;
-
-    @media (min-width: 768px) {
-      padding: 10px 10px 0 40px;
-    }
+    padding: 20px 20px 30px 0;
   }
 
   .card-detail__name {
     font-size: 30px;
     text-transform: uppercase;
-    color: var(--principal)
+    color: ${props => props.theme.color.tertiary}
   }
 
   .card-detail__price {
@@ -49,13 +49,14 @@ const CardDetailStyled = styled.section`
     color: var(--secondary);
     font-size: 25px;
     display: block;
-    border-bottom: 1px solid var(--lightgray);
+    border-bottom: 1px solid ${props => props.theme.color.border};
     margin-bottom: 5px;
     font-weight: 700;
   }
 
   .card-detail__counter {
     margin-top: 5px;
+    margin-bottom: 10px;
 
     span {
       padding: 0 10px;
@@ -69,10 +70,31 @@ const CardDetailStyled = styled.section`
   }
 `
 
+const ButtonCounter = styled(Button)`
+  padding: 10px 15px;
+`
+
+const ButtonBack = styled.button`
+  background-color: white;
+  border: 1px solid ${props => props.theme.color.border};
+  padding: 15px 25px;
+  font-size: 16px;
+  margin-left: 60px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom: none;
+  cursor: pointer;
+
+  :hover {
+    background-color: ${props => props.theme.color.secondary}
+  }
+`
+
 const CardDetail = (props) => {
   const [counter, setCounter] = useState(0)
   const [product, setProduct] = useState('')
   const productId = props.match.params.id
+  const dispatch = useDispatch();
   
   const fetchProduct = async (productId) => {
     const { success, data } = await getObjectById('products', productId)
@@ -89,34 +111,39 @@ const CardDetail = (props) => {
     props.history.goBack();
   }
 
-  const { price, image, name, units, description } = product
+  const handleAddToCard = (product) => {
+    dispatch(addProduct(product))
+  }
+
+  const { id, image, name, price, shortDescription, description, units } = product;
 
   return (
-    <MainLayout>
-      <button onClick={handleGoBack}>Go back</button>
-      <CardDetailStyled>
-        <div>
-          <img src={image} alt={name} />
-        </div>
-        <div className="card-detail__info">
-          <p className="card-detail__name">{name}</p>
-          <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / {units}</span></p>
-          <p>Quantity:</p>
-          <div className="card-detail__counter">
-            <button onClick={() => setCounter(counter-1)}>-</button>
-            <span>{counter}</span>
-            <button onClick={() => setCounter(counter+1)}>+</button>
+    <FormLayout>
+      <div>
+        <ButtonBack onClick={handleGoBack}>Go back</ButtonBack>
+        <CardDetailStyled>
+          <div>
+            <img src={image} alt={name} />
           </div>
-          <div className="card-detail__buttons">
-            <button>ADD TO CART</button>
-            <button>BUY NOW</button>
-            <button>FAV</button>
+          <div className="card-detail__info">
+            <p className="card-detail__name">{name}</p>
+            <p className="card-detail__price">{price}<span style={{fontSize: 18}}> € / {units}</span></p>
+            <p>Quantity:</p>
+            <div className="card-detail__counter">
+              <ButtonCounter onClick={() => setCounter(counter-1)}>-</ButtonCounter>
+              <span>{counter}</span>
+              <ButtonCounter onClick={() => setCounter(counter+1)}>+</ButtonCounter>
+            </div>
+            <div className="card-detail__buttons">
+              <Button onClick={() => handleAddToCard(product)}>ADD TO CART</Button>
+              <Button>FAV</Button>
+            </div>
+            <p className="card-detail__title">Description</p>
+            <p>{description}</p>
           </div>
-          <p className="card-detail__title">Description</p>
-          <p>{description}</p>
-        </div>
-      </CardDetailStyled>
-    </MainLayout>
+        </CardDetailStyled>
+      </div>
+    </FormLayout>
   );
 }
 
