@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 import { logout } from '../services/auth';
-import FavIcon from '../assets/favs.svg';
 import LogoutIcon from '../assets/signout.svg';
-import CartIcon from '../assets/cart.svg';
+import { IoLogOutOutline } from "react-icons/io5";
 
 const HeaderStyled = styled.header`
   padding: 0 20px;
@@ -20,48 +19,29 @@ const HeaderStyled = styled.header`
     max-width: 1200px;
     margin: 0 auto;
   }
+
   li {
     padding: 0 20px;
-    border-left: 1px solid var(--lightgray);
+    border-left: 1px solid black;
+
     a {
       text-decoration: none;
-      color: var(--black);
+      color: black;
     }
   }
+
+  .favs {
+    border-left: none;
+  }
+
   .user {
-      display: flex;
-      align-items: center;
-      img {
-        margin-left: 5px;
-        cursor: pointer;
-      }
-    }
-  li img {
-    width: 22px;
-    height: auto;
+    display: flex;
+    align-items: center;
   }
-  li:first-child {
+
+  .logo {
     flex: 1;
     border: none;
-  }
-  .cart {
-    position: relative;
-    
-    &__counter {
-      background-color: white;
-      color: black;
-      border: 1px solid black;
-      font-size: 12px;
-      line-height:1.4;
-      border-radius: 8px;
-      text-align: center;
-      width: 17px;
-      height: 17px;
-      margin-left: 4px;
-      position: absolute;
-      top: -16px;
-      right: -9px;
-    }
   }
 `
 
@@ -72,26 +52,23 @@ const Header = ({ product }) => {
   return(
     <HeaderStyled>
       <ul>
-        <li>
-          <Link to="/">COMO MATARÓ</Link>
+        <li className='logo'>
+          <Link  to="/">COMO MATARÓ</Link>
         </li>
-        <li>
+        <li className='favs'>
           <Link to="/favourites">
-            <img src={FavIcon} alt="Favs" />
+            Favourites
           </Link>
         </li>
         <li> 
           <Link to="/cart" className="cart">
-            <img src={CartIcon} alt="Cart" />
-            <span className="cart__counter">
-              {cart.length}
-            </span>
+            Cart ({cart.length})
           </Link>
         </li>
         <li>
           {
             user
-            ? <span className="user">Welcome back, {user.name} <img src={LogoutIcon} alt="logout" onClick={logout}/></span>
+            ? <span className="user">Welcome back, {user.name} <IoLogOutOutline style={{ cursor: 'pointer', marginLeft: '5px' }}size={20} onClick={logout}/></span>
             : <Link to="/login">My account</Link>
           }
         </li>
