@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import MainLayout from '../components/layouts/MainLayout';
 import { getObjectById } from '../services/db';
 
-
 const CardDetailStyled = styled.section`
   display: flex;
   flex-direction: row;

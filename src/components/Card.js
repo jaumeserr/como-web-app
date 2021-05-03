@@ -54,6 +54,7 @@ const Card = (product) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      
       <div style={{
         backgroundImage: `url(${image})`,
         height: '250px',

@@ -26,6 +26,7 @@ const CategoriesLayoutStyled  = styled.section`
 `
 
 const HomePage = (props) => {
+console.log("🚀 ~ file: home.js ~ line 29 ~ HomePage ~ props", props)
   const [products, setProducts] = useState([])
   const category = props.match.params.category;
   const [showProducts, setshowProducts] = useState('grid');
@@ -69,13 +70,11 @@ const HomePage = (props) => {
             toggleShowGrid={toggleShowGrid}
             toggleShowList={toggleShowList}
           />
-          {/* <Breadcrum /> */}
           {
             showProducts === 'grid'
             ? <ProductsGridView products={products} />
             : <ProductsListView products={products} />
           }
-          {/* <CardList products={products} /> */}
         </section>
       </CategoriesLayoutStyled>
     </MainLayout>

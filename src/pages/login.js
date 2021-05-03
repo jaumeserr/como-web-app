@@ -7,7 +7,7 @@ import PageHeading from '../components/PageHeading';
 import Input from '../components/form/Input';
 import { FormLayoutStyled } from '../UI';
 import { Spacer, Button, StyledLink } from '../components/UI';
-import MainLayout from '../components/layouts/MainLayout';
+import FormLayout from '../components/layouts/FormLayout';
 
 const FormStyled = styled.form`
   /* display: flex;
@@ -42,9 +42,8 @@ const LoginPage = () => {
   }
   
   return(
-    <MainLayout>
+    <FormLayout>
       <FormLayoutStyled>
-        {/* <Breadcrum opt1="Home" opt2="Account" link1="/" link2="/login" /> */}
         <PageHeading title="Log In"/>
         <FormStyled onSubmit={handleFormSubmit}>
           <Input
@@ -75,7 +74,7 @@ const LoginPage = () => {
           <StyledLink to="/signup">CREATE AN ACCOUNT</StyledLink>
         </FormStyled>
       </FormLayoutStyled>
-    </MainLayout>
+    </FormLayout>
   );
 }
 

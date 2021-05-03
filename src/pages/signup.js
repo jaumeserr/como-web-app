@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { userSignup } from '../controllers/user';
 
-import Breadcrum from '../components/Breadcrum';
 import PageHeading from '../components/PageHeading';
 import { FormLayoutStyled } from '../UI';
 import Input from '../components/form/Input';
 import { Spacer, Button, StyledLink } from '../components/UI';
-import MainLayout from '../components/layouts/MainLayout';
+import FormLayout from '../components/layouts/FormLayout';
 
 const FormStyled = styled.form`
   display: flex;
@@ -48,9 +47,8 @@ const SignupPage = () => {
     }
   }
   return(
-    <MainLayout>
+    <FormLayout>
       <FormLayoutStyled>
-        <Breadcrum opt1="Home" opt2="Create Account" link1="/" link2="/register" />
         <PageHeading title="Register" />
         <FormStyled onSubmit={handleFormSubmit} >
           <Input
@@ -99,7 +97,7 @@ const SignupPage = () => {
           <StyledLink to="/login">LOG IN</StyledLink>
         </FormStyled>
       </FormLayoutStyled>    
-    </MainLayout>
+    </FormLayout>
   );
 }
 

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Footer from "../Footer"
 import Header from "../Header"
 
-const FormLayoutStyled = styled.main`
-  /* height: calc(100vh - 64px - 59px); */
+const ContentStyled = styled.main`
+  height: calc(100vh - 66px - 59px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,7 +16,7 @@ const FormLayoutStyled = styled.main`
 const FormLayout = ({ children }) => {
   return(
     <div>
-      <Header products={products}/>
+      <Header/>
       <ContentStyled>
         {children}
       </ContentStyled>
