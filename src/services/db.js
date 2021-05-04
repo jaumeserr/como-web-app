@@ -9,14 +9,18 @@ function getDb() {
   return db;
 }
 
+const formatResponse = (success, data) => {
+  return { success, data }
+}
+
 export async function createObjectWithId(collection, object, id) {
   try {
     const db = getDb();
     await db.collection(collection).doc(id).set(object);
-    return { success: true };
+    return formatResponse(true);
   } catch (error) {
     console.log("🚀 ~ file: db.js ~ line 18 ~ createObjectWithId ~ error", error)
-    return { success: false };
+    return formatResponse(false);
   }
 }
 
@@ -24,10 +28,10 @@ export async function createObject(collection, object) {
   try {
     const db = getDb();
     const docRef = await db.collection(collection).add(object);
-    return { success: true, data: docRef.id };
+    return formatResponse(true, docRef.id);
   } catch (error) {
     console.log("🚀 ~ file: db.js ~ line 29 ~ createObject ~ error", error)
-    return { success: false };
+    return formatResponse(false);
   }
 }
 
@@ -37,11 +41,11 @@ export async function getObjectById(collection, id) {
     const doc = await db.collection(collection).doc(id).get();
     if (doc.exists) {
       const data = doc.data();
-      return { success: true, data: { ...data, id: doc.id } };
+      return formatResponse(true, { ...data, id: doc.id });
     }
   } catch (error) {
     console.log("🚀 ~ file: db.js ~ line 43 ~ getObjectById ~ error", error)
-    return { success: false };
+    return formatResponse(false);
   }
 }
 
@@ -54,10 +58,10 @@ export async function listCollection(collection) {
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data() })  
     });
-    return { success: true, data };
+    return formatResponse(true, data);
   } catch(error) {
     console.log("🚀 ~ file: db.js ~ line 59 ~ listCollection ~ error", error)
-    return { success: false };
+    return formatResponse(false);
   }
 }
 
@@ -72,10 +76,10 @@ export async function getObjectsByCategory(collection, category) {
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data() })
     });
-    return { success: true, data };
+    return formatResponse(true, data);
   } catch(error) {
     console.log("🚀 ~ file: db.js ~ line 59 ~ listCollection ~ error", error)
-    return { success: false };
+    return formatResponse(false);
   }
 }
 
@@ -89,9 +93,36 @@ export async function filterProductsByQueryAndOrder(collection, field, order) {
     querySnapshot.forEach((doc) => {
       data.push({ id: doc.id, ...doc.data() })  
     });
-    return { success: true, data };
+    return formatResponse(true, data);
   } catch (error) {
     console.log("🚀 ~ file: db.js ~ line 68 ~ filterByPriceAscendent ~ error", error)
+  }
+}
+
+export async function listUserCart(userId) {
+  try {
+    const db = getDb();
+    let query = await db.collection('orders')
+    query = query.where('userId', '==', userId)
+    const querySnapshot = await query.get();
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() });
+    })
+    return formatResponse(true, data);
+  } catch (error) {
+    console.log('IMTCHLG ~ file: db.js ~ line 73 ~ listUserRooms ~ error', error);
+    return formatResponse(false);
+  }
+}
+
+export async function removeProductFromCard(productId) {
+  try {
+    const db = getDb();
+    await db.collection('orders').doc(productId).delete();
+    return formatResponse(true);
+  } catch(error) {
+    console.log("🚀 ~ file: db.js ~ line 124 ~ removeProductFromCard ~ error", error)
   }
 }
 
