@@ -70,13 +70,8 @@ const Card = (product) => {
         ADD TO CART
       </AddCardButtonStyled>
       
-      {isHovered && <CardHover
-        id={id}
-        image={image}
-        name={name}
-        price={price}
-        description={description}
-        units={units} />
+      {
+        isHovered && <CardHover product={product} />
       }
     </CardStyled>
   );

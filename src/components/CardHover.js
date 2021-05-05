@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import { Link, useParams } from 'react-router-dom';
 import { BsHeartFill, BsSearch } from 'react-icons/bs';
+import { createObjectWithId } from '../services/db';
 
 
 const CardHoverStyled = styled.ul`
@@ -33,17 +35,28 @@ const CardHoverStyled = styled.ul`
   }
 `
 
-const CardHover = ({ id }) => {
+const CardHover = ({product}) => {
+  const user = useSelector(state => state.user)
+
   const params = useParams();
   const { category } = params;
+
+  const saveToFavs = async () => {
+    const newFav = { ...user, favourites: [product.id] }
+    const { success } = await createObjectWithId('profiles', newFav, user.id)
+    if (success) {
+      console.log('creado')
+    }
+  }
 
   return(
     <CardHoverStyled>
       <li>
-        <BsHeartFill size={20} />
+        {/* <BsHeartFill size={20} onClick={() => saveToFavs(product.id)} /> */}
+        <BsHeartFill size={20} onClick={saveToFavs} />
       </li>
       <li>
-        <Link to={`/${category}/${id}`}>
+        <Link to={`/${category}/${product.id}`}>
           <BsSearch size={20} />
         </Link>
       </li>

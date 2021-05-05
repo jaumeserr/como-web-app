@@ -49,6 +49,22 @@ export async function getObjectById(collection, id) {
   }
 }
 
+export async function getObjectByFavourites(collection, name) {
+  try{
+    const db = getDb();
+    const doc = await db.collection(collection).doc(name).get()
+    .then(doc => {
+      if(doc.exists) {
+        console.log(doc.data());
+      } else {
+        console.log('no document!')
+      }
+    })
+  } catch(error) {
+    console.log("Error getting document:", error);  
+  }
+}
+
 export async function listCollection(collection) {
   try {
     const db = getDb();
