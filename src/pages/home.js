@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
-import { listCollection, getObjectsByCategory } from '../services/db';
+import { listCollection, getObjectsByCategory, filterProductsByOrder } from '../services/db';
 
 import MainLayout from '../components/layouts/MainLayout';
 import ProductFilterBar from '../components/ProductFilterBar';
@@ -44,6 +44,19 @@ const HomePage = (props) => {
         return setProducts(data)
       }
     }
+  }
+
+  const filterProducts = async (product, field, order) => {
+    const result = await filterProductsByOrder(product, field, order);
+    const { success, data } = result;
+    if(success) {
+      return setProducts(data)
+    }   
+  }
+
+  const selectFilter = value => {
+    const split = value.split('_');
+    filterProducts('products', split[0], split[1]);
   }
 
   useEffect(() => {
