@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 import { logout } from '../services/auth';
-import LogoutIcon from '../assets/signout.svg';
 import { IoLogOutOutline } from "react-icons/io5";
 
 const HeaderStyled = styled.header`

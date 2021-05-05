@@ -26,7 +26,6 @@ const CategoriesLayoutStyled  = styled.section`
 `
 
 const HomePage = (props) => {
-console.log("🚀 ~ file: home.js ~ line 29 ~ HomePage ~ props", props)
   const [products, setProducts] = useState([])
   const category = props.match.params.category;
   const [showProducts, setshowProducts] = useState('grid');
@@ -69,6 +68,7 @@ console.log("🚀 ~ file: home.js ~ line 29 ~ HomePage ~ props", props)
           <ProductFilterBar
             toggleShowGrid={toggleShowGrid}
             toggleShowList={toggleShowList}
+            handleChange={selectFilter}
           />
           {
             showProducts === 'grid'

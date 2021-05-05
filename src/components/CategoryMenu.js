@@ -58,14 +58,11 @@ const CategoryMenu = () => {
           <li>All</li>
         </LinkStyled>
         {
-          categories.map(({ name, path }, index) => {
-            console.log(`${name}-${index}`)
-            return (
-            <LinkStyled to={path}>
-              <li key={`${name}-${index}`}>{name}</li>
+          categories.map(({ name, path }, index) => 
+            <LinkStyled to={path} key={`${name}-${index}`}>
+              <li>{name}</li>
             </LinkStyled>
-            )
-          })
+          )
         }
       </ul>  
     </CategoryMenuStyled>

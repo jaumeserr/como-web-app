@@ -115,7 +115,7 @@ const CardDetail = (props) => {
     dispatch(addProduct(product))
   }
 
-  const { id, image, name, price, shortDescription, description, units } = product;
+  const { image, name, price, description, units } = product;
 
   return (
     <FormLayout>
