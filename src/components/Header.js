@@ -29,7 +29,7 @@ const HeaderStyled = styled.header`
     }
   }
 
-  .favs {
+  .addproduct {
     border-left: none;
   }
 
@@ -54,6 +54,15 @@ const Header = ({ product }) => {
         <li className='logo'>
           <Link to="/">COMO MATARÓ</Link>
         </li>
+        {
+          user &&
+            <li className='addproduct'>
+              <Link to="/addproduct">
+                Add Product
+              </Link>
+            </li>
+        }
+        
         <li className='favs'>
           <Link to="/favourites">
             Favourites
@@ -67,7 +76,7 @@ const Header = ({ product }) => {
         <li>
           {
             user
-            ? <span className="user">Welcome back, {user.name} <IoLogOutOutline style={{ cursor: 'pointer', marginLeft: '5px' }}size={20} onClick={logout}/></span>
+            ? <span className="user">{user.name} <IoLogOutOutline style={{ cursor: 'pointer', marginLeft: '5px' }}size={20} onClick={logout}/></span>
             : <Link to="/login">My account</Link>
           }
         </li>

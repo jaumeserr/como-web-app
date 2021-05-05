@@ -83,25 +83,25 @@ export async function getObjectsByCategory(collection, category) {
   }
 }
 
-export async function listCollection(collection, filter) {
-  try {
-    const db = getDb();
-    let query = db.collection(collection);
-    if (filter) {
-      query = query.where(filter.field, filter.cond, filter.value);
-    }
-    const querySnapshot = await query.get();
-    const data = [];
-    querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data() })  
-    });
-    return formatResponse(true, data);
+// export async function listCollection(collection, filter) {
+//   try {
+//     const db = getDb();
+//     let query = db.collection(collection);
+//     if (filter) {
+//       query = query.where(filter.field, filter.cond, filter.value);
+//     }
+//     const querySnapshot = await query.get();
+//     const data = [];
+//     querySnapshot.forEach((doc) => {
+//       data.push({ id: doc.id, ...doc.data() })  
+//     });
+//     return formatResponse(true, data);
 
-  } catch(error) {
-    console.log('IMTCHLG ~ file: db.js ~ line 52 ~ listCollection ~ error', error);
-    return formatResponse(false);
-  }
-}
+//   } catch(error) {
+//     console.log('IMTCHLG ~ file: db.js ~ line 52 ~ listCollection ~ error', error);
+//     return formatResponse(false);
+//   }
+// }
 
 export async function filterProductsByOrder(collection, field, order) {
   try {
