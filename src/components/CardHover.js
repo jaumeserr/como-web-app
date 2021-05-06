@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { BsHeartFill, BsHeart, BsSearch } from 'react-icons/bs';
 import { createObjectWithId } from '../services/db';
-import { useState } from 'react';
 import { setUser } from '../redux/user/userActions'
 
 
