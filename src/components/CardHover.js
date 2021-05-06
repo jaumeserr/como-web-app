@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, useParams } from 'react-router-dom';
-import { BsHeartFill, BsSearch } from 'react-icons/bs';
+import { BsHeartFill, BsHeart, BsSearch } from 'react-icons/bs';
 import { createObjectWithId } from '../services/db';
 import { useState } from 'react';
 import { setUser } from '../redux/user/userActions'
@@ -68,11 +68,15 @@ const CardHover = ({product}) => {
   return(
     <CardHoverStyled>
       <li>
-        <BsHeartFill size={20} onClick={saveToFavs} fill={ isFavourite ? 'red' : 'black'} />
+        {
+          isFavourite
+          ? <BsHeartFill size={20} onClick={saveToFavs} fill='red' />
+          : <BsHeart size={20} onClick={saveToFavs} />
+        }
       </li>
       <li>
         <Link to={`/${category}/${product.id}`}>
-          <BsSearch size={20} />
+          <BsSearch size={20} fill='black' />
         </Link>
       </li>
     </CardHoverStyled>
