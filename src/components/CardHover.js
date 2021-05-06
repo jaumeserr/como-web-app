@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, useParams } from 'react-router-dom';
 import { BsHeartFill, BsSearch } from 'react-icons/bs';
 import { createObjectWithId } from '../services/db';
+import { useState } from 'react';
+import { setUser } from '../redux/user/userActions'
+
 
 
 const CardHoverStyled = styled.ul`
@@ -37,23 +40,35 @@ const CardHoverStyled = styled.ul`
 
 const CardHover = ({product}) => {
   const user = useSelector(state => state.user)
+  const dispatch = useDispatch();
 
   const params = useParams();
   const { category } = params;
 
   const saveToFavs = async () => {
-    const newFav = { ...user, favourites: [product.id] }
-    const { success } = await createObjectWithId('profiles', newFav, user.id)
+    const isFavourite = user.favourites.includes(product.id)
+
+    const newFavourites = isFavourite
+      ? user.favourites.filter(favourite => favourite !== product.id)
+      : [ ...user.favourites, product.id ]  
+
+    const userToSave = {
+      ...user,
+      favourites: newFavourites
+    }
+
+    const { success } = await createObjectWithId('profiles', userToSave, user.id)
     if (success) {
-      console.log('creado')
+      dispatch(setUser(userToSave))
     }
   }
+
+  const isFavourite = user.favourites.includes(product.id)
 
   return(
     <CardHoverStyled>
       <li>
-        {/* <BsHeartFill size={20} onClick={() => saveToFavs(product.id)} /> */}
-        <BsHeartFill size={20} onClick={saveToFavs} />
+        <BsHeartFill size={20} onClick={saveToFavs} fill={ isFavourite ? 'red' : 'black'} />
       </li>
       <li>
         <Link to={`/${category}/${product.id}`}>

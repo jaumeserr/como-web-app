@@ -1,25 +1,22 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 
-import { getObjectByFavourites } from '../services/db';
 import MainLayout from "../components/layouts/MainLayout";
 
 const FavouritesPage = () => {
-  const [favourites, setFavourites] = useState([]);
-
-  const fetchFavs = async () => {
-    await getObjectByFavourites('profiles', 'jaumeserr@gmail.com');
-
-  }
+  const user = useSelector(state => state.user)
+  const favs = useSelector(state => state.user.favourites)
   
+  const [favourites, setFavourites] = useState(favs);
+
   useEffect(() => {
-    fetchFavs();
+
   }, [])
 
   return(
     <MainLayout>
       {
-        favourites.map(favourite => console.log(favourite))
+        favourites.map((t) => console.log(t))
       }
     </MainLayout>
   );
