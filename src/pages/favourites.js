@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from 'react-redux';
 
 import MainLayout from "../components/layouts/MainLayout";
 import CartProduct from '../components/CartProduct';
 
 const FavouritesPage = () => {
-  const user = useSelector(state => state.user)
   const favs = useSelector(state => state.favData.favItems)
   console.log("🚀 ~ file: favourites.js ~ line 9 ~ FavouritesPage ~ favs", favs)
-  
-  // const [favourites, setFavourites] = useState();
 
   useEffect(() => {
 

@@ -46,7 +46,7 @@ const AddCardButtonStyled = styled(Button)`
 
 const Card = (product) => {
   const dispatch = useDispatch();
-  const { id, image, name, price, shortDescription, description, units } = product;
+  const { image, name, price, shortDescription, units } = product;
   const user = useSelector(state => state.user)
   const history = useHistory();
 
