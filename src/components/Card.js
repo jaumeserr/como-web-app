@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { createObjectWithId } from '../services/db';
-import { setUser } from '../redux/user/userActions'
+import { setUser } from '../redux/user/userActions';
 
 import { addProduct } from '../redux/cart/cartActions';
 import { addFavs } from '../redux/favs/favsActions';
@@ -42,12 +42,15 @@ const CardStyled = styled.article`
 const AddCardButtonStyled = styled(Button)`
   flex: 1;
   margin: 0 2px;
+  background-color: ${props => props.isProductInCart ? 'blue' : 'red'};
 `
 
-const Card = (product) => {
+const Card = ({ product }) => {
   const dispatch = useDispatch();
-  const { image, name, price, shortDescription, units } = product;
+  const { id, image, name, price, shortDescription, units } = product;
+  const cart = useSelector((state) => state.cardData.cartItems);
   const user = useSelector(state => state.user)
+
   const history = useHistory();
 
   const params = useParams();
@@ -55,11 +58,11 @@ const Card = (product) => {
 
   const saveToFavs = async () => {
     if (user) {
-      const isFavourite = user.favourites.includes(product.id)
+      const isFavourite = user.favourites.includes(id)
 
       const newFavourites = isFavourite
-        ? user.favourites.filter(favourite => favourite !== product.id)
-        : [...user.favourites, product.id]
+        ? user.favourites.filter(favourite => favourite !== id)
+        : [...user.favourites, id]
 
       const userToSave = {
         ...user,
@@ -75,13 +78,11 @@ const Card = (product) => {
       history.push('/login')
     }
   }
-
-  const handleAddToCard = (product) => {
-    dispatch(addProduct(product))
-  }
-
+  
   // const isFavourite = user.favourites.includes(product.id)
 
+  const isProductInCart = cart.findIndex((cartProduct) => cartProduct.id === id) >= 0
+  
   return (
     <CardStyled>
       <div style={{
@@ -105,10 +106,10 @@ const Card = (product) => {
           ? <BsHeartFill size={20} onClick={saveToFavs} fill='red' />
           : <BsHeart size={20} onClick={saveToFavs} />
         } */}
-        <AddCardButtonStyled onClick={() => handleAddToCard(product)}>
+        <AddCardButtonStyled isProductInCart={isProductInCart} onClick={() => dispatch(addProduct(product))}>
           ADD TO CART
         </AddCardButtonStyled>
-        <StyledLink to={`/${category}/${product.id}`}>
+        <StyledLink to={`/${category}/${id}`}>
           <BsSearch size={20} />
         </StyledLink>
       </Flex>

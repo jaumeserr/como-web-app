@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux'; 
+
+import { removeProduct, decrementProduct } from '../redux/cart/cartActions';
 
 const CartProductStyled = styled.div`
   display: flex;
@@ -31,7 +34,10 @@ const CartProductStyled = styled.div`
   }
 `
 
-const CartProduct = ({ image, name, shortDescription, price }) => {
+const CartProduct = ({ product }) => {
+  const dispatch = useDispatch();
+  const { image, name, shortDescription, price } = product;
+  
   return(
     <CartProductStyled>
       <div className="left">
@@ -43,7 +49,8 @@ const CartProduct = ({ image, name, shortDescription, price }) => {
       </div>
       <div className="right">
         <p>{price}</p>
-        <button onClick={() => console.log('remove from redux')}>Remove Product</button>
+        <button onClick={() => dispatch(removeProduct(product))}>Remove Product</button>
+        <button style={{ width: '50px'}} onClick={() => dispatch(decrementProduct(product))}>-</button>
       </div>
     </CartProductStyled>
   )

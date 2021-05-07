@@ -13,16 +13,10 @@ const CardList = ({ products }) => {
   return (
     <CardListStyled>
       {
-        products.map(({ id, image, name, price, shortDescription, description, units }) => 
+        products.map((product) => 
           <Card
-            key={id}
-            id={id}
-            price={price}
-            name={name}
-            shortDescription={shortDescription}
-            image={image}
-            units={units}
-            description={description}
+            key={product.id}
+            product={product}
           />
         )
       }

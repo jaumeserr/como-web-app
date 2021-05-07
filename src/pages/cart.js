@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import CartProduct from "../components/CartProduct";
@@ -9,12 +10,9 @@ const CartList = () => {
 
   return (
     <FormLayout>
-      {cart.map(({ name, price, shortDescription, image }) => (
+      {cart.map((product) => (
         <CartProduct
-          name={name}
-          price={price}
-          shortDescription={shortDescription}
-          image={image}
+          product={product}
         />
       ))}
       <p>Total: {}</p>
