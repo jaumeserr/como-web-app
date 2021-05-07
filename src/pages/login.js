@@ -68,7 +68,7 @@ const LoginPage = () => {
             <span>or</span>
             <div></div>
           </div>
-          <StyledLink to="/signup">CREATE AN ACCOUNT</StyledLink>
+          <StyledLink style={{ display: 'block' }} to="/signup">CREATE AN ACCOUNT</StyledLink>
         </FormStyled>
       </FormLayoutStyled>
     </FormLayout>

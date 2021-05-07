@@ -7,7 +7,7 @@ const ProductFilterBarStyled = styled.div`
   padding: 10px;
   display: flex;
   border-radius: 3px;
-  justify-content: space-between;
+  justify-content: flex-end;
   background-color: ${props => props.theme.color.box_bg};
   width: 100%;
   border: 1px solid ${props => props.theme.color.border};
@@ -35,14 +35,14 @@ const ProductFilterBar = ({ handleChange, toggleShowGrid, toggleShowList }) => {
   
   return (
     <ProductFilterBarStyled>
-      <Flex align="center">
+      {/* <Flex align="center">
         <ButtonView onClick={toggleShowGrid}>
           <BsGrid size={20} />
         </ButtonView>
         <ButtonView onClick={toggleShowList}>
           <BsList size={20} />
         </ButtonView>
-      </Flex>
+      </Flex> */}
       <div>
         Sort by:
         <SelectStyled onChange={(e) => handleChange(e.target.value)}>

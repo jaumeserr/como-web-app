@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 
 import { Link, useParams } from 'react-router-dom';
 import { BsHeartFill, BsHeart, BsSearch } from 'react-icons/bs';
@@ -39,39 +40,46 @@ const CardHoverStyled = styled.ul`
 
 const CardHover = ({product}) => {
   const user = useSelector(state => state.user)
+  console.log("🚀 ~ file: CardHover.js ~ line 42 ~ CardHover ~ user", user)
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const params = useParams();
   const { category } = params;
 
-  const saveToFavs = async () => {
-    const isFavourite = user.favourites.includes(product.id)
+  // const saveToFavs = async () => {
+  //   const isFavourite = user.favourites.includes(product.id)
 
-    const newFavourites = isFavourite
-      ? user.favourites.filter(favourite => favourite !== product.id)
-      : [ ...user.favourites, product.id ]  
+  //   const newFavourites = isFavourite
+  //     ? user.favourites.filter(favourite => favourite !== product.id)
+  //     : [ ...user.favourites, product.id ]  
 
-    const userToSave = {
-      ...user,
-      favourites: newFavourites
-    }
+  //   const userToSave = {
+  //     ...user,
+  //     favourites: newFavourites
+  //   }
 
-    const { success } = await createObjectWithId('profiles', userToSave, user.id)
-    if (success) {
-      dispatch(setUser(userToSave))
-    }
-  }
+  //   const { success } = await createObjectWithId('profiles', userToSave, user.id)
+  //   if (success) {
+  //     dispatch(setUser(userToSave))
+  //   }
+  // }
 
-  const isFavourite = user.favourites.includes(product.id)
+  // if(user) {
+  //   const isFavourite = user.favourites.includes(product.id)
+  // } else {
+  //   history.push('/login')
+  // }
+  
 
   return(
     <CardHoverStyled>
       <li>
-        {
+        {/* {
           isFavourite
           ? <BsHeartFill size={20} onClick={saveToFavs} fill='red' />
           : <BsHeart size={20} onClick={saveToFavs} />
-        }
+        } */}
       </li>
       <li>
         <Link to={`/${category}/${product.id}`}>

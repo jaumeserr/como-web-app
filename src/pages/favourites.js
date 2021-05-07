@@ -15,9 +15,13 @@ const FavouritesPage = () => {
 
   return(
     <MainLayout>
+      <ul>
       {
-        favourites.map((t) => console.log(t))
+        favourites.map((t) => 
+          <li>{`producto: ${t}`}</li>
+        )
       }
+      </ul>
     </MainLayout>
   );
 }

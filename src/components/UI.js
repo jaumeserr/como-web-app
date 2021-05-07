@@ -12,13 +12,14 @@ const Spacer = styled.div`
 
 const Button = styled.button`
   background-color: ${props => props.theme.color.tertiary};
-  border: 1px solid ${props => props.theme.color.primary};
+  border: none;
   color: white;
   text-align: center;
   outline: none;
   cursor: pointer;
-  padding: 10px;
-  border-radius: 5px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 4px;
   text-decoration: none;
   font-size: 16px;
   &:hover {
@@ -29,18 +30,11 @@ const Button = styled.button`
 
 const StyledLink = styled(Link)`
   background-color: ${props => props.theme.color.tertiary};
-  border: 1px solid ${props => props.theme.color.primary};
+  border: none;
   color: white;
   text-align: center;
   outline: none;
   cursor: pointer;
-  display: block;
-  width: ${props => {
-    if(props.width) {
-      return props.width;
-    }
-    return '100%'
-  }};
   padding: 10px;
   border-radius: 5px;
   text-decoration: none;
