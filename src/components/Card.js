@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { createObjectWithId } from '../services/db';
 import { setUser } from '../redux/user/userActions'
 
-import CardHover from './CardHover';
 import { addProduct } from '../redux/cart/cartActions';
+import { addFavs } from '../redux/favs/favsActions';
 import { Button, Flex, StyledLink } from './UI';
-import { BsHeartFill, BsHeart, BsSearch } from 'react-icons/bs';
-import { Link, useParams } from 'react-router-dom';
+import { BsHeart, BsSearch } from 'react-icons/bs';
+import { useParams } from 'react-router-dom';
 
 const CardStyled = styled.article`
   border: 1px solid ${props => props.theme.color.primary};
@@ -69,6 +69,7 @@ const Card = (product) => {
       const { success } = await createObjectWithId('profiles', userToSave, user.id)
       if (success) {
         dispatch(setUser(userToSave))
+        dispatch(addFavs(product))
       }
     } else {
       history.push('/login')
