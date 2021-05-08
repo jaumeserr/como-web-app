@@ -1,11 +1,11 @@
+import styled, { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import { removeAllProducts } from "../redux/cart/cartActions";
 import CartProduct from "../components/CartProduct";
 import CartLayout from "../components/layouts/CartLayout";
 import PageHeading from "../components/PageHeading";
-import styled from "styled-components";
-import { Flex } from "../components/UI";
+import { Flex, Button, Spacer } from "../components/UI";
 
 const CartHeader = styled.div`
   display: flex;
@@ -13,6 +13,7 @@ const CartHeader = styled.div`
   justify-content: space-between;
   background-color: ${(props) => props.theme.color.box_bg};
   border-radius: 4px;
+  padding-left: 20px;
 
   p {
     padding: 20px;
@@ -28,19 +29,42 @@ const CartFooter = styled.div`
   padding: 0 20px;
   margin-left: 50%;
   border-radius: 4px;
+  margin-top: 30px;
+`;
+
+const CartOption = styled.div`
+  display: flex;
+  margin-left: 50%;
+  margin-top: 10px;
+`;
+
+const ButtonsCartOption = styled(Button)`
+  width: 50%;
+  ${(props) =>
+    props.clearButton &&
+    css`
+      margin-right: 10px;
+    `}
 `;
 
 const Total = styled(Flex)`
   justify-content: space-between;
-  padding: 10px 0;
+  align-items: center;
+  padding: 20px 0;
+
+  .total-price {
+    font-size: 25px;
+  }
 `;
 
 const CartList = () => {
   const cart = useSelector((state) => state.cardData.cartItems);
   const dispatch = useDispatch();
+  //sum the total => reducer??
 
   return (
     <CartLayout>
+      <Spacer height={'100px'}/>
       <PageHeading title="Cart" />
       <CartHeader>
         <p className="item-label">your item</p>
@@ -49,25 +73,31 @@ const CartList = () => {
         <p className="total-label">price</p>
       </CartHeader>
       <div>
-        {cart.length > 0 ? (
-          <button onClick={() => dispatch(removeAllProducts())}>Clear</button>
-        ) : (
-          ""
-        )}
         {cart.map((product) => (
           <CartProduct product={product} key={product.id} />
         ))}
       </div>
       <CartFooter>
-        <Total style={{ borderBottom: `1px solid #e8e8e8` }}>
-          <p>Item {} subtotal:</p>
-          <p>PRICE</p>
-        </Total>
         <Total>
-          <p>estimated total {} subtotal:</p>
-          <p>PRICE</p>
+          <p>Items subtotal:</p>
+          <p>TOTAL</p>
         </Total>
       </CartFooter>
+      <CartOption>
+        {cart.length > 0 ? (
+          <>
+            <ButtonsCartOption
+              clearButton
+              onClick={() => dispatch(removeAllProducts())}
+            >
+              Clear Cart
+            </ButtonsCartOption>
+            <ButtonsCartOption>Checkout</ButtonsCartOption>
+          </>
+        ) : (
+          ""
+        )}
+      </CartOption>
     </CartLayout>
   );
 };

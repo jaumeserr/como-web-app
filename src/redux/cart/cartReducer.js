@@ -14,22 +14,10 @@ function cartReducer(state = INI_STATE, action) {
           ...state.cartItems,
           {
             ...action.payload,
-            quantity: 1
+            quantity: 1,
+            price: action.payload.price
           }
         ]
-      } 
-    } else {
-      const cartProduct = state.cartItems[productIndex]
-      const newProduct = {
-        ...cartProduct,
-        quantity: cartProduct.quantity + 1
-      }
-      debugger;
-      const newCartItems = [...state.cartItems]
-      newCartItems[productIndex] = newProduct
-      return {
-        ...state,
-        cartItems: newCartItems
       }
     }
   }
@@ -43,6 +31,24 @@ function cartReducer(state = INI_STATE, action) {
       ...state,
       cartItems: newCartItems
     }
+  }
+
+  if(action.type === 'INCREMENT_ITEM_FROM_CART') {
+    const productIndex = state.cartItems.findIndex(item => {
+      return item.id === action.payload.id
+    })
+    const cartProduct = state.cartItems[productIndex]
+    const newProduct = {
+      ...cartProduct,
+      quantity: cartProduct.quantity + 1,
+      totalPrice: (action.payload.price * (cartProduct.quantity + 1)).toFixed(2)
+    }
+    const newCartItems = [...state.cartItems]
+    newCartItems[productIndex] = newProduct
+    return {
+      ...state,
+      cartItems: newCartItems
+    }  
   }
 
   if(action.type === 'DECREMENT_ITEM_FROM_CART') {
@@ -62,7 +68,8 @@ function cartReducer(state = INI_STATE, action) {
     } else {
       const newProduct = {
         ...cartProduct,
-        quantity: cartProduct.quantity - 1
+        quantity: cartProduct.quantity - 1,
+        totalPrice: (action.payload.price * (cartProduct.quantity - 1)).toFixed(2)
       }
       const newCartItems = [...state.cartItems]
       newCartItems[productIndex] = newProduct
