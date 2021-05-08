@@ -24,6 +24,7 @@ function cartReducer(state = INI_STATE, action) {
         ...cartProduct,
         quantity: cartProduct.quantity + 1
       }
+      debugger;
       const newCartItems = [...state.cartItems]
       newCartItems[productIndex] = newProduct
       return {
