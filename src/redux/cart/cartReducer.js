@@ -19,6 +19,19 @@ function cartReducer(state = INI_STATE, action) {
           }
         ]
       }
+    } else {
+      const cartProduct = state.cartItems[productIndex]
+      const newProduct = {
+        ...cartProduct,
+        quantity: cartProduct.quantity + 1,
+        totalPrice: (action.payload.price * (cartProduct.quantity + 1)).toFixed(2)
+      }
+      const newCartItems = [...state.cartItems]
+      newCartItems[productIndex] = newProduct
+      return {
+        ...state,
+        cartItems: newCartItems
+      } 
     }
   }
 

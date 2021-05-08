@@ -1,7 +1,8 @@
 import styled from "styled-components";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { BsHeart, BsSearch, BsHeartFill } from "react-icons/bs";
 
@@ -42,7 +43,6 @@ const CardStyled = styled.article`
 const AddCardButtonStyled = styled(Button)`
   flex: 1;
   margin: 0 2px;
-  background-color: ${(props) => (props.isProductInCart ? "blue" : "red")};
 `;
 
 const Card = ({ product }) => {
@@ -86,15 +86,31 @@ const Card = ({ product }) => {
   const addToCart = () => {
     if (user) {
       dispatch(addProduct(product));
+      notify();
     } else {
       history.push("/login");
     }
   };
 
+  // when create a new User, this part crash
   const isFavourite = user ? user.favourites.includes(product.id) : null;
 
   const isProductInCart =
     cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;
+
+  const notify = () =>
+    toast.info(
+      `${(product.name).toUpperCase()} ADDED!`,
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
 
   return (
     <CardStyled>
@@ -133,7 +149,7 @@ const Card = ({ product }) => {
           isProductInCart={isProductInCart}
           onClick={addToCart}
         >
-          ADD TO CART
+          {isProductInCart ? "PRODUCT ADDED!" : "ADD TO CART"}
         </AddCardButtonStyled>
         <StyledLink to={`/${category}/${id}`}>
           <BsSearch size={20} />
