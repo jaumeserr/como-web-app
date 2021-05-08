@@ -71,6 +71,13 @@ function cartReducer(state = INI_STATE, action) {
       } 
     }
   }
+
+  if(action.type === 'REMOVE_ALL_ITEMS_FROM_CART') {
+    return {
+      ...state,
+      cartItems: []
+    }
+  }
   
   return state;
   

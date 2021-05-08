@@ -16,12 +16,9 @@ const FavouritesPage = () => {
     <MainLayout>
       <ul>
       {
-        favs.map(({ name, price, shortDescription, image }) => 
+        favs.map((product) => 
           <CartProduct
-            name={name}
-            price={price}
-            shortDescription={shortDescription}
-            image={image}
+            product={product}
           />
         )
       }

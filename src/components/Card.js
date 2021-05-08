@@ -78,6 +78,14 @@ const Card = ({ product }) => {
       history.push('/login')
     }
   }
+
+  const addToCart = () => {
+    if(user) {
+      dispatch(addProduct(product))
+    } else {
+      history.push('/login')
+    }
+  }
   
   // const isFavourite = user.favourites.includes(product.id)
 
@@ -106,7 +114,8 @@ const Card = ({ product }) => {
           ? <BsHeartFill size={20} onClick={saveToFavs} fill='red' />
           : <BsHeart size={20} onClick={saveToFavs} />
         } */}
-        <AddCardButtonStyled isProductInCart={isProductInCart} onClick={() => dispatch(addProduct(product))}>
+        {/* <AddCardButtonStyled isProductInCart={isProductInCart} onClick={() => dispatch(addProduct(product))}> */}
+        <AddCardButtonStyled isProductInCart={isProductInCart} onClick={addToCart}>
           ADD TO CART
         </AddCardButtonStyled>
         <StyledLink to={`/${category}/${id}`}>
