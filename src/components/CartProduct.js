@@ -1,18 +1,20 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 
 import { removeProduct, decrementProduct } from '../redux/cart/cartActions';
+import { FaRegTrashAlt } from "react-icons/fa";
+import { Button } from "../components/UI";
 
 const CartProductStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
-  border: 1px solid ${props => props.theme.color.border};
+  width: 100%;
+  border-bottom: 1px solid ${props => props.theme.color.border};
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 10px;
-  padding-right: 20px;
+  padding: 20px;
 
   .left {
     display: flex;
@@ -32,25 +34,33 @@ const CartProductStyled = styled.div`
     width: 100px;
     margin-right: 20px;
   }
+
+  .last{
+    display: flex;
+  }
 `
 
 const CartProduct = ({ product }) => {
   const dispatch = useDispatch();
-  const { image, name, shortDescription, price } = product;
+  const cart = useSelector((state) => state.cardData.cartItems);
+  console.log("🚀 ~ file: CartProduct.js ~ line 40 ~ CartProduct ~ cart", cart)
+  const { image, name, shortDescription, price, quantity } = product;
   
   return(
     <CartProductStyled>
-      <div className="left">
-        <img src={image} alt={name}/>
-        <div>
-          <p>{name}</p>
-          <p>{shortDescription}</p>
-        </div>
+      <img className="product-image" src={image} alt={name}/>
+      <div>
+        <p className="product-name">{name}</p>
+        <p className="product-description">{shortDescription}</p>
       </div>
-      <div className="right">
-        <p>{price}</p>
-        <button onClick={() => dispatch(removeProduct(product))}>Remove Product</button>
-        <button style={{ width: '50px'}} onClick={() => dispatch(decrementProduct(product))}>-</button>
+      <div>
+        <Button style={{ width: '40px' }} onClick={() => dispatch(decrementProduct(product))}>-</Button>
+        <span style={{ padding: '0 10px'}}>{quantity}</span>
+        <Button style={{ width: '40px' }}>+</Button>
+      </div>
+      <div className="last">
+        <p className="product-price">{price}</p>
+        <FaRegTrashAlt size={20} onClick={() => dispatch(removeProduct(product))} /> 
       </div>
     </CartProductStyled>
   )
