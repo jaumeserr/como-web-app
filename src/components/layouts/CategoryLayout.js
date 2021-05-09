@@ -1,41 +1,22 @@
 import styled from 'styled-components';
 
-import Header from '../Header';
-import Footer from '../Footer';
-import CardDetail from '../CardDetail';
-import CategoryList from '../CategoryMenu';
-import CardList from '../CardList';
-import Home from '../pages';
+import Footer from "../Footer"
+import Header from "../Header"
 
-const CategoryLayoutStyled = styled.main`
-  height: calc(100vh - 124px);
-  display: flex;
-  flex-wrap: wrap;
+const ContentStyled = styled.main`
+  min-height: calc(100vh - 120px);
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-
-  aside {
-
-  }
-
-  section {
-    padding-left: 10px;
-    flex: 1;
-  }
 `
 
-const CategoryLayout = () => {
+const CategoryLayout = ({ children }) => {
   return(
     <div>
-      <Header />
-      <CategoryLayoutStyled>
-        <aside>
-          <CategoryList />
-        </aside>
-        <section>
-          <Home />
-        </section>
-      </CategoryLayoutStyled>
+      <Header/>
+      <ContentStyled>
+        {children}
+      </ContentStyled>
       <Footer />
     </div>
   );

@@ -1,28 +1,25 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Footer from "../Footer"
-import Header from "../Header"
+import Footer from "../Footer";
+import Header from "../Header";
 
 const ContentStyled = styled.main`
-  /* height: calc(100vh - 64px - 59px); */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  min-height: calc(100vh - 120px);
   max-width: 1200px;
   margin: 0 auto;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MainLayout = ({ children }) => {
-  return(
+  return (
     <div>
       <Header />
-      <ContentStyled>
-        {children}
-      </ContentStyled>
+      <ContentStyled>{children}</ContentStyled>
       <Footer />
     </div>
   );
-}
+};
 
 export default MainLayout;

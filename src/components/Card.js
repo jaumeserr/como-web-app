@@ -99,11 +99,11 @@ const Card = ({ product }) => {
     cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;
 
   const notify = () =>
-    toast.info(
+    toast.success(
       `${(product.name).toUpperCase()} ADDED!`,
       {
-        position: "top-right",
-        autoClose: 5000,
+        position: "bottom-right",
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

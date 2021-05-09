@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
-import {
-  removeProduct,
-  incrementProduct,
-  decrementProduct,
-} from "../redux/cart/cartActions";
+import { removeProduct } from "../redux/cart/cartActions";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { Button } from "../components/UI";
 import ProductCounter from "./ProductCounter";
 
 const CartProductStyled = styled.div`
@@ -84,7 +79,7 @@ const CartProduct = ({ product }) => {
       </div>
       <FaRegTrashAlt
         className="product-remove"
-        size={20}
+        size={18}
         onClick={() => dispatch(removeProduct(product))}
       />
     </CartProductStyled>

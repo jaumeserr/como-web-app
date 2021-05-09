@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { removeAllProducts } from "../redux/cart/cartActions";
 import CartProduct from "../components/CartProduct";
-import CartLayout from "../components/layouts/CartLayout";
 import PageHeading from "../components/PageHeading";
-import { Flex, Button, Spacer, StyledLink } from "../components/UI";
+import { Flex, Button, StyledLink } from "../components/UI";
+import CartLayout from "../components/layouts/CartLayout";
 
 const CartHeader = styled.div`
   display: flex;
@@ -36,7 +36,6 @@ const CartOption = styled.div`
   display: flex;
   margin-left: 50%;
   margin-top: 10px;
-  margin-bottom: 100px;
 `;
 
 const ButtonsCartOption = styled(Button)`
@@ -74,7 +73,6 @@ const CartList = () => {
 
   return (
     <CartLayout>
-      <Spacer height={'100px'}/>
       <PageHeading title="Cart" />
       <CartHeader>
         <p className="item-label">your item</p>

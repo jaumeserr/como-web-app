@@ -7,7 +7,7 @@ import PageHeading from '../components/PageHeading';
 import { FormLayoutStyled } from '../UI';
 import Input from '../components/form/Input';
 import { Spacer, Button, StyledLink } from '../components/UI';
-import FormLayout from '../components/layouts/FormLayout';
+import MainLayout from '../components/layouts/MainLayout';
 
 const FormStyled = styled.form`
   display: flex;
@@ -47,7 +47,7 @@ const SignupPage = () => {
     }
   }
   return(
-    <FormLayout>
+    <MainLayout>
       <FormLayoutStyled>
         <PageHeading title="Register" />
         <FormStyled onSubmit={handleFormSubmit} >
@@ -97,7 +97,7 @@ const SignupPage = () => {
           <StyledLink to="/login">LOG IN</StyledLink>
         </FormStyled>
       </FormLayoutStyled>    
-    </FormLayout>
+    </MainLayout>
   );
 }
 

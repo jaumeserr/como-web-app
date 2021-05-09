@@ -19,21 +19,19 @@ const ProductCounter = ({ product }) => {
   return (
     <Flex align="center">
       <Button
-        style={{ width: "40px" }}
         onClick={() => dispatch(decrementProduct(product))}
       >
         {product.quantity === 1 ? (
-          <FaRegTrashAlt size={20} />
+          <FaRegTrashAlt size={17} />
         ) : (
-          <FaMinus size={20} />
+          <FaMinus size={17} />
         )}
       </Button>
       <Quantity>{product.quantity}</Quantity>
       <Button
-        style={{ width: "40px" }}
         onClick={() => dispatch(incrementProduct(product))}
       >
-        <FaPlus size={20} />
+        <FaPlus size={17} />
       </Button>
     </Flex>
   );

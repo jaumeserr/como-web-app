@@ -6,17 +6,16 @@ import { logout } from "../services/auth";
 import { IoLogOutOutline } from "react-icons/io5";
 
 const HeaderStyled = styled.header`
-  padding: 0 20px;
+  height: 60px;
   background-color: ${(props) => props.theme.color.fourth};
 
   ul {
     display: flex;
-    list-style: none;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    height: 100%;
   }
 
   li {

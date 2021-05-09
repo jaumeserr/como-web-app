@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import FormLayout from '../components/layouts/FormLayout';
 import { getObjectById } from '../services/db';
 import { Button } from './UI';
 import { addProduct } from '../redux/cart/cartActions';
+import MainLayout from './layouts/MainLayout';
 
 const CardDetailStyled = styled.section`
   display: flex;
@@ -118,7 +118,7 @@ const CardDetail = (props) => {
   const { image, name, price, description, units } = product;
 
   return (
-    <FormLayout>
+    <MainLayout>
       <div>
         <ButtonBack onClick={handleGoBack}>Go back</ButtonBack>
         <CardDetailStyled>
@@ -143,7 +143,7 @@ const CardDetail = (props) => {
           </div>
         </CardDetailStyled>
       </div>
-    </FormLayout>
+    </MainLayout>
   );
 }
 

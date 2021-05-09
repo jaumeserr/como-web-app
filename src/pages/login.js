@@ -7,7 +7,7 @@ import PageHeading from '../components/PageHeading';
 import Input from '../components/form/Input';
 import { FormLayoutStyled } from '../UI';
 import { Spacer, Button, StyledLink } from '../components/UI';
-import FormLayout from '../components/layouts/FormLayout';
+import MainLayout from '../components/layouts/MainLayout';
 
 const FormStyled = styled.form`
   .form__separator {
@@ -39,7 +39,7 @@ const LoginPage = () => {
   }
   
   return(
-    <FormLayout>
+    <MainLayout>
       <FormLayoutStyled>
         <PageHeading title="Log In"/>
         <FormStyled onSubmit={handleFormSubmit}>
@@ -71,7 +71,7 @@ const LoginPage = () => {
           <StyledLink style={{ display: 'block' }} to="/signup">CREATE AN ACCOUNT</StyledLink>
         </FormStyled>
       </FormLayoutStyled>
-    </FormLayout>
+    </MainLayout>
   );
 }
 

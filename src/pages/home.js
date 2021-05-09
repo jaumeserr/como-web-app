@@ -8,18 +8,16 @@ import {
   filterProductsByOrder,
 } from "../services/db";
 
-import MainLayout from "../components/layouts/MainLayout";
 import ProductFilterBar from "../components/ProductFilterBar";
 import ProductsListView from "../components/ProductsListView";
 import ProductsGridView from "../components/ProductsGridView";
 import CategoryMenu from "../components/CategoryMenu";
+import CategoryLayout from "../components/layouts/CategoryLayout";
 
 const CategoriesLayoutStyled = styled.section`
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
   padding: 20px;
   display: flex;
+  width: 100%;
 
   aside {
     margin-right: 10px;
@@ -77,7 +75,7 @@ const HomePage = (props) => {
   };
 
   return (
-    <MainLayout>
+    <CategoryLayout>
       <ToastContainer />
       <CategoriesLayoutStyled>
         <aside>
@@ -96,7 +94,7 @@ const HomePage = (props) => {
           )}
         </section>
       </CategoriesLayoutStyled>
-    </MainLayout>
+    </CategoryLayout>
   );
 };
 
