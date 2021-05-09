@@ -8,6 +8,7 @@ import {
 } from "../redux/cart/cartActions";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Button } from "../components/UI";
+import ProductCounter from "./ProductCounter";
 
 const CartProductStyled = styled.div`
   display: flex;
@@ -38,16 +39,6 @@ const CartProductStyled = styled.div`
   .product-description {
     font-size: 18px;
     margin-top: 5px;
-  }
-
-  .product-quantity {
-    display: flex;
-    align-items: center;
-
-    p {
-      padding: 0 10px;
-      font-size: 20px;
-    }
   }
 
   .product-price {
@@ -87,21 +78,7 @@ const CartProduct = ({ product }) => {
         <p className="product-name">{name}</p>
         <p className="product-description">{shortDescription}</p>
       </div>
-      <div className="product-quantity">
-        <Button
-          style={{ width: "40px" }}
-          onClick={() => dispatch(decrementProduct(product))}
-        >
-          -
-        </Button>
-        <p>{quantity}</p>
-        <Button
-          style={{ width: "40px" }}
-          onClick={() => dispatch(incrementProduct(product))}
-        >
-          +
-        </Button>
-      </div>
+      <ProductCounter product={product} />
       <div className="last">
         <p className="product-price">{quantity === 1 ? price : totalPrice}€</p>
       </div>

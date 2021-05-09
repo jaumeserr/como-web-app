@@ -5,7 +5,7 @@ import { removeAllProducts } from "../redux/cart/cartActions";
 import CartProduct from "../components/CartProduct";
 import CartLayout from "../components/layouts/CartLayout";
 import PageHeading from "../components/PageHeading";
-import { Flex, Button, Spacer } from "../components/UI";
+import { Flex, Button, Spacer, StyledLink } from "../components/UI";
 
 const CartHeader = styled.div`
   display: flex;
@@ -47,6 +47,15 @@ const ButtonsCartOption = styled(Button)`
     `}
 `;
 
+const EmptyCart = styled.div`
+  text-align: center;
+  padding: 200px 0;
+  p {
+    padding-bottom: 30px;
+    font-size: 20px;
+  }
+`
+
 const Total = styled(Flex)`
   justify-content: space-between;
   align-items: center;
@@ -72,11 +81,22 @@ const CartList = () => {
         <p className="quantity-label">quantity</p>
         <p className="total-label">price</p>
       </CartHeader>
-      <div>
-        {cart.map((product) => (
-          <CartProduct product={product} key={product.id} />
-        ))}
-      </div>
+      {
+        cart.length > 0 ? (
+          <div>
+            {cart.map((product) => (
+              <CartProduct product={product} key={product.id} />
+            ))}
+          </div>
+        ) : (
+          <>
+            <EmptyCart>
+              <p>Your Cart is empty, insert products</p>
+              <StyledLink to="/">Go shopping</StyledLink>
+            </EmptyCart>
+          </>
+        )
+      }
       <CartFooter>
         <Total>
           <p>Items subtotal:</p>
