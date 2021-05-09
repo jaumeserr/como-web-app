@@ -11,16 +11,14 @@ import PageHeading from "./PageHeading";
 import Breadcrum from "./Breadcrum";
 
 const CardDetailContent = styled.div`
-  position: relative;
   width: 60%;
   margin: 0 auto;
 `
 
 const ButtonBack = styled(Button)`
   cursor: pointer;
-  position: absolute;
-  top: -18px;
-  left: 20px;
+  margin-top: 10px;
+  width: 100%;
 `;
 
 const CardDetailStyled = styled.section`
@@ -128,8 +126,7 @@ const CardDetail = (props) => {
         <PageHeading title="Product detail"/>
         <Breadcrum />
         <Spacer />
-        <CardDetailContent >
-          <ButtonBack onClick={handleGoBack}>GO BACK</ButtonBack>
+        <CardDetailContent>
           <CardDetailStyled>
             <div>
               <img src={image} alt={name} />
@@ -153,6 +150,7 @@ const CardDetail = (props) => {
               <p>{description}</p>
             </div>
           </CardDetailStyled>
+          <ButtonBack onClick={handleGoBack}>RETURN TO HOME</ButtonBack>
         </CardDetailContent>
       </div>
     </MainLayout>

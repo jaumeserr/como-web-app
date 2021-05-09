@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 
 import { removeAllProducts } from "../redux/cart/cartActions";
 import CartProduct from "../components/CartProduct";
@@ -54,11 +55,10 @@ const EmptyCart = styled.div`
     padding-bottom: 30px;
     font-size: 20px;
   }
-`
+`;
 
 const Total = styled(Flex)`
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding: 20px 0;
 
   .total-price {
@@ -68,8 +68,9 @@ const Total = styled(Flex)`
 
 const CartList = () => {
   const cart = useSelector((state) => state.cardData.cartItems);
+  const totalAmount = useSelector((state) => state.cardData.totalAmount);
+  console.log("🚀 ~ file: cart.js ~ line 71 ~ CartList ~ cart", cart);
   const dispatch = useDispatch();
-  //sum the total => reducer??
 
   return (
     <CartLayout>
@@ -80,26 +81,42 @@ const CartList = () => {
         <p className="quantity-label">quantity</p>
         <p className="total-label">price</p>
       </CartHeader>
-      {
-        cart.length > 0 ? (
-          <div>
-            {cart.map((product) => (
-              <CartProduct product={product} key={product.id} />
-            ))}
-          </div>
-        ) : (
-          <>
-            <EmptyCart>
-              <p>Your Cart is empty, insert products</p>
-              <StyledLink to="/">Go shopping</StyledLink>
-            </EmptyCart>
-          </>
-        )
-      }
+      {cart.length > 0 ? (
+        <div>
+          {cart.map((product) => (
+            <CartProduct product={product} key={product.id} />
+          ))}
+        </div>
+      ) : (
+        <>
+          <EmptyCart>
+            <p>Your Cart is empty, insert products</p>
+            <StyledLink to="/">Go shopping</StyledLink>
+          </EmptyCart>
+        </>
+      )}
       <CartFooter>
         <Total>
-          <p>Items subtotal:</p>
-          <p>TOTAL</p>
+          <Flex style={{ paddingBottom: '10px'}} align="center" justify="space-between">
+            <p>Items subtotal:</p>
+            <p style={{ fontSize: "20px" }}>{totalAmount.toFixed(2)}€</p>
+          </Flex>
+          <Flex
+            style={{
+              borderTop: "1px solid #D8D9D7",
+              borderBottom: "1px solid #D8D9D7",
+              padding: '10px 0'
+            }}
+            align="center"
+            justify="space-between"
+          >
+            <p>Taxes:</p>
+            <p style={{ fontSize: "20px" }}>21%</p>
+          </Flex>
+          <Flex style={{ paddingTop: '10px'}} align="center" justify="space-between">
+            <p><strong>Cart total:</strong></p>
+            <p style={{ fontSize: "20px" }}><strong>{(totalAmount * 0.21 + totalAmount).toFixed(2)}€</strong></p>
+          </Flex>
         </Total>
       </CartFooter>
       <CartOption>

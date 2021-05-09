@@ -1,5 +1,6 @@
 const INI_STATE = {
-  cartItems: []
+  cartItems: [],
+  totalAmount: 0
 };
 
 function cartReducer(state = INI_STATE, action) {
@@ -7,6 +8,7 @@ function cartReducer(state = INI_STATE, action) {
     const productIndex = state.cartItems.findIndex(item => {
       return item.id === action.payload.id
     })
+    const newTotalAmount = state.totalAmount + action.payload.price 
     if(productIndex < 0) {
       return {
         ...state,
@@ -17,7 +19,8 @@ function cartReducer(state = INI_STATE, action) {
             quantity: 1,
             price: action.payload.price
           }
-        ]
+        ],
+        totalAmount: newTotalAmount
       }
     } else {
       const cartProduct = state.cartItems[productIndex]
@@ -30,7 +33,8 @@ function cartReducer(state = INI_STATE, action) {
       newCartItems[productIndex] = newProduct
       return {
         ...state,
-        cartItems: newCartItems
+        cartItems: newCartItems,
+        totalAmount: state.totalAmount + action.payload.price
       } 
     }
   }
@@ -39,10 +43,11 @@ function cartReducer(state = INI_STATE, action) {
     const newCartItems = state.cartItems.filter(item => {
       return item.id !== action.payload.id
     })
-    
+    const newTotalAmount = state.totalAmount - (action.payload.price * action.payload.quantity)
     return {
       ...state,
-      cartItems: newCartItems
+      cartItems: newCartItems,
+      totalAmount: newTotalAmount
     }
   }
 
@@ -60,7 +65,8 @@ function cartReducer(state = INI_STATE, action) {
     newCartItems[productIndex] = newProduct
     return {
       ...state,
-      cartItems: newCartItems
+      cartItems: newCartItems,
+      totalAmount: state.totalAmount + action.payload.price
     }  
   }
 
@@ -68,6 +74,7 @@ function cartReducer(state = INI_STATE, action) {
     const productIndex = state.cartItems.findIndex(item => {
       return item.id === action.payload.id
     })
+    const newTotalAmount = state.totalAmount - action.payload.price 
     const cartProduct = state.cartItems[productIndex]
     if(cartProduct.quantity === 1) {
       const newCartItems = state.cartItems.filter(item => {
@@ -76,7 +83,8 @@ function cartReducer(state = INI_STATE, action) {
       
       return {
         ...state,
-        cartItems: newCartItems
+        cartItems: newCartItems,
+        totalAmount: newTotalAmount
       }
     } else {
       const newProduct = {
@@ -88,7 +96,8 @@ function cartReducer(state = INI_STATE, action) {
       newCartItems[productIndex] = newProduct
       return {
         ...state,
-        cartItems: newCartItems
+        cartItems: newCartItems,
+        totalAmount: state.totalAmount - action.payload.price
       } 
     }
   }
@@ -96,7 +105,8 @@ function cartReducer(state = INI_STATE, action) {
   if(action.type === 'REMOVE_ALL_ITEMS_FROM_CART') {
     return {
       ...state,
-      cartItems: []
+      cartItems: [],
+      totalAmount: 0
     }
   }
   
