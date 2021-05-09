@@ -4,22 +4,20 @@ import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { BsHeart, BsSearch, BsHeartFill } from "react-icons/bs";
-
-import { Button, Flex, StyledLink } from "./UI";
+import { Button } from "./UI";
 import { createObjectWithId } from "../services/db";
 import { setUser } from "../redux/user/userActions";
 import { addProduct } from "../redux/cart/cartActions";
 import { addFavs } from "../redux/favs/favsActions";
 
-const CardStyled = styled.article`
+const CardFavsStyled = styled.article`
   border: 1px solid ${(props) => props.theme.color.primary};
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  width: calc(33.33% - 10px);
+  width: calc(25% - 10px);
   overflow: hidden;
-  margin-top: 10px;
+  margin: 10px 5px;
 
   .card__info {
     padding: 10px;
@@ -40,11 +38,10 @@ const CardStyled = styled.article`
 `;
 
 const AddCardButtonStyled = styled(Button)`
-  flex: 1;
-  margin: 0 2px;
+  margin: 2px;
 `;
 
-const Card = ({ product }) => {
+const CardFavs = ({ product }) => {
   const dispatch = useDispatch();
   const { id, image, name, price, shortDescription, units } = product;
   const cart = useSelector((state) => state.cardData.cartItems);
@@ -53,7 +50,6 @@ const Card = ({ product }) => {
   const history = useHistory();
 
   const params = useParams();
-  const { category } = params;
 
   const saveToFavs = async () => {
     if (user) {
@@ -112,7 +108,7 @@ const Card = ({ product }) => {
     );
 
   return (
-    <CardStyled>
+    <CardFavsStyled>
       <div
         style={{
           backgroundImage: `url(${image})`,
@@ -129,33 +125,14 @@ const Card = ({ product }) => {
           <span style={{ fontSize: 16 }}>€ / {units}</span>
         </p>
       </div>
-      <Flex
-        direction="row"
-        justify="center"
-        align="center"
-        style={{ padding: "2px" }}
-      >
-        {isFavourite ? (
-          <Button>
-            <BsHeartFill size={20} onClick={saveToFavs} fill="red" />
-          </Button>
-        ) : (
-          <Button>
-            <BsHeart size={20} onClick={saveToFavs} />
-          </Button>
-        )}
-        <AddCardButtonStyled
+      <AddCardButtonStyled
           isProductInCart={isProductInCart}
           onClick={addToCart}
         >
-          {isProductInCart && user ? "PRODUCT ADDED!" : "ADD TO CART"}
+          REMOVE
         </AddCardButtonStyled>
-        <StyledLink to={`/${category}/${id}`}>
-          <BsSearch size={20} />
-        </StyledLink>
-      </Flex>
-    </CardStyled>
+    </CardFavsStyled>
   );
 };
 
-export default Card;
+export default CardFavs;

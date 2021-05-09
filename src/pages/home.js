@@ -9,7 +9,6 @@ import {
 } from "../services/db";
 
 import ProductFilterBar from "../components/ProductFilterBar";
-import ProductsListView from "../components/ProductsListView";
 import ProductsGridView from "../components/ProductsGridView";
 import CategoryMenu from "../components/CategoryMenu";
 import CategoryLayout from "../components/layouts/CategoryLayout";
@@ -83,15 +82,9 @@ const HomePage = (props) => {
         </aside>
         <section>
           <ProductFilterBar
-            toggleShowGrid={toggleShowGrid}
-            toggleShowList={toggleShowList}
             handleChange={selectFilter}
           />
-          {showProducts === "grid" ? (
-            <ProductsGridView products={products} />
-          ) : (
-            <ProductsListView products={products} />
-          )}
+          <ProductsGridView products={products} />
         </section>
       </CategoriesLayoutStyled>
     </CategoryLayout>

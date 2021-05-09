@@ -1,29 +1,25 @@
-import { useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import MainLayout from "../components/layouts/MainLayout";
-import CartProduct from '../components/CartProduct';
+import CartLayout from "../components/layouts/CartLayout";
+import PageHeading from "../components/PageHeading";
+import CardFavs from "../components/CardFavs";
+import { Flex, Spacer } from "../components/UI";
 
 const FavouritesPage = () => {
-  const favs = useSelector(state => state.favData.favItems)
+  const favs = useSelector((state) => state.favData.favItems);
 
-  useEffect(() => {
-
-  }, [])
-
-  return(
-    <MainLayout>
-      <ul>
-      {
-        favs.map((product) => 
-          <CartProduct
-            product={product}
-          />
-        )
-      }
-      </ul>
-    </MainLayout>
+  return (
+    <CartLayout>
+      <Spacer />
+      <PageHeading title="Favourites" />
+      <Flex justify="flex-start">
+        {favs.map((product) => (
+          <CardFavs product={product} />
+        ))}
+      </Flex>
+      <Spacer />
+    </CartLayout>
   );
-}
+};
 
 export default FavouritesPage;
