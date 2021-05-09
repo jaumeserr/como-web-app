@@ -6,7 +6,6 @@ import CartProduct from '../components/CartProduct';
 
 const FavouritesPage = () => {
   const favs = useSelector(state => state.favData.favItems)
-  console.log("🚀 ~ file: favourites.js ~ line 9 ~ FavouritesPage ~ favs", favs)
 
   useEffect(() => {
 
