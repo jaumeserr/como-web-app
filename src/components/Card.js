@@ -149,7 +149,7 @@ const Card = ({ product }) => {
           isProductInCart={isProductInCart}
           onClick={addToCart}
         >
-          {isProductInCart ? "PRODUCT ADDED!" : "ADD TO CART"}
+          {isProductInCart && user ? "PRODUCT ADDED!" : "ADD TO CART"}
         </AddCardButtonStyled>
         <StyledLink to={`/${category}/${id}`}>
           <BsSearch size={20} />
