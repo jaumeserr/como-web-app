@@ -19,7 +19,7 @@ const CardStyled = styled.article`
   flex-direction: column;
   width: calc(33.33% - 10px);
   overflow: hidden;
-  margin-top: 10px;
+  margin: 5px;
 
   .card__info {
     padding: 10px;

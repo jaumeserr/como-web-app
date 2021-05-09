@@ -115,30 +115,5 @@ export async function filterProductsByOrder(collection, field, order) {
   }
 }
 
-export async function listUserCart(userId) {
-  try {
-    const db = getDb();
-    let query = await db.collection('orders')
-    query = query.where('userId', '==', userId)
-    const querySnapshot = await query.get();
-    const data = [];
-    querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data() });
-    })
-    return formatResponse(true, data);
-  } catch (error) {
-    console.log('IMTCHLG ~ file: db.js ~ line 73 ~ listUserRooms ~ error', error);
-    return formatResponse(false);
-  }
-}
 
-export async function removeProductFromCard(productId) {
-  try {
-    const db = getDb();
-    await db.collection('orders').doc(productId).delete();
-    return formatResponse(true);
-  } catch(error) {
-    console.log("🚀 ~ file: db.js ~ line 124 ~ removeProductFromCard ~ error", error)
-  }
-}
 

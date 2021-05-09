@@ -4,8 +4,9 @@ import Card from './Card';
 
 const GridView = styled.section`
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin-top: 5px;
 `
 
 const ProductsGridView = ({ products }) => {
