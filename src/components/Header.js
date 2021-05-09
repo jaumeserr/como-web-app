@@ -61,7 +61,12 @@ const Header = () => {
         </li>
         <li>
           <Link to="/cart" className="cart">
-            Cart ({cart.length})
+            {
+              user
+              ? `Cart (${cart.length})`
+              : 'Cart'
+            }
+            
           </Link>
         </li>
         <li>
