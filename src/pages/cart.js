@@ -36,6 +36,7 @@ const CartOption = styled.div`
   display: flex;
   margin-left: 50%;
   margin-top: 10px;
+  margin-bottom: 100px;
 `;
 
 const ButtonsCartOption = styled(Button)`
