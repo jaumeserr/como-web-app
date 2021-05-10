@@ -1,13 +1,25 @@
 export const addProduct = (product) => {
-  return { type: "ADD_TO_CART", payload: product };
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch({ type: "ADD_TO_CART", payload: product }) 
+    }, 5000)
+  }
 };
 
 export const removeProduct = (product) => {
-  return { type: "REMOVE_FROM_CART", payload: product };
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch({ type: "REMOVE_FROM_CART", payload: product }) 
+    }, 5000)
+  }
 };
 
 export const incrementProduct = (product) => {
-  return { type: "INCREMENT_ITEM_FROM_CART", payload: product };
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch({ type: "INCREMENT_ITEM_FROM_CART", payload: product }) 
+    }, 5000)
+  }
 };
 
 export const decrementProduct = (product) => {
