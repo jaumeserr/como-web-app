@@ -1,39 +1,44 @@
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useState } from 'react';
 
 import CartLayout from "../components/layouts/CartLayout";
 import PageHeading from "../components/PageHeading";
 import CardFavs from "../components/CardFavs";
-import { Flex, Spacer } from "../components/UI";
+import { Flex, Spacer, StyledLink } from "../components/UI";
 import { useEffect } from "react";
 import { getObjectById } from '../services/db';
 
-const FavouritesPage = () => {
-  const user = useSelector((state) => state.user)
-  const [favourites, setFavourites] = useState([])
-
-  useEffect(() => {
-    getFavs();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
-
-  const getFavs = async() => {
-    const result = await getObjectById('profiles', user.id)
-    const { success, data } = result;
-    if (success) {
-      setFavourites(data.favourites);
-    }
+const EmptyCart = styled.div`
+  text-align: center;
+  padding: 200px 0;
+  p {
+    padding-bottom: 30px;
+    font-size: 20px;
   }
+`;
+
+const FavouritesPage = () => {
+  const favourites = useSelector((state) => state.user.favourites)
 
   return (
     <CartLayout>
       <Spacer />
       <PageHeading title="Favourites" />
-      <Flex justify="flex-start">
-        {favourites.map((product, index) => (
-          <CardFavs key={index} product={product} />
-        ))}
-      </Flex>
+      {favourites.length > 0 ? (
+        <Flex justify="flex-start">
+          {favourites.map((product, index) => (
+            <CardFavs key={index} product={product} />
+          ))}
+        </Flex>
+      ) : (
+        <>
+          <EmptyCart>
+            <p>There's no favourites, click on the heart!!</p>
+            <StyledLink to="/">Add Favourites</StyledLink>
+          </EmptyCart>
+        </>
+      )}
       <Spacer />
     </CartLayout>
   );
