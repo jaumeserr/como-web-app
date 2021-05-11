@@ -8,7 +8,6 @@ const CardListStyled = styled.section`
   padding-top: 20px;
 `
 
-
 const CardList = ({ products }) => {
   return (
     <CardListStyled>

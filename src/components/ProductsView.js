@@ -9,7 +9,7 @@ const GridView = styled.section`
   margin-top: 5px;
 `
 
-const ProductsGridView = ({ products }) => {
+const ProductsView = ({ products }) => {
   return(
     <GridView>
       {
@@ -24,4 +24,4 @@ const ProductsGridView = ({ products }) => {
   );
 }
 
-export default ProductsGridView;
+export default ProductsView;

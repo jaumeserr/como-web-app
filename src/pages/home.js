@@ -9,7 +9,7 @@ import {
 } from "../services/db";
 
 import ProductFilterBar from "../components/ProductFilterBar";
-import ProductsGridView from "../components/ProductsGridView";
+import ProductsView from "../components/ProductsView";
 import CategoryMenu from "../components/CategoryMenu";
 import CategoryLayout from "../components/layouts/CategoryLayout";
 
@@ -34,7 +34,7 @@ const HomePage = (props) => {
   useEffect(() => {
     fetchProducts(category);
   }, [category]);
-  
+
   const fetchProducts = async (category) => {
     if (category) {
       const result = await getObjectsByCategory("products", category);
@@ -72,10 +72,8 @@ const HomePage = (props) => {
           <CategoryMenu />
         </aside>
         <section>
-          <ProductFilterBar
-            handleChange={selectFilter}
-          />
-          <ProductsGridView products={products} />
+          <ProductFilterBar handleChange={selectFilter} />
+          <ProductsView products={products} />
         </section>
       </CategoriesLayoutStyled>
     </CategoryLayout>
