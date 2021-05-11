@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useState } from 'react';
 
 import CartLayout from "../components/layouts/CartLayout";
 import PageHeading from "../components/PageHeading";
 import CardFavs from "../components/CardFavs";
 import { Flex, Spacer, StyledLink } from "../components/UI";
-import { useEffect } from "react";
-import { getObjectById } from '../services/db';
 
 const EmptyCart = styled.div`
   text-align: center;
