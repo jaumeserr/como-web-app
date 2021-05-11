@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
 
 import { removeAllProducts } from "../redux/cart/cartActions";
 import CartProduct from "../components/CartProduct";

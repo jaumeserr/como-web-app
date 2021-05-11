@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import { Button } from "./UI";
 import { createObjectWithId } from "../services/db";
 import { setUser } from "../redux/user/userActions";
-import { addProduct } from "../redux/cart/cartActions";
-import { addFavs } from "../redux/favs/favsActions";
+import { useEffect } from "react";
 
 const CardFavsStyled = styled.article`
   border: 1px solid ${(props) => props.theme.color.primary};
@@ -44,68 +40,30 @@ const AddCardButtonStyled = styled(Button)`
 const CardFavs = ({ product }) => {
   const dispatch = useDispatch();
   const { id, image, name, price, shortDescription, units } = product;
-  const cart = useSelector((state) => state.cardData.cartItems);
   const user = useSelector((state) => state.user);
 
-  const history = useHistory();
+  useEffect(() => {
 
-  const params = useParams();
+  })
+  
+  const removeFromFavs = async () => {
+    const removedItem = user.favourites.filter((favourite) => favourite.id !== id);
 
-  const saveToFavs = async () => {
-    if (user) {
-      const isFavourite = user.favourites.includes(id);
+    const userToSave = {
+      ...user,
+      favourites: removedItem
+    };
 
-      const newFavourites = isFavourite
-        ? user.favourites.filter((favourite) => favourite !== id)
-        : [...user.favourites, id];
-
-      const userToSave = {
-        ...user,
-        favourites: newFavourites,
-      };
-
-      const { success } = await createObjectWithId(
-        "profiles",
-        userToSave,
-        user.id
-      );
-      if (success) {
-        dispatch(setUser(userToSave));
-        dispatch(addFavs(product));
-      }
-    } else {
-      history.push("/login");
-    }
-  };
-
-  const addToCart = () => {
-    if (user) {
-      dispatch(addProduct(product));
-      notify();
-    } else {
-      history.push("/login");
-    }
-  };
-
-  // when create a new User, this part crash
-  const isFavourite = user ? user.favourites.includes(product.id) : null;
-
-  const isProductInCart =
-    cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;
-
-  const notify = () =>
-    toast.success(
-      `${(product.name).toUpperCase()} ADDED!`,
-      {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
+    const { success } = await createObjectWithId(
+      "profiles",
+      userToSave,
+      user.id
     );
+
+    if (success) {
+      dispatch(setUser(userToSave));
+    }
+  };
 
   return (
     <CardFavsStyled>
@@ -125,12 +83,9 @@ const CardFavs = ({ product }) => {
           <span style={{ fontSize: 16 }}>€ / {units}</span>
         </p>
       </div>
-      <AddCardButtonStyled
-          isProductInCart={isProductInCart}
-          onClick={addToCart}
-        >
-          REMOVE
-        </AddCardButtonStyled>
+      <AddCardButtonStyled onClick={removeFromFavs}>
+        REMOVE
+      </AddCardButtonStyled>
     </CardFavsStyled>
   );
 };

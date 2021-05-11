@@ -53,16 +53,16 @@ const Card = ({ product }) => {
   const history = useHistory();
 
   const params = useParams();
-  const { category } = params;
+  const { category = 'all' } = params;
 
   const saveToFavs = async () => {
     if (user) {
       
-      const isFavourite = user.favourites.includes(id);
+      const isFavourite = user.favourites.find((favourite) => favourite.id === id);
 
       const newFavourites = isFavourite
-        ? user.favourites.filter((favourite) => favourite !== id)
-        : [...user.favourites, id];
+        ? user.favourites.filter((favourite) => favourite.id !== id)
+        : [...user.favourites, product];
 
       const userToSave = {
         ...user,
@@ -92,7 +92,7 @@ const Card = ({ product }) => {
     }
   };
 
-  const isFavourite = user && user.favourites && user.favourites.includes(product.id);
+  const isFavourite = user && user.favourites.find((favourite) => favourite.id === id);
 
   const isProductInCart =
     cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;
