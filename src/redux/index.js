@@ -2,12 +2,10 @@ import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import userReducer from './user/userReducer';
 import cartReducer from './cart/cartReducer';
-import favsReducer from './favs/favsReducer';
 
 const reducers = combineReducers({
   user: userReducer,
   cardData: cartReducer,
-  favData: favsReducer
 })
 
 const store = createStore(

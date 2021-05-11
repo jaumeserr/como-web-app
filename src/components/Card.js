@@ -10,7 +10,6 @@ import { Button, Flex, StyledLink } from "./UI";
 import { createObjectWithId } from "../services/db";
 import { setUser } from "../redux/user/userActions";
 import { addProduct } from "../redux/cart/cartActions";
-import { addFavs } from "../redux/favs/favsActions";
 
 const CardStyled = styled.article`
   border: 1px solid ${(props) => props.theme.color.primary};
@@ -76,7 +75,6 @@ const Card = ({ product }) => {
       );
       if (success) {
         dispatch(setUser(userToSave));
-        dispatch(addFavs(product));
       }
     } else {
       history.push("/login");
