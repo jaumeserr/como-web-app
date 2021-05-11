@@ -30,8 +30,11 @@ const CategoriesLayoutStyled = styled.section`
 const HomePage = (props) => {
   const [products, setProducts] = useState([]);
   const category = props.match.params.category;
-  const [showProducts, setshowProducts] = useState("grid");
 
+  useEffect(() => {
+    fetchProducts(category);
+  }, [category]);
+  
   const fetchProducts = async (category) => {
     if (category) {
       const result = await getObjectsByCategory("products", category);
@@ -59,18 +62,6 @@ const HomePage = (props) => {
   const selectFilter = (value) => {
     const split = value.split("_");
     filterProducts("products", split[0], split[1]);
-  };
-
-  useEffect(() => {
-    fetchProducts(category);
-  }, [category]);
-
-  const toggleShowGrid = () => {
-    setshowProducts("grid");
-  };
-
-  const toggleShowList = () => {
-    setshowProducts("list");
   };
 
   return (

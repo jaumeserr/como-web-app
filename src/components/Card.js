@@ -57,6 +57,7 @@ const Card = ({ product }) => {
 
   const saveToFavs = async () => {
     if (user) {
+      
       const isFavourite = user.favourites.includes(id);
 
       const newFavourites = isFavourite
@@ -91,8 +92,7 @@ const Card = ({ product }) => {
     }
   };
 
-  // when create a new User, this part crash
-  const isFavourite = user ? user.favourites.includes(product.id) : null;
+  const isFavourite = user && user.favourites && user.favourites.includes(product.id);
 
   const isProductInCart =
     cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;

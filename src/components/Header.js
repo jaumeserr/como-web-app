@@ -20,7 +20,11 @@ const HeaderStyled = styled.header`
 
   li {
     padding: 0 20px;
-    border-left: 1px solid black;
+    border-right: 1px solid black;
+
+    &:last-child {
+      border-right: none;
+    }
 
     a {
       text-decoration: none;
@@ -53,9 +57,11 @@ const Header = () => {
         <li className="logo">
           <Link to="/">COMO MATARÓ</Link>
         </li>
-        <li className="addproduct">
-          <Link to="/addproduct">Add Product</Link>
-        </li>
+        {
+          user && user.email === 'admin@como-moda.com'
+          ? <li className="addproduct"><Link to="/addproduct">Add Product</Link></li>
+          : ''
+        }
         <li className="favs">
           <Link to="/favourites">Favourites</Link>
         </li>
