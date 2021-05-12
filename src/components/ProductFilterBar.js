@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { BsGrid, BsList } from 'react-icons/bs';
-
-import { Flex } from './UI';
 
 const ProductFilterBarStyled = styled.div`
   padding: 10px;
@@ -11,14 +8,6 @@ const ProductFilterBarStyled = styled.div`
   background-color: ${props => props.theme.color.box_bg};
   width: 100%;
   border: 1px solid ${props => props.theme.color.border};
-`
-
-const ButtonView = styled.button`
-  padding: 6px;
-  border: 1px solid ${props => props.theme.color.border};
-  margin-right: 10px;
-  border-radius: 3px;
-  background-color: ${props => props.theme.color.input_bg};
 `
 
 const SelectStyled = styled.select`
@@ -31,18 +20,9 @@ const SelectStyled = styled.select`
   outline: none;
 `
 
-const ProductFilterBar = ({ handleChange, toggleShowGrid, toggleShowList }) => {
-  
+const ProductFilterBar = ({ handleChange }) => {
   return (
     <ProductFilterBarStyled>
-      {/* <Flex align="center">
-        <ButtonView onClick={toggleShowGrid}>
-          <BsGrid size={20} />
-        </ButtonView>
-        <ButtonView onClick={toggleShowList}>
-          <BsList size={20} />
-        </ButtonView>
-      </Flex> */}
       <div>
         Sort by:
         <SelectStyled onChange={(e) => handleChange(e.target.value)}>

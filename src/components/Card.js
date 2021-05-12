@@ -10,7 +10,6 @@ import { Button, Flex, StyledLink } from "./UI";
 import { createObjectWithId } from "../services/db";
 import { setUser } from "../redux/user/userActions";
 import { addProduct } from "../redux/cart/cartActions";
-import { addFavs } from "../redux/favs/favsActions";
 
 const CardStyled = styled.article`
   border: 1px solid ${(props) => props.theme.color.primary};
@@ -53,15 +52,16 @@ const Card = ({ product }) => {
   const history = useHistory();
 
   const params = useParams();
-  const { category } = params;
+  const { category = 'all' } = params;
 
   const saveToFavs = async () => {
     if (user) {
-      const isFavourite = user.favourites.includes(id);
+      
+      const isFavourite = user.favourites.find((favourite) => favourite.id === id);
 
       const newFavourites = isFavourite
-        ? user.favourites.filter((favourite) => favourite !== id)
-        : [...user.favourites, id];
+        ? user.favourites.filter((favourite) => favourite.id !== id)
+        : [...user.favourites, product];
 
       const userToSave = {
         ...user,
@@ -75,7 +75,6 @@ const Card = ({ product }) => {
       );
       if (success) {
         dispatch(setUser(userToSave));
-        dispatch(addFavs(product));
       }
     } else {
       history.push("/login");
@@ -91,8 +90,7 @@ const Card = ({ product }) => {
     }
   };
 
-  // when create a new User, this part crash
-  const isFavourite = user ? user.favourites.includes(product.id) : null;
+  const isFavourite = user && user.favourites.find((favourite) => favourite.id === id);
 
   const isProductInCart =
     cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;

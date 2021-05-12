@@ -9,7 +9,7 @@ import {
 } from "../services/db";
 
 import ProductFilterBar from "../components/ProductFilterBar";
-import ProductsGridView from "../components/ProductsGridView";
+import ProductsView from "../components/ProductsView";
 import CategoryMenu from "../components/CategoryMenu";
 import CategoryLayout from "../components/layouts/CategoryLayout";
 
@@ -30,7 +30,10 @@ const CategoriesLayoutStyled = styled.section`
 const HomePage = (props) => {
   const [products, setProducts] = useState([]);
   const category = props.match.params.category;
-  const [showProducts, setshowProducts] = useState("grid");
+
+  useEffect(() => {
+    fetchProducts(category);
+  }, [category]);
 
   const fetchProducts = async (category) => {
     if (category) {
@@ -61,18 +64,6 @@ const HomePage = (props) => {
     filterProducts("products", split[0], split[1]);
   };
 
-  useEffect(() => {
-    fetchProducts(category);
-  }, [category]);
-
-  const toggleShowGrid = () => {
-    setshowProducts("grid");
-  };
-
-  const toggleShowList = () => {
-    setshowProducts("list");
-  };
-
   return (
     <CategoryLayout>
       <ToastContainer />
@@ -81,10 +72,8 @@ const HomePage = (props) => {
           <CategoryMenu />
         </aside>
         <section>
-          <ProductFilterBar
-            handleChange={selectFilter}
-          />
-          <ProductsGridView products={products} />
+          <ProductFilterBar handleChange={selectFilter} />
+          <ProductsView products={products} />
         </section>
       </CategoriesLayoutStyled>
     </CategoryLayout>

@@ -2,13 +2,11 @@ import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import userReducer from './user/userReducer';
 import cartReducer from './cart/cartReducer';
-import favsReducer from './favs/favsReducer';
 import ReduxThunk from 'redux-thunk';
 
 const reducers = combineReducers({
   user: userReducer,
   cardData: cartReducer,
-  favData: favsReducer
 })
 
 const store = createStore(

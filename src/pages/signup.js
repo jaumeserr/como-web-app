@@ -36,7 +36,7 @@ const FormStyled = styled.form`
 
 const SignupPage = () => {
   const history = useHistory();
-  const [formData, setFormData] = useState({ name: '', lastname: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ name: '', lastname: '', email: '', password: '', favourites:[] });
   
   const handleFormSubmit = async (event) => {
     event.preventDefault();

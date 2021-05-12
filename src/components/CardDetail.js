@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import { getObjectById } from "../services/db";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+
+import { getObjectById, createObjectWithId } from "../services/db";
 import { Button, Spacer } from "./UI";
 import { addProduct } from "../redux/cart/cartActions";
 import MainLayout from "./layouts/MainLayout";
 import PageHeading from "./PageHeading";
 import Breadcrum from "./Breadcrum";
+import { setUser } from "../redux/user/userActions";
 
 const CardDetailContent = styled.div`
   width: 60%;
@@ -89,8 +92,8 @@ const CardDetail = (props) => {
   const cart = useSelector((state) => state.cardData.cartItems);
   const user = useSelector((state) => state.user);
   const history = useHistory();
-  const params = useParams();
-  console.log("🚀 ~ file: CardDetail.js ~ line 100 ~ CardDetail ~ params", params)
+
+  const { id, image, name, price, description, units } = product;
 
   const fetchProduct = async (productId) => {
     const { success, data } = await getObjectById("products", productId);
@@ -107,6 +110,33 @@ const CardDetail = (props) => {
     props.history.goBack();
   };
 
+  const saveToFavs = async () => {
+    if (user) {
+      
+      const isFavourite = user.favourites.find((favourite) => favourite.id === id);
+
+      const newFavourites = isFavourite
+        ? user.favourites.filter((favourite) => favourite.id !== id)
+        : [...user.favourites, product];
+
+      const userToSave = {
+        ...user,
+        favourites: newFavourites,
+      };
+
+      const { success } = await createObjectWithId(
+        "profiles",
+        userToSave,
+        user.id
+      );
+      if (success) {
+        dispatch(setUser(userToSave));
+      }
+    } else {
+      history.push("/login");
+    }
+  };
+
   const addToCart = () => {
     if (user) {
       dispatch(addProduct(product));
@@ -115,7 +145,7 @@ const CardDetail = (props) => {
     }
   };
 
-  const { id, image, name, price, description, units } = product;
+  const isFavourite = user && user.favourites.find((favourite) => favourite.id === id);
 
   const isProductInCart =
     cart.findIndex((cartProduct) => cartProduct.id === id) >= 0;
@@ -144,7 +174,15 @@ const CardDetail = (props) => {
                 >
                   {isProductInCart && user ? "PRODUCT ADDED!" : "ADD TO CART"}
                 </AddCardButtonStyled>
-                <Button>FAV</Button>
+                {isFavourite ? (
+                  <Button>
+                    <BsHeartFill size={20} onClick={saveToFavs} fill="red" />
+                  </Button>
+                ) : (
+                  <Button>
+                    <BsHeart size={20} onClick={saveToFavs} />
+                  </Button>
+                )}
               </div>
               <p className="card-detail__title">Description</p>
               <p>{description}</p>
