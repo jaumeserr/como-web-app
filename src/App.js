@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { refreshCart } from './redux/cart/cartActions';
 import { setUser, clearUser } from './redux/user/userActions';
 import Routes from './routes';
 import { registerAuthObserver } from './services/auth';
@@ -11,6 +12,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    dispatch(refreshCart());
     registerAuthObserver(async (user) => {
       if (user) {
         console.log('El usuario ha hecho login: ', user);

@@ -1,24 +1,53 @@
-export const addProduct = (product) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firestore = getFirestore();
-    firestore.collection('products');
-    dispatch({ type: "ADD_TO_CART", payload: product });
+import { addToCart, removeFromCart } from '../../controllers/cart';
+import { createObject, updateObjectWithId, getObjectById } from '../../services/db';
+
+export const refreshCart = () => {
+  return async (dispatch) => {
+    const cartId = localStorage.getItem('cartId')
+    const { success, data } = await getObjectById('carts', cartId)
+    if(success) {
+      dispatch({ type: "SET_CART", payload: data });
+    }
+  }
+}
+
+//clear cart = borrar el id del localStorage
+
+export const addProduct = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = addToCart(cart, product)
+    if(newCart.id) {
+      const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+      if(success) {
+        dispatch({ type: "SET_CART", payload: newCart });
+      }
+    } else {
+      const { success, data } = await createObject('carts', newCart)
+      if(success) {
+        newCart.id = data;
+        localStorage.setItem('cartId', data)
+        dispatch({ type: "SET_CART", payload: newCart });
+      }
+    }
   }
 };
 
+// export const removeProduct = (cart, product) => {
+//   return async (dispatch) => {
+//     const newCart = removeFromCart(cart, product)
+
+//   }
+// }
+
 export const removeProduct = (product) => {
   return (dispatch) => {
-    setTimeout(() => {
       dispatch({ type: "REMOVE_FROM_CART", payload: product }) 
-    }, 5000)
   }
 };
 
 export const incrementProduct = (product) => {
   return (dispatch) => {
-    setTimeout(() => {
       dispatch({ type: "INCREMENT_ITEM_FROM_CART", payload: product }) 
-    }, 5000)
   }
 };
 

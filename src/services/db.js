@@ -24,6 +24,17 @@ export async function createObjectWithId(collection, object, id) {
   }
 }
 
+export async function updateObjectWithId(collection, object, id) {
+  try {
+    const db = getDb();
+    await db.collection(collection).doc(id).set(object, {merge: true});
+    return formatResponse(true);
+  } catch (error) {
+    console.log("🚀 ~ file: db.js ~ line 18 ~ createObjectWithId ~ error", error)
+    return formatResponse(false);
+  }
+}
+
 export async function createObject(collection, object) {
   try {
     const db = getDb();

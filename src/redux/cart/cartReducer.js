@@ -109,6 +109,10 @@ function cartReducer(state = INI_STATE, action) {
       totalAmount: 0
     }
   }
+
+  if(action.type === 'SET_CART') {
+    return action.payload;
+  }
   
   return state;
   
