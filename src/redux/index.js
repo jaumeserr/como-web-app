@@ -1,7 +1,8 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import userReducer from './user/userReducer';
 import cartReducer from './cart/cartReducer';
+import thunk from 'redux-thunk';
 
 const reducers = combineReducers({
   user: userReducer,
@@ -10,7 +11,10 @@ const reducers = combineReducers({
 
 const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ),
 );
 
 const ReduxProvider = ({ children }) => {

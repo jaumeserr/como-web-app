@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { removeProduct } from "../redux/cart/cartActions";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -65,6 +65,7 @@ const CartProduct = ({ product }) => {
     price,
     totalPrice,
   } = product;
+  const basket = useSelector((state) => state.cardData);
 
   return (
     <CartProductStyled>
@@ -80,7 +81,7 @@ const CartProduct = ({ product }) => {
       <FaRegTrashAlt
         className="product-remove"
         size={18}
-        onClick={() => dispatch(removeProduct(product))}
+        onClick={() => dispatch(removeProduct(basket, product))}
       />
     </CartProductStyled>
   );

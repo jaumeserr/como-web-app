@@ -109,9 +109,29 @@ function cartReducer(state = INI_STATE, action) {
       totalAmount: 0
     }
   }
+
+
+  if(action.type === 'SET_CART') {
+    return action.payload;
+  }
+    
+  if(action.type === 'INCREMENT_CART') {
+    return action.payload;
+  }
+
+  if(action.type === 'DECREMENT_CART') {
+    return action.payload;
+  }
+
+  if(action.type === 'REMOVE_PRODUCT') {
+    return action.payload;
+  }
+
+  if(action.type === 'REMOVE_ALL_PRODUCTS') {
+    return action.payload;
+  }
   
   return state;
-  
 }
 
 export default cartReducer;

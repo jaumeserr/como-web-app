@@ -1,19 +1,80 @@
-export const addProduct = (product) => {
-  return { type: "ADD_TO_CART", payload: product };
+import { addToCart, incrementItemFromCart, decrementItemFromCart, removeItemFromCart, removeAllItems } from '../../controllers/cart';
+import { createObject, updateObjectWithId, getObjectById } from '../../services/db';
+
+export const refreshCart = () => {
+  return async (dispatch) => {
+    const cartId = localStorage.getItem('cartId')
+    const { success, data } = await getObjectById('carts', cartId)
+    if(success) {
+      dispatch({ type: "SET_CART", payload: data });
+    }
+  }
+}
+
+export const addProduct = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = addToCart(cart, product)
+    if(newCart.id) {
+      const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+      if(success) {
+        dispatch({ type: "SET_CART", payload: newCart });
+      }
+    } else {
+      const { success, data } = await createObject('carts', newCart)
+      if(success) {
+        newCart.id = data;
+        localStorage.setItem('cartId', data)
+        dispatch({ type: "SET_CART", payload: newCart });
+      }
+    }
+  }
 };
 
-export const removeProduct = (product) => {
-  return { type: "REMOVE_FROM_CART", payload: product };
+export const incrementCart = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = incrementItemFromCart(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "INCREMENT_CART", payload: newCart });
+    }
+  }
 };
 
-export const incrementProduct = (product) => {
-  return { type: "INCREMENT_ITEM_FROM_CART", payload: product };
+export const decrementCart = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = decrementItemFromCart(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "DECREMENT_CART", payload: newCart });
+      if(newCart.cartItems.length === 0) {
+        console.log('estoy a 0')
+        localStorage.removeItem('cartId')
+      }
+    }
+  }
 };
 
-export const decrementProduct = (product) => {
-  return { type: "DECREMENT_ITEM_FROM_CART", payload: product };
-};
+export const removeProduct = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = removeItemFromCart(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "REMOVE_PRODUCT", payload: newCart });
+      if(newCart.cartItems.length === 0) {
+        console.log('estoy a 0')
+        localStorage.removeItem('cartId')
+      }
+    }
+  }
+}
 
-export const removeAllProducts = () => {
-  return { type: "REMOVE_ALL_ITEMS_FROM_CART", payload: null };
-};
+export const removeAllProducts = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = removeAllItems(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "REMOVE_ALL_PRODUCTS", payload: newCart });
+      localStorage.removeItem('cartId')
+    }
+  }
+}
