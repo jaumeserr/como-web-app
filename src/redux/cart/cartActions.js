@@ -1,4 +1,4 @@
-import { addToCart, removeFromCart } from '../../controllers/cart';
+import { addToCart, incrementItemFromCart, decrementItemFromCart, removeItemFromCart, removeAllItems } from '../../controllers/cart';
 import { createObject, updateObjectWithId, getObjectById } from '../../services/db';
 
 export const refreshCart = () => {
@@ -10,8 +10,6 @@ export const refreshCart = () => {
     }
   }
 }
-
-//clear cart = borrar el id del localStorage
 
 export const addProduct = (cart, product) => {
   return async (dispatch) => {
@@ -32,29 +30,51 @@ export const addProduct = (cart, product) => {
   }
 };
 
-// export const removeProduct = (cart, product) => {
-//   return async (dispatch) => {
-//     const newCart = removeFromCart(cart, product)
-
-//   }
-// }
-
-export const removeProduct = (product) => {
-  return (dispatch) => {
-      dispatch({ type: "REMOVE_FROM_CART", payload: product }) 
+export const incrementCart = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = incrementItemFromCart(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "INCREMENT_CART", payload: newCart });
+    }
   }
 };
 
-export const incrementProduct = (product) => {
-  return (dispatch) => {
-      dispatch({ type: "INCREMENT_ITEM_FROM_CART", payload: product }) 
+export const decrementCart = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = decrementItemFromCart(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "DECREMENT_CART", payload: newCart });
+      if(newCart.cartItems.length === 0) {
+        console.log('estoy a 0')
+        localStorage.removeItem('cartId')
+      }
+    }
   }
 };
 
-export const decrementProduct = (product) => {
-  return { type: "DECREMENT_ITEM_FROM_CART", payload: product };
-};
+export const removeProduct = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = removeItemFromCart(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "REMOVE_PRODUCT", payload: newCart });
+      if(newCart.cartItems.length === 0) {
+        console.log('estoy a 0')
+        localStorage.removeItem('cartId')
+      }
+    }
+  }
+}
 
-export const removeAllProducts = () => {
-  return { type: "REMOVE_ALL_ITEMS_FROM_CART", payload: null };
-};
+export const removeAllProducts = (cart, product) => {
+  return async (dispatch) => {
+    const newCart = removeAllItems(cart, product)
+    const { success } = await updateObjectWithId('carts', newCart, newCart.id)
+    if(success) {
+      dispatch({ type: "REMOVE_ALL_PRODUCTS", payload: newCart });
+      localStorage.removeItem('cartId')
+    }
+  }
+}

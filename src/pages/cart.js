@@ -68,7 +68,6 @@ const Total = styled(Flex)`
 const CartList = () => {
   const cart = useSelector((state) => state.cardData.cartItems);
   const totalAmount = useSelector((state) => state.cardData.totalAmount);
-  console.log("🚀 ~ file: cart.js ~ line 71 ~ CartList ~ cart", cart);
   const dispatch = useDispatch();
 
   return (

@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementCart, decrementCart } from "../redux/cart/cartActions";
 
-import {
-  incrementProduct,
-  decrementProduct,
-} from "../redux/cart/cartActions";
 import { FaRegTrashAlt, FaMinus, FaPlus } from "react-icons/fa";
 import { Button, Flex } from "../components/UI";
 
@@ -15,11 +12,12 @@ const Quantity = styled.span`
 
 const ProductCounter = ({ product }) => {
   const dispatch = useDispatch();
+  const basket = useSelector((state) => state.cardData);
 
   return (
     <Flex align="center">
       <Button
-        onClick={() => dispatch(decrementProduct(product))}
+        onClick={() => dispatch(decrementCart(basket, product))}
       >
         {product.quantity === 1 ? (
           <FaRegTrashAlt size={17} />
@@ -29,7 +27,7 @@ const ProductCounter = ({ product }) => {
       </Button>
       <Quantity>{product.quantity}</Quantity>
       <Button
-        onClick={() => dispatch(incrementProduct(product))}
+        onClick={() => dispatch(incrementCart(basket, product))}
       >
         <FaPlus size={17} />
       </Button>
