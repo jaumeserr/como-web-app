@@ -1,8 +1,8 @@
 export const addProduct = (product) => {
-  return (dispatch) => {
-    setTimeout(() => {
-      dispatch({ type: "ADD_TO_CART", payload: product }) 
-    }, 5000)
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore.collection('products');
+    dispatch({ type: "ADD_TO_CART", payload: product });
   }
 };
 
