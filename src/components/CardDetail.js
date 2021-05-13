@@ -92,6 +92,7 @@ const CardDetail = (props) => {
   const cart = useSelector((state) => state.cardData.cartItems);
   const user = useSelector((state) => state.user);
   const history = useHistory();
+  const basket = useSelector((state) => state.cardData);
 
   const { id, image, name, price, description, units } = product;
 
@@ -139,7 +140,7 @@ const CardDetail = (props) => {
 
   const addToCart = () => {
     if (user) {
-      dispatch(addProduct(product));
+      dispatch(addProduct(basket, product));;
     } else {
       history.push("/login");
     }
