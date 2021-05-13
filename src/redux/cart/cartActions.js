@@ -45,11 +45,11 @@ export const decrementCart = (cart, product) => {
     const newCart = decrementItemFromCart(cart, product)
     const { success } = await updateObjectWithId('carts', newCart, newCart.id)
     if(success) {
-      dispatch({ type: "DECREMENT_CART", payload: newCart });
       if(newCart.cartItems.length === 0) {
-        console.log('estoy a 0')
+        newCart.id = ''
         localStorage.removeItem('cartId')
       }
+      dispatch({ type: "DECREMENT_CART", payload: newCart });
     }
   }
 };
@@ -59,11 +59,11 @@ export const removeProduct = (cart, product) => {
     const newCart = removeItemFromCart(cart, product)
     const { success } = await updateObjectWithId('carts', newCart, newCart.id)
     if(success) {
-      dispatch({ type: "REMOVE_PRODUCT", payload: newCart });
       if(newCart.cartItems.length === 0) {
-        console.log('estoy a 0')
+        newCart.id = ''
         localStorage.removeItem('cartId')
       }
+      dispatch({ type: "REMOVE_PRODUCT", payload: newCart });
     }
   }
 }
@@ -73,8 +73,9 @@ export const removeAllProducts = (cart, product) => {
     const newCart = removeAllItems(cart, product)
     const { success } = await updateObjectWithId('carts', newCart, newCart.id)
     if(success) {
-      dispatch({ type: "REMOVE_ALL_PRODUCTS", payload: newCart });
       localStorage.removeItem('cartId')
+      newCart.id = ''
+      dispatch({ type: "REMOVE_ALL_PRODUCTS", payload: newCart });
     }
   }
 }
