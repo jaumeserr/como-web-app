@@ -67,7 +67,7 @@ const AddProduct = () => {
     description: "",
     category: "",
     image: "",
-    price: "",
+    price: 0,
     shortDescription: "",
     units: "",
   });
@@ -177,7 +177,7 @@ const AddProduct = () => {
               placeholder="Enter price"
               value={formDataProduct.price}
               onChange={(value) =>
-                setFormDataProduct({ ...formDataProduct, price: value })
+                setFormDataProduct({ ...formDataProduct, price: Number(value) })
               }
             />
           </Flex>
