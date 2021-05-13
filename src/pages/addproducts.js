@@ -59,6 +59,7 @@ const FormStyled = styled.form`
 
 const AddProduct = () => {
   const history = useHistory();
+  // eslint-disable-next-line no-unused-vars
   const [uploadValue, setUploadValue] = useState(-1);
   const [file, setFile] = useState("");
   const [formDataProduct, setFormDataProduct] = useState({
