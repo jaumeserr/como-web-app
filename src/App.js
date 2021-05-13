@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { refreshCart } from './redux/cart/cartActions';
 import { setUser, clearUser } from './redux/user/userActions';
+import { removeAllProducts } from "./redux/cart/cartActions";
 import Routes from './routes';
 import { registerAuthObserver } from './services/auth';
 import { getUserProfile } from './controllers/user';
@@ -21,6 +22,7 @@ const App = () => {
       } else {
         console.log('El usuario ha hecho logout: ');
         dispatch(clearUser());
+        dispatch(removeAllProducts())
       }
       setIsLoading(false)
     }) //eslint-disable-next-line react-hooks/exhaustive-deps
