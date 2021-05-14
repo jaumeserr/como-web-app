@@ -29,5 +29,5 @@ Como Mataró is an ecommerce for a small family business. Thanks to this platfor
 
 
 # Authors
-- Jaume [GitHub](https://github.com/jaumeserr)
+- Jaume [GitHub](https://github.com/jaumeserr){:target="_blank"}
 
