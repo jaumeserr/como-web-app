@@ -8,7 +8,7 @@ Como Mataró is an ecommerce for a small family business. Thanks to this platfor
 ![USES CASES](usescases.jpg)
 
 
-# Technical description
+# Technologies used
 ![TECHNICAL DESCRIPTION](technologies.gif)
 
 
