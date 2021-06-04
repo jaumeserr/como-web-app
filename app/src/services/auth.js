@@ -1,12 +1,16 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
+const formatResponse = (success, data) => {
+  return { success, data }
+}
+
 export async function signup(email, password) {
   try {
     const result = await firebase.auth().createUserWithEmailAndPassword(email, password);
-    return { success: true, data: result.user.uid };
+    return formatResponse(true, result.user.uid);
   } catch (error) {
-    return { success: false };
+    return formatResponse(false);
   }
 }
 
@@ -14,10 +18,9 @@ export async function login(email, password) {
   try {
     const result = await firebase.auth().signInWithEmailAndPassword(email, password);
     console.log("🚀 ~ file: auth.js ~ line 16 ~ login ~ result", result)
-    
-    return true;
+    return formatResponse(true);
   } catch (error) {
-    return false;
+    return { success: false, error: error.message };
   }
 }
 

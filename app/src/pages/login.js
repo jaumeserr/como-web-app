@@ -28,13 +28,19 @@ const FormStyled = styled.form`
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const history = useHistory();
+  const [errors, setErrors] = useState({
+    emailError: '',
+    passwordError: ''
+  })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await login(formData.email, formData.password)
-    console.log("🚀 ~ file: login.js ~ line 39 ~ handleFormSubmit ~ result", result)
-    if(result) {
+    console.log(result)
+    if(result.success) {
       history.push('/')
+    } else {
+      setErrors({emailError: result.error})
     }
   }
   
@@ -50,6 +56,7 @@ const LoginPage = () => {
             value={formData.email}
             onChange={(value) => setFormData({ ...formData, email: value })} 
           />
+          <span>{errors.emailError}</span>
           <Spacer />
           <Input
             type="password"
@@ -59,6 +66,7 @@ const LoginPage = () => {
             value={formData.password}
             onChange={(value) => setFormData({ ...formData, password: value })} 
           />
+          <span>{errors.passwordError}</span>
           <Spacer height="10px" />
           <p>Forgot your password?</p>
           <Spacer />
