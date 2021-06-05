@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   background-color: white;
-  border: 1px solid ${props => props.theme.color.primary};
+  border: ${props => {
+    if (props.borderError === true) {
+      return '1px solid red';
+    }
+    return `1px solid #e8e8e8`
+  }};
   outline: none;
   width: 100%;
   padding: 10px;
@@ -18,7 +23,7 @@ const Label = styled.label`
   margin-bottom: 5px;
 `
 
-const InputComponent = ({ type = 'text', label, name, value, onChange, placeholder }) => {
+const InputComponent = ({ type = 'text', label, name, value, onChange, placeholder, borderError }) => {
 
   const handleOnChange = (event) => {
     const { value } = event.target;
@@ -35,6 +40,7 @@ const InputComponent = ({ type = 'text', label, name, value, onChange, placehold
         value={value}
         onChange={handleOnChange}
         placeholder={placeholder}
+        borderError={borderError}
       />
     </div>
   )

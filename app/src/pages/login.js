@@ -32,15 +32,26 @@ const LoginPage = () => {
     emailError: '',
     passwordError: ''
   })
+  const [borderError, setBorderError] = useState({
+    emailBorder: false,
+    passwordBorder: false
+  })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await login(formData.email, formData.password)
-    console.log(result)
-    if(result.success) {
+    const { success, error } = result
+    if(success) {
       history.push('/')
     } else {
-      setErrors({emailError: result.error})
+      const { code, message } = error;
+      if(code === 'auth/invalid-email') {
+        setErrors({emailError: message})
+        setBorderError({emailBorder: true})
+      } else if (code === 'auth/wrong-password') {
+        setErrors({passwordError: message})
+        setBorderError({passwordBorder: true})
+      }
     }
   }
   
@@ -50,15 +61,22 @@ const LoginPage = () => {
         <PageHeading title="Log In"/>
         <FormStyled onSubmit={handleFormSubmit}>
           <Input
+            borderError={borderError.emailBorder}
             label="Email address *"
             name="email"
             placeholder="Enter email address"
             value={formData.email}
             onChange={(value) => setFormData({ ...formData, email: value })} 
           />
-          <span>{errors.emailError}</span>
-          <Spacer />
+          <div>
+            &nbsp;
+            {
+              errors && <span style={{ color: 'red', fontSize: '13px' }}>{errors.emailError}</span>
+            }
+          </div>
+          <Spacer height='15px' />
           <Input
+            borderError={borderError.passwordBorder}
             type="password"
             label="Password *"
             name="password"
@@ -66,8 +84,13 @@ const LoginPage = () => {
             value={formData.password}
             onChange={(value) => setFormData({ ...formData, password: value })} 
           />
-          <span>{errors.passwordError}</span>
-          <Spacer height="10px" />
+          <div>
+            &nbsp;
+            {
+              errors && <span style={{ color: 'red', fontSize: '13px' }}>{errors.passwordError}</span>
+            }
+          </div>
+          <Spacer height="20px" />
           <p>Forgot your password?</p>
           <Spacer />
           <Button style={{ width: '100%'}}>LOG IN</Button>

@@ -20,7 +20,7 @@ export async function login(email, password) {
     console.log("🚀 ~ file: auth.js ~ line 16 ~ login ~ result", result)
     return formatResponse(true);
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error };
   }
 }
 
