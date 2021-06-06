@@ -48,9 +48,17 @@ const LoginPage = () => {
       if(code === 'auth/invalid-email') {
         setErrors({emailError: message})
         setBorderError({emailBorder: true})
+        setTimeout(() => {
+          setBorderError({emailBorder: false})
+          setErrors({emailError: ''})
+        }, 3000);
       } else if (code === 'auth/wrong-password') {
         setErrors({passwordError: message})
         setBorderError({passwordBorder: true})
+        setTimeout(() => {
+          setBorderError({passwordBorder: false})
+          setErrors({passwordError: ''})
+        }, 3000);
       }
     }
   }
