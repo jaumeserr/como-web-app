@@ -42,13 +42,6 @@ const LoginPage = () => {
     passwordBorder: false
   })
 
-  const hideErrors = (border, message, time) => {
-    setTimeout(() => {
-      setBorderError({emailBorder: border})
-      setErrors({emailError: message})
-    }, time)
-  }
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await login(formData.email, formData.password)
@@ -61,11 +54,9 @@ const LoginPage = () => {
       if(code === 'auth/invalid-email') {
         setErrors({emailError: message})
         setBorderError({emailBorder: true})
-        hideErrors(false, '', 4000)
       } else if (code === 'auth/wrong-password') {
         setErrors({passwordError: message})
         setBorderError({passwordBorder: true})
-        hideErrors(false, '', 4000)
       }
     }
   }
