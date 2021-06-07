@@ -9,7 +9,7 @@ import { FormLayoutStyled } from '../UI';
 import { Spacer, Button, StyledLink } from '../components/UI';
 import MainLayout from '../components/layouts/MainLayout';
 
-const FormStyled = styled.form`
+const StyledForm = styled.form`
   .form__separator {
     display: flex;
     margin: 20px 0;
@@ -20,9 +20,14 @@ const FormStyled = styled.form`
       height: 13px;
     }
     span {
-      padding: 0 15px
+      padding: 0 15px;
     }
   }
+`
+
+const StyledErrors = styled.span`
+  font-size: 13px;
+  color: red;
 `
 
 const LoginPage = () => {
@@ -37,28 +42,30 @@ const LoginPage = () => {
     passwordBorder: false
   })
 
+  const hideErrors = (border, message, time) => {
+    setTimeout(() => {
+      setBorderError({emailBorder: border})
+      setErrors({emailError: message})
+    }, time)
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const result = await login(formData.email, formData.password)
     const { success, error } = result
     if(success) {
+      console.log('logged')
       history.push('/')
     } else {
       const { code, message } = error;
       if(code === 'auth/invalid-email') {
         setErrors({emailError: message})
         setBorderError({emailBorder: true})
-        setTimeout(() => {
-          setBorderError({emailBorder: false})
-          setErrors({emailError: ''})
-        }, 3000);
+        hideErrors(false, '', 4000)
       } else if (code === 'auth/wrong-password') {
         setErrors({passwordError: message})
         setBorderError({passwordBorder: true})
-        setTimeout(() => {
-          setBorderError({passwordBorder: false})
-          setErrors({passwordError: ''})
-        }, 3000);
+        hideErrors(false, '', 4000)
       }
     }
   }
@@ -67,7 +74,7 @@ const LoginPage = () => {
     <MainLayout>
       <FormLayoutStyled>
         <PageHeading title="Log In"/>
-        <FormStyled onSubmit={handleFormSubmit}>
+        <StyledForm onSubmit={handleFormSubmit}>
           <Input
             borderError={borderError.emailBorder}
             label="Email address *"
@@ -78,9 +85,7 @@ const LoginPage = () => {
           />
           <div>
             &nbsp;
-            {
-              errors && <span style={{ color: 'red', fontSize: '13px' }}>{errors.emailError}</span>
-            }
+            <StyledErrors>{errors.emailError}</StyledErrors>
           </div>
           <Spacer height='15px' />
           <Input
@@ -94,9 +99,7 @@ const LoginPage = () => {
           />
           <div>
             &nbsp;
-            {
-              errors && <span style={{ color: 'red', fontSize: '13px' }}>{errors.passwordError}</span>
-            }
+            <StyledErrors>{errors.passwordError}</StyledErrors>
           </div>
           <Spacer height="20px" />
           <p>Forgot your password?</p>
@@ -108,7 +111,7 @@ const LoginPage = () => {
             <div></div>
           </div>
           <StyledLink style={{ display: 'block' }} to="/signup">CREATE AN ACCOUNT</StyledLink>
-        </FormStyled>
+        </StyledForm>
       </FormLayoutStyled>
     </MainLayout>
   );
